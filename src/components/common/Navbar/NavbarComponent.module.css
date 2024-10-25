@@ -1,6 +1,21 @@
 
+.header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
 .navbar{
-    background-color: rgba(var(--color-secondary-dark), .5) !important;
+    background-color: rgb(var(--color-accent)) !important;
+    transition: all .5s ease;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+    &.scroll_active{
+        background-color: rgba(var(--color-accent), 1) !important;
+        backdrop-filter: blur(5px);
+    }
 }
 
 .btn_toggle{
@@ -16,7 +31,7 @@
     cursor: pointer;
 
     & div{
-        background-color:#000000 ;
+        background-color:#ffffff ;
         width: 100%;
         height: 2px;
         border-radius: 5px;
@@ -45,8 +60,8 @@
 }
 
 .navbar_brand{
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
 
     & a{
         display: flex;
@@ -60,14 +75,16 @@
 .collapse_navbar{
     width: 100%;
     position: absolute;
-    top: 67px;
+    top: 66px;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.272);
-    backdrop-filter: blur(5px);
+    padding-bottom: 200px;
+    background-color: rgba(250, 194, 20, 1) !important;
+    backdrop-filter: blur(20px);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: 9;
 
     -webkit-animation: slide-fwd-br 0.5s ease  forwards;
 	        animation: slide-fwd-br 0.5s ease  forwards;
@@ -92,14 +109,14 @@
     }
     100% {
         width: 100%;
-        height: 50vh;
+        height: calc(100vh + 66px);
         border-bottom-right-radius: 0%;
     }
   }
   @keyframes slide-fwd-br {
     0% {
         width: 100%;
-        height: 50vh;
+        height: calc(100vh + 66px);
         border-bottom-right-radius: 0%;
     }
     100% {
@@ -120,13 +137,18 @@
         height: auto;
         margin-left: auto;
         margin-right: 1.1rem;
+        padding-bottom: 0px;
         position: static;
         display: flex;
         animation: none;
-        background-color: transparent;
+        background-color: transparent !important;
+        backdrop-filter: none;
 
         &.navbar_collapse_active{
             animation: none;
         }
+    }
+    .navbar_brand{
+        margin-left: 10px;
     }
 }

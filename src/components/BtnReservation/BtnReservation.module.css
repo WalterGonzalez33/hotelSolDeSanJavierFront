@@ -1,6 +1,6 @@
 
 .btnReservationContainer{
-    border: 2px solid rgba(60, 61, 55, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     padding: 10px;
     transition: all .3s ease;
@@ -12,6 +12,7 @@
     }
 }
 .btnReservation{
+    color: var(--color-light-secondary);
     display: flex;
     justify-content: center;
     align-items: center;

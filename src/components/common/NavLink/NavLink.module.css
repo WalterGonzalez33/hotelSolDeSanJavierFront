@@ -2,6 +2,9 @@
 .navbar_link{
     position: relative;
     cursor: pointer;
+    font-size: 1.4rem !important;
+    font-weight: 700;
+    color: var(--color-light-secondary) !important;
 
 
     &::after{
@@ -9,7 +12,7 @@
         margin: 0;
         padding: 0;
         position: absolute;
-        background-color: rgba(0, 0, 0, 0.4);
+        background-color: rgba(255, 255, 255, 0.4);
         height: 2px;
         width: 0%;
         left: 50%;
@@ -25,7 +28,7 @@
 
     &.active::after{
         animation: stretch .4s forwards;
-        background-color: var(--color-secondary-dark);
+        background-color: var(--color-light-secondary);
     }
 }
 
@@ -41,5 +44,6 @@
 @media (min-width: 992px) {
     .navbar_link{
         margin-right: 8px;
+        font-size: 1.1rem !important;
     }
 }
