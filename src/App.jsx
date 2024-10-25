@@ -15,7 +15,8 @@ function App() {
         <NavbarComponent />
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/sobre-nosotros" element={<QuienesSomos />} />
+          <Route path="/habitaciones" element={<h1>Habitaciones</h1>} />
+          <Route path="/sobre-nosotros" element={<h1>Quines somos</h1>} />
           <Route path="/admin" element={<h1>Administrador</h1>} />
           <Route path="/galeria" element={<h1>galeria</h1>} />
           <Route path="/contacto" element={<h1>Contacto</h1>} />

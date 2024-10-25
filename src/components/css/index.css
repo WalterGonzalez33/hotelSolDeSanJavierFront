@@ -1,17 +1,17 @@
-.seccion1 {
-  background-color: #0f3d22;
-  position: relative;
+.seccion1{
+    background-color: #0F3D22;
+    position: relative;
+    padding-bottom: 40px;
 }
 
+.marginBoton {
+  margin-top: 33px;
+}
 .colorVerdeClaro {
   color: #95c46c;
 }
 .colorVerdeLetra {
   color: #2f975a;
-}
-
-.marginBoton {
-  margin-top: 33px;
 }
 
 .transparent-rectangle {
