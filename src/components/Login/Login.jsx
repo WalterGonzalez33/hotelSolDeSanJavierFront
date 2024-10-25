@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { BsFacebook, BsGoogle } from 'react-icons/bs';
 import { Button, Form, Col, Row, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
