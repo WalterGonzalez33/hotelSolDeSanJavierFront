@@ -9,6 +9,7 @@ import Experiencias from "../indexComponents/Experiencias";
 import Promociones from "../indexComponents/Promociones";
 import FilterRoomsContainer from "../filterRoomsContainer/FilterRoomsContainer";
 
+
 const Index = () => {
   return (
     <Container>
