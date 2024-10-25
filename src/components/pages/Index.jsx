@@ -13,25 +13,28 @@ const Index = () => {
   return (
     <Container>
       <section className="seccion1 pb-3">
-        
         <div className="contenedorDeLogo">
-        <img src={sanJavier} alt="" className="img-fluid" />
-        <img src={logo} className="logo"/>
-        <div className="transparent-rectangle"></div>
+          <img src={sanJavier} alt="" className="img-fluid" />
+          <img src={logo} className="logo" />
+          <div className="transparent-rectangle"></div>
         </div>
         <div className="contenedor">
-        <Row className="mt-3">
-          <Col lg="3"className="ms-5">
-            <h3 className="colorVerdeLetra">Buscar Habitaciones</h3>
-            <h6 className="colorVerdeClaro">Tarifas y disponibilidad</h6>
-          </Col>
-          <Col>
-            <FormularioIndex></FormularioIndex>
-            <FilterRoomsContainer />
-          </Col>
-        </Row>
+          <Row className="mt-3">
+            <Col lg="3" className="ms-5">
+              <h3 className="colorVerdeLetra">Buscar Habitaciones</h3>
+              <h6 className="colorVerdeClaro">Tarifas y disponibilidad</h6>
+            </Col>
+            <Col>
+              <FormularioIndex></FormularioIndex>
+              <FilterRoomsContainer />
+            </Col>
+          </Row>
         </div>
       </section>
+      <AcercaDeNosotros></AcercaDeNosotros>
+      <Servicios></Servicios>
+      <Experiencias></Experiencias>
+      <Promociones></Promociones>
     </Container>
   );
 };
