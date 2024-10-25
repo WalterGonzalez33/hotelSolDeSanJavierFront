@@ -55,7 +55,7 @@ const QuienesSomos = () => {
     <>
     <Container className="my-3 text-center">
       <Row>
-        <h2 className="colorVerdeLetra">¿Quienes Somos?</h2>
+        <h2 className="colorVerdeLetra mt-4 mb-4">¿Quienes Somos?</h2>
           {listaIntegrantes.map((integrante, index) => {
           return (
             <CardIntegrants

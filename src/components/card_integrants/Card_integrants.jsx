@@ -5,7 +5,7 @@ const CardIntegrants = ({image,title,urlGit,urlLink}) => {
   return (
       <> 
       <Col xs="12" md="4" className="my-2">
-        <Card>
+        <Card className="card_integrated m-3 m-lg-3 p-3">
           <div className="d-flex justify-content-center mt-4">
             <Card.Img
               variant="top"
