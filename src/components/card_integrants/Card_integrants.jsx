@@ -1,5 +1,7 @@
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import "../css/index.css";
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const CardIntegrants = ({image,title,urlGit,urlLink}) => {
   return (
@@ -21,14 +23,15 @@ const CardIntegrants = ({image,title,urlGit,urlLink}) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="dark" className="m-2">GitHub</Button>
+
+              <Button variant="outline-dark" className="m-2"><FaGithub className="fs-4"  /></Button>
             </a>
             <a
               href={urlLink}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button variant="primary">Linkedin</Button>
+              <Button variant="outline-primary"><FaLinkedin className="fs-4" /></Button>
             </a>
           </Card.Body>
         </Card>
