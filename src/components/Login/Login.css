@@ -2,9 +2,19 @@
   letter-spacing: 0.1em;
 }
 a {
-  text-decoration: none; /* Eliminar subrayado */
+  text-decoration: none;
 }
 
 a:hover {
-  text-decoration: none; /* Asegurarte que no aparezca al pasar el ratón */
+  text-decoration: none;
+}
+
+.custom-btn {
+  background-color:#1b673b;
+  color: #fff; 
+  border: none; 
+}
+
+.custom-btn:hover {
+  background-color: #1b673b; 
 }

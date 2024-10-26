@@ -68,7 +68,7 @@ const Login = () => {
       <Row>
         <Col md={12}>
          <div className="text-center mb-4">
-            <img src={logo} alt="Logo" className='img-fluid' /> {/* Ajusta el tamaño si es necesario */}
+            <img src={logo} alt="Logo" className='img-fluid' />
           </div>
           <h2 className="text-center mb-4 letter-spacing">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
@@ -101,7 +101,7 @@ const Login = () => {
             </Form.Group>
 
             <div className="d-flex justify-content-between mt-4">
-              <Button variant="outline-primary" type="submit">
+              <Button variant='outline-primary' type="submit">
                 Iniciar Sesión
               </Button>
               <Link to="/">
