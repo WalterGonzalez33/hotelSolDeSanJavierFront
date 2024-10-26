@@ -1,0 +1,10 @@
+.letter-spacing {
+  letter-spacing: 0.1em;
+}
+a {
+  text-decoration: none; /* Eliminar subrayado */
+}
+
+a:hover {
+  text-decoration: none; /* Asegurarte que no aparezca al pasar el ratón */
+}

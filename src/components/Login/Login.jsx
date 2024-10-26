@@ -68,9 +68,9 @@ const Login = () => {
       <Row>
         <Col md={12}>
          <div className="text-center mb-4">
-            <img src={logo} alt="Logo" className='img-fluid' />
+            <img src={logo} alt="Logo" className='img-fluid' /> {/* Ajusta el tamaño si es necesario */}
           </div>
-          <h2 className="text-center mb-4 separar-letras">Iniciar Sesión</h2>
+          <h2 className="text-center mb-4 letter-spacing">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
@@ -101,11 +101,11 @@ const Login = () => {
             </Form.Group>
 
             <div className="d-flex justify-content-between mt-4">
-              <Button variant="primary" type="submit">
+              <Button variant="outline-primary" type="submit">
                 Iniciar Sesión
               </Button>
               <Link to="/">
-              <Button variant="success" type="button">
+              <Button variant="outline-success" type="button">
                 Registrarse
               </Button>
               </Link>
@@ -115,12 +115,12 @@ const Login = () => {
           <div className="text-center mt-4">
   <p>O registrarse con</p>
   <div className="d-flex justify-content-center gap-3">
-    <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.facebook.com/login" style={{ textDecoration: 'none' }}>
       <Button variant="primary" className="d-flex align-items-center">
         <BsFacebook size={20} className="me-2" /> Facebook
       </Button>
     </a>
-    <a href="https://accounts.google.com/login" target="_blank" rel="noopener noreferrer">
+    <a href="https://accounts.google.com/login"style={{ textDecoration: 'none' }}>
       <Button variant="danger" className="d-flex align-items-center">
         <BsGoogle size={20} className="me-2" /> Google
       </Button>
