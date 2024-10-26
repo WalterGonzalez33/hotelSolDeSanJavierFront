@@ -64,7 +64,7 @@ const Login = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center vh-100">
+    <Container className="d-flex justify-content-center align-items-center vh-100 bg-light rounded-4">
       <Row>
         <Col md={12}>
          <div className="text-center mb-4">
@@ -73,8 +73,9 @@ const Login = () => {
           <h2 className="text-center mb-4 letter-spacing">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className='fs-5' >Email</Form.Label>
               <Form.Control
+              className='rounded-5 border-3 '
                 type="email"
                 placeholder="Ingresa tu email"
                 value={email}
@@ -87,8 +88,9 @@ const Login = () => {
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword" className="mt-3">
-              <Form.Label>Contraseña</Form.Label>
+              <Form.Label className='fs-5'>Contraseña</Form.Label>
               <Form.Control
+              className='rounded-5 border-3'
                 type="password"
                 placeholder="Ingresa tu contraseña"
                 value={password}
@@ -101,27 +103,27 @@ const Login = () => {
             </Form.Group>
 
             <div className="d-flex justify-content-between mt-4">
-              <Button variant='outline-primary' type="submit">
+              <Button variant='outline-primary rounded-5' type="submit">
                 Iniciar Sesión
               </Button>
               <Link to="/">
-              <Button variant="outline-success" type="button">
+              <Button variant="outline-success rounded-5" type="button">
                 Registrarse
               </Button>
               </Link>
             </div>
           </Form>
 
-          <div className="text-center mt-4">
-  <p>O registrarse con</p>
+          <div className="text-center mt-4 ">
+  <p className='fs-5'>O registrarse con</p>
   <div className="d-flex justify-content-center gap-3">
     <a href="https://www.facebook.com/login" style={{ textDecoration: 'none' }}>
-      <Button variant="primary" className="d-flex align-items-center">
+      <Button variant="primary" className="d-flex align-items-center rounded-5">
         <BsFacebook size={20} className="me-2" /> Facebook
       </Button>
     </a>
     <a href="https://accounts.google.com/login"style={{ textDecoration: 'none' }}>
-      <Button variant="danger" className="d-flex align-items-center">
+      <Button variant="danger" className="d-flex align-items-center rounded-5">
         <BsGoogle size={20} className="me-2" /> Google
       </Button>
     </a>
@@ -129,7 +131,7 @@ const Login = () => {
 </div>
 <div className="text-center mt-4">
             <Link to="/Index.jsx">
-              <Button variant="dark">
+              <Button variant="dark rounded-5">
                 Volver al inicio
               </Button>
             </Link>
