@@ -129,7 +129,7 @@ const Login = () => {
 </div>
 <div className="text-center mt-4">
             <Link to="/Index.jsx">
-              <Button variant="secondary">
+              <Button variant="dark">
                 Volver al inicio
               </Button>
             </Link>
