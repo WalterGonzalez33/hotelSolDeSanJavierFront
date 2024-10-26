@@ -3,6 +3,10 @@ import  { useState } from 'react';
 import { BsFacebook, BsGoogle } from 'react-icons/bs';
 import { Button, Form, Col, Row, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
+import "./Login.css";
+
 
 
 const Login = () => {
@@ -63,7 +67,10 @@ const Login = () => {
     <Container className="d-flex justify-content-center align-items-center vh-100">
       <Row>
         <Col md={12}>
-          <h2 className="text-center mb-4">Iniciar Sesión</h2>
+         <div className="text-center mb-4">
+            <img src={logo} alt="Logo" className='img-fluid' />
+          </div>
+          <h2 className="text-center mb-4 separar-letras">Iniciar Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
@@ -97,22 +104,35 @@ const Login = () => {
               <Button variant="primary" type="submit">
                 Iniciar Sesión
               </Button>
-              <Button variant="secondary" type="button">
+              <Link to="/">
+              <Button variant="success" type="button">
                 Registrarse
               </Button>
+              </Link>
             </div>
           </Form>
 
           <div className="text-center mt-4">
-            <p>O registrarse con</p>
-            <div className="d-flex justify-content-center gap-3">
-              <Button variant="primary" className="d-flex align-items-center">
-                <BsFacebook size={20} className="me-2" /> Facebook
+  <p>O registrarse con</p>
+  <div className="d-flex justify-content-center gap-3">
+    <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer">
+      <Button variant="primary" className="d-flex align-items-center">
+        <BsFacebook size={20} className="me-2" /> Facebook
+      </Button>
+    </a>
+    <a href="https://accounts.google.com/login" target="_blank" rel="noopener noreferrer">
+      <Button variant="danger" className="d-flex align-items-center">
+        <BsGoogle size={20} className="me-2" /> Google
+      </Button>
+    </a>
+  </div>
+</div>
+<div className="text-center mt-4">
+            <Link to="/Index.jsx">
+              <Button variant="secondary">
+                Volver al inicio
               </Button>
-              <Button variant="danger" className="d-flex align-items-center">
-                <BsGoogle size={20} className="me-2" /> Google
-              </Button>
-            </div>
+            </Link>
           </div>
         </Col>
       </Row>
