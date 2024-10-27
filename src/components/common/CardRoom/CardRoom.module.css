@@ -1,0 +1,23 @@
+.card_container{
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-bg-card);
+    border-radius: 5px;
+}
+
+.card_img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.card_title{
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgb(var(--color-accent-light));
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--color-secondary-dark);
+}

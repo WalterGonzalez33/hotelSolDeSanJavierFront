@@ -2,13 +2,15 @@
     --color-primary-dark: #1E201E;
     --color-secondary-dark: #3C3D37;
     --color-bg-light: #d3dade;
-    --color-accent: #00652F;
+    --color-accent: 0, 101, 47; /* #00652F */
+    --color-accent-light: 149, 196, 108; /* #95c46c */
     --color-light: #ECDFCC;
     --color-light-secondary: #F4F6FF;
+    --color-bg-card: #eef6e7;
   }
 
   body{
-    background-color: var(--color-bg-light);
+    background-color: var(--color-light);
     display: flex;
     flex-direction: column;
     min-height: 100vh;

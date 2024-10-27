@@ -1,0 +1,43 @@
+h5 {
+  font-size: 3rem;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem; 
+}
+
+.footer-background {
+  position: relative;
+
+}
+
+.text-link {
+  color: #00652F;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  color: #218838;
+  text-decoration: underline; 
+  transition: color 0.3s ease;
+}
+
+
+.footer-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('http://www.hotelsolsanjavier.com.ar/public/images/slider/PRUEBA%203%20-%20copia.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
