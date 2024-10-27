@@ -1,14 +1,15 @@
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg"
+import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
+import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
 import trabajar from "../../assets/imgInicio/trabajar.jpg"
-import descansar from "../../assets/imgInicio/descansar.jpg";
-import divertirse from "../../assets/imgInicio/divertirse.jpg";
 import "../css/index.css";
 import CardIntegrants from "../card_integrants/Card_integrants.jsx";
 
 const QuienesSomos = () => {
   const listaIntegrantes = [
     {
-      image: `${trabajar}`,
+      image: `${MauroConiglio}`,
       key: 1,
       title: "Mauro Coniglio",
       urlGit: "https://github.com/MauroConiglio",
@@ -29,18 +30,18 @@ const QuienesSomos = () => {
       urlLink: "https://github.com/MauroConiglio",
     },
     {
-        image: `${trabajar}`,
+        image: `${LeoRecalde}`,
         key: 3,
         title: "Leo Recalde",
         urlGit: "https://github.com/leorecalde",
-        urlLink: "https://github.com/MauroConiglio",
+        urlLink: "https://www.linkedin.com/in/leo-recalde-479b772bb/",
       },
       {
-        image: `${trabajar}`,
+        image: `${FernandoValdivia}`,
         key: 3,
         title: "Fernando Valdivia",
         urlGit: "https://github.com/Fernando-Valdivia",
-        urlLink: "https://github.com/MauroConiglio",
+        urlLink: "https://www.linkedin.com/in/fernando-miguel-valdivia-180218ab/",
       },
       {
         image: `${trabajar}`,
