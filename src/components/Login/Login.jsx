@@ -14,21 +14,18 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  // Expresión regular para validar email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Función de validación
+
   const validateForm = () => {
     const newErrors = {};
 
-    // Validación del email
     if (!email) {
       newErrors.email = 'El email es requerido.';
     } else if (!emailRegex.test(email)) {
       newErrors.email = 'El email no tiene un formato válido.';
     }
 
-    // Validación de la contraseña
     if (!password) {
       newErrors.password = 'La contraseña es requerida.';
     } else if (password.length < 8) {
