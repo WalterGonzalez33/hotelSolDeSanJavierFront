@@ -2,6 +2,8 @@ import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg"
 import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
 import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
+import TomasSantamarino from "../../assets/imgAboutUs/TomasSantamarino.jpeg";
+import WalterGonzalez from "../../assets/imgAboutUs/WalterGonzalez.jpg";
 import trabajar from "../../assets/imgInicio/trabajar.jpg"
 import "../css/index.css";
 import CardIntegrants from "../card_integrants/Card_integrants.jsx";
@@ -16,14 +18,14 @@ const QuienesSomos = () => {
       urlLink: "https://www.linkedin.com/in/mauro-coniglio-b03b22297/",
     },
     {
-      image: `${trabajar}`,
+      image: `${WalterGonzalez}`,
       key: 2,
       title: "Walter Gonzalez",
       urlGit: "https://github.com/WalterGonzalez33",
       urlLink: "https://www.linkedin.com/in/walter-gonzalez-4849352a9/",
     },
     {
-      image: `${trabajar}`,
+      image: `${TomasSantamarino}`,
       key: 3,
       title: "Tomas Santamarina",
       urlGit: "https://github.com/Tomas2845",
