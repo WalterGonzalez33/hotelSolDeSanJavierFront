@@ -8,7 +8,7 @@
     --color-light-secondary: #F4F6FF;
     --color-bg-card: #eef6e7;
   }
-
+  
   body{
     background-color: var(--color-light);
     display: flex;
