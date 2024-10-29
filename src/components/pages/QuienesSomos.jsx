@@ -4,7 +4,7 @@ import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
 import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
 import TomasSantamarino from "../../assets/imgAboutUs/TomasSantamarino.jpeg";
 import WalterGonzalez from "../../assets/imgAboutUs/WalterGonzalez.jpg";
-import trabajar from "../../assets/imgInicio/trabajar.jpg"
+import IsaiasGius from "../../assets/imgAboutUs/isaiasGius.jpg"
 import "../css/index.css";
 import CardIntegrants from "../card_integrants/Card_integrants.jsx";
 
@@ -46,10 +46,10 @@ const QuienesSomos = () => {
         urlLink: "https://www.linkedin.com/in/fernando-miguel-valdivia-180218ab/",
       },
       {
-        image: `${trabajar}`,
+        image: `${IsaiasGius}`,
         key: 3,
         title: "Isais Gius",
-        urlGit: "https://github.com/MauroConiglio",
+        urlGit: "https://github.com/G1U5",
         urlLink: "https://github.com/MauroConiglio",
       },
 
