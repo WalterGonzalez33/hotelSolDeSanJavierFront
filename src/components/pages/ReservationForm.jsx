@@ -20,6 +20,7 @@ const ReservationForm = () => {
       <p>Complete el formulario para realizar una reserva</p>
       <Form className="my-4" onSubmit={handleSubmit(reservaRealizada)}>
         <Form.Group className="mb-3">
+          <h3>Datos personales</h3>
           <Form.Label>Nombre y Apellido</Form.Label>
           <Form.Control
             type="text"
@@ -40,6 +41,7 @@ const ReservationForm = () => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
+            placeholder="Ej: hotelsanjavier@mail.com"
             {...register("email", {
               required: "El email es un campo obligatorio",
               pattern: {
@@ -59,6 +61,64 @@ const ReservationForm = () => {
               },
             })}
           />
+        </Form.Group>
+        <Form.Group>
+          <h3>Datos de la estadía</h3>
+          <Form.Label>Check-In</Form.Label>
+          <Form.Control
+            type="date"
+            {...register("checkIn", {
+              required: "La fecha de Check-In es obligatoria",
+            })}
+          />
+          <Form.Text className="text-danger">
+            {errors.checkIn?.message}
+          </Form.Text>
+          <Form.Label>Check-Out</Form.Label>
+          <Form.Control
+            type="date"
+            {...register("checkOut", {
+              required: "La fecha de Check-Out es obligatoria",
+              validate: (value) => {
+                if (value < register("checkIn").value) {
+                  return "La fecha de Check-Out debe ser posterior a la de Check-In";
+                }
+              },
+            })}
+          />
+          <Form.Text className="text-danger">
+            {errors.checkOut?.message}
+          </Form.Text>
+          <Form.Label>Cantidad de adultos</Form.Label>
+          <Form.Select
+            {...register("adultos", {
+              required: "La cantidad de adultos es obligatoria",
+            })}
+          >
+            <option>Seleccione...</option>
+            {[...Array(10)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1} {i + 1 === 1 ? "adulto  " : "adultos"}
+              </option>
+            ))}
+          </Form.Select>
+          <Form.Text className="text-danger">
+            {errors.adultos?.message}
+          </Form.Text>
+          <Form.Label>Cantidad de niños</Form.Label>
+          <Form.Select
+            {...register("niños", {
+              required: "La cantidad de niños es obligatoria",
+            })}
+          >
+            <option>Seleccione...</option>
+            {[...Array(10)].map((_, i) => (
+              <option key={i + 1} value={i + 1}>
+                {i + 1} {i + 1 === 1 ? "niño" : "niños"}
+              </option>
+            ))}
+          </Form.Select>
+          <Form.Text className="text-danger">{errors.niños?.message}</Form.Text>
         </Form.Group>
       </Form>
     </section>
