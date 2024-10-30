@@ -14,10 +14,22 @@ function formContactos() {
     console.log(data);
   };
 
+  const containerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: '#f0f0f0',
+  };
+
   return (
-    <Form className="container" onClick={handleSubmit(onSubmit)}>
-      <Form.Group className="mb-6" controlId="exampleForm.ControlInput1">
+    
+    <Form className="container " onClick={handleSubmit(onSubmit)}>
+      <Form.Group className="mb-6 containerStyle " controlId="exampleForm.ControlInput1">
         <Form.Label>Nombre</Form.Label>
+        <Form.Text className="text-danger ms-2">
+          {errors.nombre?.message}
+        </Form.Text>
         <Form.Control
           type="text"
           placeholder="Ej: Juan"
@@ -33,9 +45,11 @@ function formContactos() {
             },
           })}
         />
-        <Form.Text className="text-danger">{errors.nombre?.message}</Form.Text>
 
-        <Form.Label>Apellido</Form.Label>
+        <Form.Label className="mt-2">Apellido</Form.Label>
+        <Form.Text className="text-danger ms-2">
+          {errors.apellido?.message}
+        </Form.Text>
         <Form.Control
           type="text"
           placeholder="Ej: Sanchez"
@@ -51,11 +65,11 @@ function formContactos() {
             },
           })}
         />
-        <Form.Text className="text-danger">
-          {errors.apellido?.message}
-        </Form.Text>
 
-        <Form.Label>email</Form.Label>
+        <Form.Label className="mt-2">Email</Form.Label>
+        <Form.Text className="text-danger ms-2">
+          {errors.email?.message}
+        </Form.Text>
         <Form.Control
           type="email"
           placeholder="Ej: Juansanchez@gmail.com"
@@ -71,9 +85,11 @@ function formContactos() {
             },
           })}
         />
-        <Form.Text className="text-danger">{errors.email?.message}</Form.Text>
 
-        <Form.Label>Celular</Form.Label>
+        <Form.Label className="mt-2">Celular</Form.Label>
+        <Form.Text className="text-danger ms-2">
+          {errors.cel?.message}
+        </Form.Text>
         <Form.Control
           type="tel"
           placeholder="Ej: 3813321783"
@@ -81,19 +97,21 @@ function formContactos() {
             required: "*El celular es un campo obligatorio*",
             minLength: {
               value: 2,
-              message: "El celular debe tener un minino de 2 caracteres",
+              message: "El celular debe tener un minino de 2 numeros",
             },
             maxLength: {
               value: 10,
-              message: "El email debe tener como maximo 10 caracteres",
+              message: "El celular debe tener como maximo 10 numeros",
             },
           })}
         />
-        <Form.Text className="text-danger">{errors.cel?.message}</Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Dejanos tu consulta </Form.Label>
+        <Form.Label className="mt-2">Escribinos tu consulta </Form.Label>
+        <Form.Text className="text-danger ms-2">
+          {errors.consulta?.message}
+        </Form.Text>
         <Form.Control
           as="textarea"
           rows={3}
@@ -110,15 +128,15 @@ function formContactos() {
             },
           })}
         />
-        <Form.Text className="text-danger">
-          {errors.consulta?.message}
-        </Form.Text>
-        <Button variant="success" type="submit" className="mt-3">
+
+        <Button variant="success" type="submit" className="mt-2">
           Enviar consulta
         </Button>
       </Form.Group>
     </Form>
   );
 }
+
+
 
 export default formContactos;
