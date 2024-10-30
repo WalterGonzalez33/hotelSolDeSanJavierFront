@@ -15,7 +15,7 @@ const ReservationForm = () => {
   };
 
   return (
-    <section className="container">
+    <section className="container my-4">
       <h1>Solicitud de reserva</h1>
       <p>Complete el formulario para realizar una reserva</p>
       <Form className="my-4" onSubmit={handleSubmit(reservaRealizada)}>
@@ -89,36 +89,22 @@ const ReservationForm = () => {
           <Form.Text className="text-danger">
             {errors.checkOut?.message}
           </Form.Text>
-          <Form.Label>Cantidad de adultos</Form.Label>
+          <Form.Label>Cantidad de personas</Form.Label>
           <Form.Select
-            {...register("adultos", {
-              required: "La cantidad de adultos es obligatoria",
+            {...register("personas", {
+              required: "La cantidad de personas es obligatoria",
             })}
           >
             <option>Seleccione...</option>
             {[...Array(10)].map((_, i) => (
               <option key={i + 1} value={i + 1}>
-                {i + 1} {i + 1 === 1 ? "adulto  " : "adultos"}
+                {i + 1} {i + 1 === 1 ? "persona" : "personas"}
               </option>
             ))}
           </Form.Select>
           <Form.Text className="text-danger">
-            {errors.adultos?.message}
+            {errors.personas?.message}
           </Form.Text>
-          <Form.Label>Cantidad de niños</Form.Label>
-          <Form.Select
-            {...register("niños", {
-              required: "La cantidad de niños es obligatoria",
-            })}
-          >
-            <option>Seleccione...</option>
-            {[...Array(10)].map((_, i) => (
-              <option key={i + 1} value={i + 1}>
-                {i + 1} {i + 1 === 1 ? "niño" : "niños"}
-              </option>
-            ))}
-          </Form.Select>
-          <Form.Text className="text-danger">{errors.niños?.message}</Form.Text>
         </Form.Group>
       </Form>
     </section>
