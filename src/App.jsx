@@ -4,9 +4,7 @@ import Index from "./components/pages/Index";
 import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/quienesSomos";
 import ReservationForm from "./components/pages/ReservationForm";
-
-import Login from "./components/pages/Login/Login.jsx"
-Login
+import Login from "./components/pages/Login/Login.jsx";
 
 
 
