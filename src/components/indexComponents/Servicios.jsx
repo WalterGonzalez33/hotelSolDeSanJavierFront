@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import "../css/index.css"
+
 import restaurante from "../../assets/imgInicio/restaurante2.jpg"
 import spa from "../../assets/imgInicio/spa2.jpg"
 import piscina from "../../assets/imgInicio/piscina2.jpg"

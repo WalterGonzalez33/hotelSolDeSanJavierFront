@@ -3,7 +3,7 @@ import NavbarComponent from "./components/common/Navbar/NavbarComponent";
 import Index from "./components/pages/Index";
 import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/quienesSomos";
-import Login from "./components/Login/Login";
+import Login from "./components/pages/Login/Login.jsx"
 Login
 
 
