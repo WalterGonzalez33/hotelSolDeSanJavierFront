@@ -1,52 +1,55 @@
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
-import trabajar from "../../assets/imgInicio/trabajar.jpg"
-import descansar from "../../assets/imgInicio/descansar.jpg";
-import divertirse from "../../assets/imgInicio/divertirse.jpg";
+import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg"
+import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
+import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
+import TomasSantamarino from "../../assets/imgAboutUs/TomasSantamarino.jpeg";
+import WalterGonzalez from "../../assets/imgAboutUs/WalterGonzalez.jpg";
+import IsaiasGius from "../../assets/imgAboutUs/isaiasGius.jpg"
 import "../css/index.css";
 import CardIntegrants from "../card_integrants/Card_integrants.jsx";
 
 const QuienesSomos = () => {
   const listaIntegrantes = [
     {
-      image: `${trabajar}`,
+      image: `${MauroConiglio}`,
       key: 1,
       title: "Mauro Coniglio",
       urlGit: "https://github.com/MauroConiglio",
       urlLink: "https://www.linkedin.com/in/mauro-coniglio-b03b22297/",
     },
     {
-      image: `${trabajar}`,
+      image: `${WalterGonzalez}`,
       key: 2,
       title: "Walter Gonzalez",
       urlGit: "https://github.com/WalterGonzalez33",
       urlLink: "https://www.linkedin.com/in/walter-gonzalez-4849352a9/",
     },
     {
-      image: `${trabajar}`,
+      image: `${TomasSantamarino}`,
       key: 3,
       title: "Tomas Santamarina",
       urlGit: "https://github.com/Tomas2845",
       urlLink: "https://github.com/MauroConiglio",
     },
     {
-        image: `${trabajar}`,
+        image: `${LeoRecalde}`,
         key: 3,
         title: "Leo Recalde",
         urlGit: "https://github.com/leorecalde",
-        urlLink: "https://github.com/MauroConiglio",
+        urlLink: "https://www.linkedin.com/in/leo-recalde-479b772bb/",
       },
       {
-        image: `${trabajar}`,
+        image: `${FernandoValdivia}`,
         key: 3,
         title: "Fernando Valdivia",
         urlGit: "https://github.com/Fernando-Valdivia",
-        urlLink: "https://github.com/MauroConiglio",
+        urlLink: "https://www.linkedin.com/in/fernando-miguel-valdivia-180218ab/",
       },
       {
-        image: `${trabajar}`,
+        image: `${IsaiasGius}`,
         key: 3,
         title: "Isais Gius",
-        urlGit: "https://github.com/MauroConiglio",
+        urlGit: "https://github.com/G1U5",
         urlLink: "https://github.com/MauroConiglio",
       },
 
