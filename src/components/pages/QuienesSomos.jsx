@@ -5,8 +5,7 @@ import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
 import TomasSantamarino from "../../assets/imgAboutUs/TomasSantamarino.jpeg";
 import WalterGonzalez from "../../assets/imgAboutUs/WalterGonzalez.jpg";
 import IsaiasGius from "../../assets/imgAboutUs/isaiasGius.jpg"
-import "../css/index.css";
-import CardIntegrants from "../card_integrants/Card_integrants.jsx";
+import CardIntegrants from "./CardIntegrants/Card_integrants.jsx";
 
 const QuienesSomos = () => {
   const listaIntegrantes = [

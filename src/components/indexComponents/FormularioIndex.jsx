@@ -1,6 +1,5 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import "../css/index.css";
 import { validationDate } from "../../utils/validateDate";
 
 const FormularioIndex = () => {
