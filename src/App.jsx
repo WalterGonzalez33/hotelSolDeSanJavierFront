@@ -5,6 +5,8 @@ import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/quienesSomos";
 import ReservationForm from "./components/pages/ReservationForm";
 
+import Login from "./components/pages/Login/Login.jsx"
+Login
 
 
 
@@ -23,6 +25,7 @@ function App() {
           <Route path="/contacto" element={<h1>Contacto</h1>} />
           <Route path="/reservacion" element={<ReservationForm/>} />
           <Route path="*" element={<h1>404 Not found</h1>} />
+          <Route path="/login" element={<Login/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>

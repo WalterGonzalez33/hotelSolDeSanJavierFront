@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import sanJavier from "../../assets/imgInicio/sanJavier.png";
-import "../css/index.css";
+import "../../styles/index.css";
 import logo from "../../assets/logo.png";
 import FormularioIndex from "../indexComponents/FormularioIndex";
 import AcercaDeNosotros from "../indexComponents/AcercaDeNosotros";

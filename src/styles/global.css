@@ -19,3 +19,7 @@
   main{
     flex-wrap: 1;
   }
+
+  .card_integrated{
+    box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
+  }

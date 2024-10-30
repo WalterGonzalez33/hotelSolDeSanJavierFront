@@ -57,9 +57,7 @@ width: 100%;
 .imagenHotel {
   object-fit: cover;
 }
-.card_integrated{
-  box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
-}
+
 @media (min-width: 1200px) {
   .logo {
     transform: translate(-50%, -50%) scale(1.5);
