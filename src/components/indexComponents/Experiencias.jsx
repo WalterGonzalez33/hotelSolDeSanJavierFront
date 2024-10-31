@@ -2,7 +2,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import trabajar from "../../assets/imgInicio/trabajar.jpg"
 import descansar from "../../assets/imgInicio/descansar.jpg"
 import divertirse from "../../assets/imgInicio/divertirse.jpg"
-import "../css/index.css"
+import "../../styles/index.css"
 
 const Experiencias = () => {
   return (

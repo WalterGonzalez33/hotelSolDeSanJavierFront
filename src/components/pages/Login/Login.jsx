@@ -4,7 +4,7 @@ import { BsFacebook, BsEnvelopeFill  } from 'react-icons/bs';
 import { Button, Form, Col, Row, Container } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../../assets/logo.png";
 import "./Login.css";
 
 

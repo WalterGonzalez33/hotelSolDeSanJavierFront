@@ -1,5 +1,5 @@
 import Carousel from "react-bootstrap/Carousel";
-import "../css/index.css";
+
 import vista from "../../assets/imgInicio/vista.jpg";
 import vista2 from "../../assets/imgInicio/vista2.jpg";
 import habitacion from "../../assets/imgInicio/habitacion.jpg";
