@@ -11,7 +11,10 @@ const ReservationForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm();
+
+ const checkInDate = watch("checkIn");
 
   const reservaRealizada = (data) => {
     Swal.fire({
@@ -45,13 +48,6 @@ const ReservationForm = () => {
       </Carousel>
 
       <h1 className="reservation-title">Solicitud de reserva</h1>
-      <p className="reservation-paragraph">
-        Complete el formulario para realizar una reserva.<br></br> Luego de
-        enviar la solicitud de reserva sera contactado por personal del
-        Departamento de Reservas del Hotel Sol San Javier. Por favor envie la
-        mayor cantidad de informacion posible a fin que podamos cotizarle
-        adecuadamente.
-      </p>
       <Form
         className="my-4 form-container"
         onSubmit={handleSubmit(reservaRealizada)}
@@ -105,6 +101,7 @@ const ReservationForm = () => {
               <Form.Label className="mt-4">Teléfono</Form.Label>
               <Form.Control
                 type="tel"
+                placeholder="123-456-7"
                 {...register("telefono", {
                   required: "Este campo es obligatorio",
                   pattern: {
@@ -154,6 +151,12 @@ const ReservationForm = () => {
                 type="date"
                 {...register("checkOut", {
                   required: "La fecha de Check-Out es obligatoria",
+                  validate: (value) => {
+                    if (checkInDate && new Date(value) < new Date(checkInDate)) {
+                      return "La fecha de salida no puede ser anterior a la fecha de entrada.";
+                    }
+                    return true;
+                  },
                 })}
               />
               <div>
@@ -207,7 +210,7 @@ const ReservationForm = () => {
             </Col>
           </Row>
         </Form.Group>
-        <Button type="submit" className="my-2" variant="success">
+        <Button type="submit" className="my-3" variant="success">
           Reservar
         </Button>
       </Form>
