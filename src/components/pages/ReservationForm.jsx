@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import "../../styles/global.css";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const ReservationForm = () => {
   const {
@@ -11,17 +12,26 @@ const ReservationForm = () => {
   } = useForm();
 
   const reservaRealizada = (data) => {
-    console.log(data);
-  };
+    // Alerta de confirmación con sweetAlert2
+    Swal.fire({
+      title: "Reserva Realizada",
+      text: "Tu solicitud de reserva ha sido enviada exitosamente. Nos pondremos en contacto contigo pronto.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
 
+    // Reiniciar formulario al enviar
+    reset();
+  };
   return (
     <section className="container my-4">
-      <h1>Solicitud de reserva</h1>
-      <p>
-        Complete el formulario para realizar una reserva.<br></br> Luego de enviar la
-        solicitud de reserva sera contactado por personal del Departamento de
-        Reservas del Hotel Sol San Javier. Por favor envie la mayor cantidad de
-        informacion posible a fin que podamos cotizarle adecuadamente.
+      <h1 className="reservation-title">Solicitud de reserva</h1>
+      <p className="reservation-paragraph">
+        Complete el formulario para realizar una reserva.<br></br> Luego de
+        enviar la solicitud de reserva sera contactado por personal del
+        Departamento de Reservas del Hotel Sol San Javier. Por favor envie la
+        mayor cantidad de informacion posible a fin que podamos cotizarle
+        adecuadamente.
       </p>
       <Form
         className="my-4 form-container"
@@ -49,7 +59,13 @@ const ReservationForm = () => {
                   },
                 })}
               />
-              <Form.Label className="mt-2">Email</Form.Label>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.nombreReserva?.message}
+                </Form.Text>
+              </div>
+
+              <Form.Label className="mt-4">Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Ej: hotelsanjavier@mail.com"
@@ -61,7 +77,13 @@ const ReservationForm = () => {
                   },
                 })}
               />
-              <Form.Label className="mt-2">Teléfono</Form.Label>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.email?.message}
+                </Form.Text>
+              </div>
+
+              <Form.Label className="mt-4">Teléfono</Form.Label>
               <Form.Control
                 type="tel"
                 {...register("telefono", {
@@ -72,15 +94,20 @@ const ReservationForm = () => {
                   },
                 })}
               />
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.telefono?.message}
+                </Form.Text>
+              </div>
             </Col>
             <Col md={6} xs={12}>
               <Form.Label className="mt-2">País</Form.Label>
               <Form.Control></Form.Control>
-              <Form.Label className="mt-2">
+              <Form.Label className="mt-4">
                 Provincia / Estado / Región
               </Form.Label>
               <Form.Control></Form.Control>
-              <Form.Label className="mt-2">Empresa</Form.Label>
+              <Form.Label className="mt-4">Empresa</Form.Label>
               <Form.Control></Form.Control>
             </Col>
           </Row>
@@ -97,10 +124,13 @@ const ReservationForm = () => {
                   required: "La fecha de Check-In es obligatoria",
                 })}
               />
-              <Form.Text className="text-danger">
-                {errors.checkIn?.message}
-              </Form.Text>
-              <Form.Label className="mt-2">Check-Out</Form.Label>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.checkIn?.message}
+                </Form.Text>
+              </div>
+
+              <Form.Label className="mt-4">Check-Out</Form.Label>
               <Form.Control
                 type="date"
                 {...register("checkOut", {
@@ -112,10 +142,13 @@ const ReservationForm = () => {
                   },
                 })}
               />
-              <Form.Text className="text-danger">
-                {errors.checkOut?.message}
-              </Form.Text>
-              <Form.Label className="mt-2">Comentarios</Form.Label>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.checkOut?.message}
+                </Form.Text>
+              </div>
+
+              <Form.Label className="mt-4">Comentarios</Form.Label>
               <Form.Control as="textarea" rows={4} />
             </Col>
             <Col md={6} xs={12}>
@@ -125,24 +158,36 @@ const ReservationForm = () => {
                   required: "La cantidad de personas es obligatoria",
                 })}
               >
-                <option>Seleccione...</option>
+                <option value="">Seleccione...</option>
                 {[...Array(10)].map((_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1} {i + 1 === 1 ? "persona" : "personas"}
                   </option>
                 ))}
               </Form.Select>
-              <Form.Text className="text-danger">
-                {errors.personas?.message}
-              </Form.Text>
-              <Form.Label className="mt-2">Tipo de habitación</Form.Label>
-              <Form.Select>
-                <option>Seleccione...</option>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.personas?.message}
+                </Form.Text>
+              </div>
+
+              <Form.Label className="mt-4">Tipo de habitación</Form.Label>
+              <Form.Select
+                {...register("roomType", {
+                  required: "El tipo de habitación es obligatorio",
+                })}
+              >
+                <option value="">Seleccione...</option>
                 <option>Dobles superiores</option>
                 <option>Departamentos</option>
                 <option>Dobles de lujo</option>
                 <option>Suite superior</option>
               </Form.Select>
+              <div>
+                <Form.Text className="text-danger">
+                  {errors.roomType?.message}
+                </Form.Text>
+              </div>
               <Form.Label>Hora estimada de llegada</Form.Label>
               <Form.Control type="time" />
             </Col>
