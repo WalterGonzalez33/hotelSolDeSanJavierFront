@@ -1,0 +1,4 @@
+.button-active {
+    background-color: rgb(var(--color-accent)); /* Usa tu color de acento */
+    color: white;
+  }
