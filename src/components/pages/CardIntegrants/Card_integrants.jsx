@@ -1,5 +1,4 @@
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
-import "../css/index.css";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
