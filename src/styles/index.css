@@ -1,7 +1,15 @@
 .seccion1{
     background-color: #0F3D22;
     position: relative;
-    padding-bottom: 40px;
+    padding-bottom: 80px;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 50% 100%, 0 95%);
+}
+
+.row-index{
+  max-width: 100dvw;
+}
+.text-error-filter{
+  color: rgb(247, 107, 107);
 }
 
 .marginBoton {
@@ -46,8 +54,6 @@ width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  /*height: 100vh; /* Ocupa toda la altura de la ventana */
 }
 
 .seccion3 {

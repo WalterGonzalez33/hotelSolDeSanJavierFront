@@ -47,9 +47,6 @@
 
     &:hover{
         transition: all .7s ease;
-        top: 50%;
-        left: 50%;
-        transform: scale(1.1) translate(-45%, -45%);
     }
 }
 

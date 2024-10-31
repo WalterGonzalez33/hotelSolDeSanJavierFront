@@ -10,9 +10,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
 import "./custom-swiper-bullet.css";
+import { useParams } from "react-router-dom";
 
 const FilterRoomsContainer = () => {
-  const { data, loading, error } = useFetch({ endPoint: "/rooms" });
+  const { check_in, check_out } = useParams();
+
+  const { data, loading, error } = useFetch({
+    endPoint: `/rooms/${check_in}/${check_out}`,
+  });
 
   const HandleError = () => {
     console.error(error);
@@ -41,12 +46,12 @@ const FilterRoomsContainer = () => {
   };
 
   return (
-    <Container>
+    <Container className={` ${style.container} `}>
       <article className={` ${style.filter_container} `}>
         {loading && <HandleLoading />}
         {error && <HandleError />}
-        {data === [] && <HandleNotAvailable />}
-        {data && (
+        {data !== null && data.length === 0 && <HandleNotAvailable />}
+        {data !== null && data.length > 0 && (
           <Swiper
             navigation={true}
             modules={[Navigation]}
