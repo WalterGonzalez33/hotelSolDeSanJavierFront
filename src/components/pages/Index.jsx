@@ -27,7 +27,7 @@ const Index = () => {
             <Col>
               <FormularioIndex></FormularioIndex>
             </Col>
-            <Col>
+            <Col className="col-12">
               <FilterRoomsContainer />
             </Col>
           </Row>
