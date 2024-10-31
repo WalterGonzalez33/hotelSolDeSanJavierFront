@@ -1,23 +1,218 @@
 .card_container{
+    position: relative;
     width: 90%;
-    max-width: 600px;
-    padding: 10px;
+    height: auto;
+    margin: auto;
+    max-width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
     background-color: var(--color-bg-card);
     border-radius: 5px;
 }
-
-.card_img{
-    width: 100%;
-    border-radius: 5px;
+.card_available{
+    position: absolute;
+    font-size: .7rem;
+    font-weight: 500;
+    top: 10px;
+    left: 8px;
+    padding: 5px 4px;
+    color: rgb(var(--color-accent));
+    background-color:var(--color-bg-card);
+    border-radius: 10px;
+    z-index: 10;
 }
 
-.card_title{
+.card_img_container{
+    position: relative;
     width: 100%;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+    padding: 0px;
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+}
+
+.card_img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: none;
+    transition: all .7s ease;
+
+    &:hover{
+        transition: all .7s ease;
+        top: 50%;
+        left: 50%;
+        transform: scale(1.1) translate(-45%, -45%);
+    }
+}
+
+.card_info_container{
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+}
+.card_title{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 10px;
     text-align: center;
     font-size: 1.2rem;
-    color: rgb(var(--color-accent-light));
+    color: rgb(var(--color-accent));
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-secondary-dark);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.card_description_container{
+    width: 90%;
+    margin: auto;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-align: center;
+    
+    &p{
+        text-align: center;
+    }
+}
+
+.card_benefits_container{
+
+    margin: 8px 0px 15px 0px;
+    padding: 8px;
+    padding-left: 2.5rem;
+
+    .card_benefits_list{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto); 
+        gap: 10px;
+        margin: 0px;
+        padding: 0px;
+
+        li{
+            list-style-type: none;
+
+            svg {
+                color: rgb(var(--color-accent))
+            }
+        }
+    }
+    
+}
+.card_reservation_container{
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.card_price_container{
+    font-size: .9rem;
+    padding-top: 5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    & .card_price{
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: rgb(var(--color-accent))
+    }
+}
+
+@media (min-width: 992px) {
+    .card_container{
+        display: flex;
+        height: 400px;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card_img_container{
+        position: relative;
+        width: 50%;
+        max-width: 380px;
+        max-height: none;
+        height: 100%;
+        padding: 0px;
+        overflow: hidden;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .card_img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+        border-radius: none;
+        transition: all .7s ease;
+    
+        &:hover{
+            transition: all .7s ease;
+            top: 50%;
+            left: 50%;
+            transform: scale(1.1) translate(-45%, -45%);
+        }
+    }
+
+    .card_info_container{
+        position: relative;
+        width: 60%;
+        padding: 1rem;
+    }
+    .card_description_container{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        
+        & p{
+            text-align: start;
+        }
+    }
+
+    .card_benefits_container{
+        width: 80%;
+        padding-left: 8px;
+        margin: auto;
+        margin-top: 12px;
+
+        .card_benefits_list{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto); 
+            gap: 10px;
+            margin: 0px;
+            padding: 0px;
+    
+            li{
+                list-style-type: none;
+    
+                svg {
+                    color: rgb(var(--color-accent))
+                }
+            }
+        }
+        
+    }
+
+    .card_reservation_container{
+        width: 90%;
+        bottom: -20px;
+        margin: auto;
+    }
+    
 }

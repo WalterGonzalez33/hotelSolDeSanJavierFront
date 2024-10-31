@@ -7,8 +7,7 @@ import AcercaDeNosotros from "../indexComponents/AcercaDeNosotros";
 import Servicios from "../indexComponents/Servicios";
 import Experiencias from "../indexComponents/Experiencias";
 import Promociones from "../indexComponents/Promociones";
-import FilterRoomsContainer from "../filterRoomsContainer/FilterRoomsContainer";
-
+import FilterRoomsContainer from "../filterRoomsContainer/FilterRoomsContainer.jsx";
 
 const Index = () => {
   return (
@@ -27,6 +26,8 @@ const Index = () => {
             </Col>
             <Col>
               <FormularioIndex></FormularioIndex>
+            </Col>
+            <Col>
               <FilterRoomsContainer />
             </Col>
           </Row>
