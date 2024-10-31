@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import "../../styles/global.css";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Carousel } from "react-bootstrap";
 import Swal from "sweetalert2";
+import image1 from "../../assets/imgInicio/vista2.jpg"
+import image2 from "../../assets/imgInicio/salaDeJuegos.jpg";
 
 const ReservationForm = () => {
   const {
@@ -12,19 +14,36 @@ const ReservationForm = () => {
   } = useForm();
 
   const reservaRealizada = (data) => {
-    // Alerta de confirmación con sweetAlert2
     Swal.fire({
       title: "Reserva Realizada",
       text: "Tu solicitud de reserva ha sido enviada exitosamente. Nos pondremos en contacto contigo pronto.",
       icon: "success",
       confirmButtonText: "Aceptar",
     });
-
-    // Reiniciar formulario al enviar
     reset();
+    console.log(data);
   };
+
   return (
     <section className="container my-4">
+      {/* carrousel de imagenes */}
+      <Carousel className="my-4">
+        <Carousel.Item>
+          <img className="d-block w-100" src={image1} alt="First slide" />
+          <Carousel.Caption>
+            <h3>Bienvenido al Hotel</h3>
+            <p>Disfruta de una experiencia única.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={image2} alt="Second slide" />
+          <Carousel.Caption>
+            <h3>Relájate y Descansa</h3>
+            <p>Espacios diseñados para tu confort.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
       <h1 className="reservation-title">Solicitud de reserva</h1>
       <p className="reservation-paragraph">
         Complete el formulario para realizar una reserva.<br></br> Luego de
@@ -135,11 +154,6 @@ const ReservationForm = () => {
                 type="date"
                 {...register("checkOut", {
                   required: "La fecha de Check-Out es obligatoria",
-                  validate: (value) => {
-                    if (value < register("checkIn").value) {
-                      return "La fecha de Check-Out debe ser posterior a la de Check-In";
-                    }
-                  },
                 })}
               />
               <div>
