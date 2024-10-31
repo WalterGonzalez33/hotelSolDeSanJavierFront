@@ -1,6 +1,8 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useForm } from "react-hook-form";
+import "../css/contacto.css"
+
 
 function formContactos() {
   const {
@@ -18,15 +20,20 @@ function formContactos() {
 
   return (
     
-    <Form className="container " onClick={handleSubmit(onSubmit)}>
-      <Form.Group className="mb-6 containerStyle " controlId="exampleForm.ControlInput1">
+    <Form className="container" onClick={handleSubmit(onSubmit)}>
+      <div>
+
+      </div>
+      <Form.Group className="mx-2" controlId="exampleForm.ControlInput1">
         <Form.Label>Nombre</Form.Label>
-        <Form.Text className="text-danger ms-2">
+        <Form.Text className="text-danger ms-2 ">
           {errors.nombre?.message}
         </Form.Text>
-        <Form.Control
+        <Form.Control className="small-input"
           type="text"
           placeholder="Ej: Juan"
+        
+          
           {...register("nombre", {
             required: "*El nombre es un campo obligatorio*",
             minLength: {
@@ -44,7 +51,7 @@ function formContactos() {
         <Form.Text className="text-danger ms-2">
           {errors.apellido?.message}
         </Form.Text>
-        <Form.Control
+        <Form.Control className="small-input"
           type="text"
           placeholder="Ej: Sanchez"
           {...register("apellido", {
@@ -64,7 +71,7 @@ function formContactos() {
         <Form.Text className="text-danger ms-2">
           {errors.email?.message}
         </Form.Text>
-        <Form.Control
+        <Form.Control className="small-input"
           type="email"
           placeholder="Ej: Juansanchez@gmail.com"
           {...register("email", {
@@ -84,7 +91,7 @@ function formContactos() {
         <Form.Text className="text-danger ms-2">
           {errors.cel?.message}
         </Form.Text>
-        <Form.Control
+        <Form.Control className="small-input"
           type="tel"
           placeholder="Ej: 3813321783"
           {...register("cel", {
@@ -101,12 +108,12 @@ function formContactos() {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mx-2 me-2" controlId="exampleForm.ControlTextarea1">
         <Form.Label className="mt-2">Escribinos tu consulta </Form.Label>
         <Form.Text className="text-danger ms-2">
           {errors.consulta?.message}
         </Form.Text>
-        <Form.Control
+        <Form.Control className="small-input"
           as="textarea"
           rows={3}
           placeholder="Dejanos tu consulta..."
