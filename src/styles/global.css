@@ -12,7 +12,7 @@
   }
 
   body{
-    background-color: var(--color-light);
+    background-color: var(--color-bg-card);
     font-family: "Poppins", sans-serif;
     display: flex;
     flex-direction: column;
