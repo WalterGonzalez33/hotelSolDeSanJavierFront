@@ -24,7 +24,7 @@ function formContactos() {
       <div>
 
       </div>
-      <Form.Group className="mx-2" controlId="exampleForm.ControlInput1">
+      <Form.Group className="mx-2 " controlId="exampleForm.ControlInput1">
         <Form.Label>Nombre</Form.Label>
         <Form.Text className="text-danger ms-2 ">
           {errors.nombre?.message}
@@ -108,7 +108,7 @@ function formContactos() {
         />
       </Form.Group>
 
-      <Form.Group className="mx-2 me-2" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mx-2" controlId="exampleForm.ControlTextarea1">
         <Form.Label className="mt-2">Escribinos tu consulta </Form.Label>
         <Form.Text className="text-danger ms-2">
           {errors.consulta?.message}
