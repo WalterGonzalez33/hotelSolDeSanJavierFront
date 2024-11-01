@@ -1,14 +1,12 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import "../../styles/contacto.css"
+import "../css/index.css"
 
-
-function formContactos() {
+const Registro = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -16,124 +14,110 @@ function formContactos() {
     console.log(data);
   };
 
-
-
   return (
-    
-    <Form className="container" onClick={handleSubmit(onSubmit)}>
-      <div>
+    <Container className="d-flex justify-content-center vh-80 bg-light rounded-4 mt-1 mb-1">
+      <Row>
+        <Col md={12} xs={12}>
+          <Form
+            className=" mb-1 letter-spacing "
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <h4 className="mt-4  mb-4 mx-5 letter-spacin">CONTACTO</h4>
+            <Form.Group
+              className="mb-3 mt-4"
+              controlId="exampleForm.ControlInput1"
+            >
+              <Form.Label>Ingrese su Nombre y apellido</Form.Label>
+              <Form.Control
+                className=" rounded-5 border-3 "
+                type="text"
+                placeholder="Ej: Juan paez"
+                {...register("nombreyapellido", {
+                  required: "El nombre y apellido es obligatorio",
+                  minLength: {
+                    value: 10,
+                    message:
+                      "Nombre y apellido debe que tener minimo 10  caracteres",
+                  },
+                  maxLength: {
+                    value: 25,
+                    message:
+                      "Nombre y apellido debe tener como maximo 25 caracteres",
+                  },
+                })}
+              />
+            </Form.Group>
+            <Form.Text className="text-danger">
+              {errors.nombreyapellido?.message}
+            </Form.Text>
 
-      </div>
-      <Form.Group className="mx-2 " controlId="exampleForm.ControlInput1">
-        <Form.Label>Nombre</Form.Label>
-        <Form.Text className="text-danger ms-2 ">
-          {errors.nombre?.message}
-        </Form.Text>
-        <Form.Control className="small-input"
-          type="text"
-          placeholder="Ej: Juan"
-        
-          
-          {...register("nombre", {
-            required: "*El nombre es un campo obligatorio*",
-            minLength: {
-              value: 2,
-              message: "El nombre debe tener un minino de 2 caracteres",
-            },
-            maxLength: {
-              value: 30,
-              message: "El nombre debe tener como maximo 30 caracteres",
-            },
-          })}
-        />
+            
 
-        <Form.Label className="mt-2">Apellido</Form.Label>
-        <Form.Text className="text-danger ms-2">
-          {errors.apellido?.message}
-        </Form.Text>
-        <Form.Control className="small-input"
-          type="text"
-          placeholder="Ej: Sanchez"
-          {...register("apellido", {
-            required: "*El apellido es un campo obligatorio*",
-            minLength: {
-              value: 2,
-              message: "El apellido debe tener un minino de 2 caracteres",
-            },
-            maxLength: {
-              value: 20,
-              message: "El apellido debe tener como maximo 20 caracteres",
-            },
-          })}
-        />
+            <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
+              <Form.Label>Ingrese su E-mail</Form.Label>
+              <Form.Control
+                className=" rounded-5 border-3 "
+                type="email"
+                placeholder="Juan@gmail.com"
+                {...register("email", {
+                  required: "El email es obligatorio",
+                  minLength: {
+                    value: 10,
+                    message: "El mail debe que tener minimo 10  caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message:
+                      "Nombre y apellido debe tener como maximo 20caracteres",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+              {errors.email?.message}
+            </Form.Text>
+            </Form.Group>
+            
+            <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
+              <Form.Label>Ingrese su Telefono</Form.Label>
+              <Form.Control
+                className=" rounded-5 border-3 "
+                type="email"
+                placeholder="3813321783"
+                {...register("telefono", {
+                  required: "El telefono es obligatorio",
+                  minLength: {
+                    value: 2,
+                    message: "El telefono debe tener como minimo 2 numeros",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message:
+                      "El telefono debe tener como maximo 10 numeros",
+                  },
+                })}
+              />
+              <Form.Text className="text-danger">
+              {errors.telefono?.message}
+            </Form.Text>
+            </Form.Group>
 
-        <Form.Label className="mt-2">Email</Form.Label>
-        <Form.Text className="text-danger ms-2">
-          {errors.email?.message}
-        </Form.Text>
-        <Form.Control className="small-input"
-          type="email"
-          placeholder="Ej: Juansanchez@gmail.com"
-          {...register("email", {
-            required: "*El Email es un campo obligatorio*",
-            minLength: {
-              value: 12,
-              message: "El email debe tener un minino de 12 caracteres",
-            },
-            maxLength: {
-              value: 20,
-              message: "El email debe tener como maximo 20 caracteres",
-            },
-          })}
-        />
-
-        <Form.Label className="mt-2">Celular</Form.Label>
-        <Form.Text className="text-danger ms-2">
-          {errors.cel?.message}
-        </Form.Text>
-        <Form.Control className="small-input"
-          type="tel"
-          placeholder="Ej: 3813321783"
-          {...register("cel", {
-            required: "*El celular es un campo obligatorio*",
-            minLength: {
-              value: 2,
-              message: "El celular debe tener un minino de 2 numeros",
-            },
-            maxLength: {
-              value: 10,
-              message: "El celular debe tener como maximo 10 numeros",
-            },
-          })}
-        />
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Ingrese su mensaje</Form.Label>
+        <Form.Control as="textarea" rows={3} />
       </Form.Group>
-
-      <Form.Group className="mx-2" controlId="exampleForm.ControlTextarea1">
-        <Form.Label className="mt-2">Escribinos tu consulta </Form.Label>
-        <Form.Text className="text-danger ms-2">
-          {errors.consulta?.message}
-        </Form.Text>
-        <Form.Control className="small-input"
-          as="textarea"
-          rows={3}
-          placeholder="Dejanos tu consulta..."
-          {...register("consulta", {
-            required: "*La consulta es un campo obligatorio*",
-            minLength: {
-              value: 40,
-              message: "El texto debe tener un minino de 40 caracteres",
-            },
-            maxLength: {
-              value: 300,
-              message: "El texto debe tener como maximo 300 caracteres",
-            },
-          })}
-        />
-
-        <Button variant="success" type="submit" className="mt-2">
-          Enviar consulta
-        </Button>
-      </Form.Group>
-    </Form>
+             
+            <Button
+              className="text-center rounded-5 border-3  ms-4 "
+              variant="success"
+              type="submit"
+            >
+              Enviar tu consulta
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
+
+export default Registro;
