@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import NavbarComponent from "./components/common/Navbar/NavbarComponent";
 import Index from "./components/pages/Index";
 // import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/quienesSomos";
@@ -7,7 +6,7 @@ import ReservationForm from "./components/pages/ReservationForm";
 import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
-Login;
+import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 
 function App() {
   return (
@@ -42,8 +41,6 @@ const AppContent = () => {
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-
-      {/* {location.pathname !== "/login" && <Footer />} */}
     </>
   );
 };
