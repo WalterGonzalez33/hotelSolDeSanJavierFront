@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./components/pages/Index";
 import QuienesSomos from "./components/pages/quienesSomos";
+import ReservationForm from "./components/pages/ReservationForm";
 import Login from "./components/pages/Login/Login.jsx";
-
 
 
 
@@ -18,6 +18,7 @@ function App() {
           <Route path="/admin" element={<h1>Administrador</h1>} />
           <Route path="/galeria" element={<h1>galeria</h1>} />
           <Route path="/contacto" element={<h1>Contacto</h1>} />
+          <Route path="/reservacion" element={<ReservationForm/>} />
           <Route path="*" element={<h1>404 Not found</h1>} />
           <Route path="/login" element={<Login/>} />
         </Routes>
