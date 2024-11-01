@@ -19,7 +19,7 @@ const AcercaDeNosotros = () => {
             escenario ideal para descansar, disfrutar en familia y convertir
             cualquier evento en un momento único e inolvidable.
           </p>
-          <Button type="button" variant="success">
+          <Button type="button" variant="success" className="button-custom">
             Ver más...
           </Button>
         </article>

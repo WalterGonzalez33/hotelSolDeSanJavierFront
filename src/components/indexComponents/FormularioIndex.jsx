@@ -138,7 +138,7 @@ const FormularioIndex = ({ scroll }) => {
             <Button
               type="submit"
               variant="success"
-              className="marginBoton m-auto"
+              className="marginBoton m-auto button-custom button-search"
             >
               Buscar
             </Button>
