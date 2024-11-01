@@ -1,12 +1,14 @@
 import { FaConciergeBell } from "react-icons/fa";
 import style from "./BtnReservation.module.css";
+import  { Link } from "react-router-dom";
+
 
 const BtnReservation = () => {
   return (
     <div className={`${style.btnReservationContainer}`}>
-      <button className={`${style.btnReservation}`}>
+      <Link to="/reservacion" className={`${style.btnReservation}`}>
         <FaConciergeBell /> Reservar
-      </button>
+      </Link>
     </div>
   );
 };
