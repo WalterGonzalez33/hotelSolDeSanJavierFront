@@ -7,8 +7,30 @@ import ReservationForm from "./components/pages/ReservationForm";
 import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
-Login;
+import useFetch from "./hooks/useFetch.jsx";
+import CardRoom from "./components/common/CardRoom/CardRoom.jsx";
+import { Container } from "react-bootstrap";
 
+const RoomsContainer = () => {
+  const { data, loading, error } = useFetch({ endPoint: `/rooms` });
+
+  return (
+    <Container>
+      {data !== null &&
+        data.length > 0 &&
+        data.map((room) => (
+          <CardRoom
+            key={room.id}
+            room_name={room.room_name}
+            price={room.price}
+            image={room.image}
+            broad_description={room.broad_description}
+            benefits={room.benefits}
+          />
+        ))}
+    </Container>
+  );
+};
 function App() {
   return (
     <main>
@@ -33,7 +55,7 @@ const AppContent = () => {
             element={<FilterRoomsContain />}
           />
         </Route>
-        <Route path="/habitaciones" element={<h1>Habitaciones</h1>} />
+        <Route path="/habitaciones" element={<RoomsContainer />} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
