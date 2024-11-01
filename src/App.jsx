@@ -5,6 +5,7 @@ import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/quienesSomos";
 import ReservationForm from "./components/pages/ReservationForm";
 import Login from "./components/pages/Login/Login.jsx";
+import Gallery from "./components/pages/Gallery.jsx";
 
 
 
