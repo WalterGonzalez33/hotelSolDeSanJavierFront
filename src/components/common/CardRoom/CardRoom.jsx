@@ -1,30 +1,84 @@
-import { Col, Image, Row } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import BtnReservation from "../../BtnReservation/BtnReservation";
 import style from "./CardRoom.module.css";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { FaShower, FaTv } from "react-icons/fa6";
+import { FaWifi } from "react-icons/fa";
 
-const CardRoom = () => {
+const CardRoom = ({
+  room_name,
+  price,
+  image,
+  broad_description,
+  benefits,
+  available = true,
+}) => {
+  const formatNumberWithDots = (number) => {
+    return number.toLocaleString("de-DE");
+  };
   return (
-    <Row className={` ${style.card_container} `}>
-      <Col lg={6}>
-        <Image
-          src="http://hotelsolsanjavier.com.ar/public/images/secciones/suite-junior-hotel-sol-san-javier-tucuman.jpg"
-          className={` ${style.card_img} `}
-        />
-      </Col>
-      <Col lg={6}>
-        <h3 className={` ${style.card_title} `}>Habitaciones Dobles Deluxe</h3>
-        <div>
-          <p>
-            Se diferencia de habitaciones superiores por su amplio ventanal con
-            vista a la ciudad, TV 29 LCD y bañera con hidromasaje. La habitación
-            está equipada con: sommier king, teléfono, aire acondicionado
-            frio-calor, Caja de Seguridad, Calefacción, Minibar, TV, Baño
-            privado con bañera de hidromasaje y Wi-Fi.
-          </p>
+    <article className={` ${style.card_container} `}>
+      {available && <span className={` ${style.card_available} `}>Disponible</span>}
+      <div className={` ${style.card_img_container} `}>
+        <Image src={image} className={` ${style.card_img} `} />
+      </div>
+      <div className={` ${style.card_info_container} `}>
+        <h3 className={` ${style.card_title} `}>{room_name}</h3>
+        <div className={` ${style.card_description_container} `}>
+          <p>{broad_description}</p>
         </div>
-        <BtnReservation />
-      </Col>
-    </Row>
+        <div className={` ${style.card_benefits_container} `}>
+          <ul className={`${style.card_benefits_list}`}>
+            {benefits &&
+              benefits.map((benefit, i) => {
+                switch (benefit) {
+                  case "WIFI":
+                    return (
+                      <li key={i}>
+                        <FaWifi /> WIFI
+                      </li>
+                    );
+                  case "TV":
+                    return (
+                      <li key={i}>
+                        <FaTv /> TV
+                      </li>
+                    );
+                  case "Telefono":
+                    return (
+                      <li key={i}>
+                        <BsFillTelephoneFill /> Teléfono
+                      </li>
+                    );
+                  case "Teléfono":
+                    return (
+                      <li key={i}>
+                        <BsFillTelephoneFill /> Teléfono
+                      </li>
+                    );
+                  case "Baño privado":
+                    return (
+                      <li key={i}>
+                        <FaShower /> Baño privado
+                      </li>
+                    );
+                  default:
+                    break;
+                }
+              })}
+          </ul>
+        </div>
+        <div className={` ${style.card_reservation_container} `}>
+          <span className={` ${style.card_price_container} `}>
+            <span className={` ${style.card_price} `}>
+              ${formatNumberWithDots(price)}/
+            </span>
+            dia
+          </span>
+          <BtnReservation color={"dark"} />
+        </div>
+      </div>
+    </article>
   );
 };
 export default CardRoom;

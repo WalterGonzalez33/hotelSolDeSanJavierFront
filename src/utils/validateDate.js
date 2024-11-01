@@ -4,7 +4,11 @@ const formatDate = (date) => {
   return newDate
 }
 export const validationDate = (startDate, endDate) => {
-    const dateRegex1 = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+  const normalizeDate = (date) => {
+    date.setHours(0, 0, 0, 0)
+    return date
+  }
+  const dateRegex1 = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
   const dateRegex2 = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/;
   let isValidFormat = false;
 
@@ -12,27 +16,35 @@ export const validationDate = (startDate, endDate) => {
     if(dateRegex2.test(startDate) === true || dateRegex2.test(endDate) === true){
         isValidFormat = true;
     }
-    return {valid: false, msj: 'el formato de fecha es incorrecto'};
+    return {valid: false, msj: 'El formato de fecha es incorrecto'};
   }
 
   if(isValidFormat){
-    const newStartDate = new Date(formatDate(startDate))
-    const newEndDate = new Date(formatDate(endDate))
+    const newStartDate = normalizeDate(new Date(formatDate(startDate)))
+    const newEndDate = normalizeDate(new Date(formatDate(endDate)))
+    const currentDay = normalizeDate(new Date())
     
+    if (newStartDate < currentDay) {
+      return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+    }
     if(newEndDate < newStartDate){
         return {valid: false, msj: 'La fecha de salida no puede ser antes de la entrada'};
     }
   
-    return {valid: true, msj: 'fechas verificadas correctamente'};
+    return {valid: true, msj: 'Fechas verificadas correctamente'};
   }else{
-    const newStartDate = new Date(startDate)
-    const newEndDate = new Date(endDate)
+    const newStartDate = normalizeDate(new Date(startDate))
+    const newEndDate = normalizeDate(new Date(endDate))
+    const currentDay = normalizeDate(new Date())
     
+    if (newStartDate < currentDay) {
+      return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+    }
     if(newEndDate < newStartDate){
         return {valid: false, msj: 'La fecha de salida no puede ser antes de la entrada'};
     }
   
-    return {valid: true, msj: 'fechas verificadas correctamente'};
+    return {valid: true, msj: 'Fechas verificadas correctamente'};
   }
 }
 

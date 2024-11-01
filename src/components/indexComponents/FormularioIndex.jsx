@@ -1,14 +1,17 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { validationDate } from "../../utils/validateDate";
+import { useNavigate } from "react-router-dom";
 
-const FormularioIndex = () => {
+const FormularioIndex = ({ scroll }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
   const [validated, setValidated] = useState(false);
   const [isEndDateInvalid, setIsEndDateInvalid] = useState(false);
   const [errorMessages, setErrorMessages] = useState({ valid: false });
+
+  const navigate = useNavigate();
 
   const handleDateChange = (event) => {
     setStartDate(event.target.value);
@@ -54,7 +57,8 @@ const FormularioIndex = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (handleDateValidate(event)) {
-      console.log("todo ok");
+      navigate(`/filter/${startDate}/${endDate}`);
+      scroll();
     }
   };
 
@@ -74,22 +78,26 @@ const FormularioIndex = () => {
     <Container>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row>
-          <Col>
+          <Col xs={8} md={4} lg={4} className="m-auto mb-3 mb-md-0">
             <Form.Group>
-              <Form.Label className="colorVerdeClaro">Check-in</Form.Label>
+              <Form.Label className="colorVerdeClaro text-center text-md-start w-100">
+                Check-in
+              </Form.Label>
               <Form.Control
                 required
                 id="check-in"
                 type="date"
                 value={startDate}
                 onChange={handleDateChange}
-                className="form-control"
+                className="form-control d-inline-flex focus-ring focus-ring-success"
               />
             </Form.Group>
           </Col>
-          <Col>
+          <Col xs={8} md={4} lg={4} className="m-auto mb-3 mb-md-0 ">
             <Form.Group>
-              <Form.Label className="colorVerdeClaro">Check-out</Form.Label>
+              <Form.Label className="colorVerdeClaro text-center text-md-start w-100">
+                Check-out
+              </Form.Label>
               <Form.Control
                 required
                 id="check-out"
@@ -97,14 +105,21 @@ const FormularioIndex = () => {
                 value={endDate}
                 isInvalid={isEndDateInvalid}
                 onChange={handleEndDateChange}
-                className={"form-control"}
+                className={
+                  "form-control d-inline-flex focus-ring focus-ring-success"
+                }
               />
             </Form.Group>
           </Col>
-          <Col>
+          <Col xs={5} md={2} className="m-auto mb-md-0">
             <Form.Group>
-              <Form.Label className="colorVerdeClaro">Huéspedes</Form.Label>
-              <Form.Select id="guests">
+              <Form.Label className="colorVerdeClaro text-center text-md-start w-100">
+                Huéspedes
+              </Form.Label>
+              <Form.Select
+                id="guests"
+                className="d-inline-flex focus-ring focus-ring-success"
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -112,23 +127,22 @@ const FormularioIndex = () => {
               </Form.Select>
             </Form.Group>
           </Col>
-          <Col>
-            {errorMessages.valid && widthWindowState < 992 && (
+          <Col md={8} className="text-center mt-3 mt-md-4 m-auto">
+            {errorMessages.valid && (
               <Col sm={12}>
-                <p className="text-danger pt-3 ps-2 mb-0">
+                <p className="text-error-filter pt-2 ps-2 mb-2 text-center">
                   {errorMessages.msj}
                 </p>
               </Col>
             )}
-            <Button type="submit" variant="success" className="marginBoton">
+            <Button
+              type="submit"
+              variant="success"
+              className="marginBoton m-auto button-custom button-search"
+            >
               Buscar
             </Button>
           </Col>
-          {errorMessages.valid && widthWindowState > 992 && (
-            <Col sm={12}>
-              <p className="text-danger pt-3 ps-2 mb-0">{errorMessages.msj}</p>
-            </Col>
-          )}
         </Row>
       </Form>
     </Container>

@@ -6,6 +6,11 @@
     transition: all .3s ease;
     cursor: pointer;
 
+    &.color_dark{
+        border: 2px solid rgba(var(--color-accent), 0.8);
+        color: rgb(var(--color-accent))
+    }
+
     &:hover{
         background-color: rgba(244, 246, 255, .2);
         transition: all .3s ease;
@@ -21,6 +26,9 @@
     border: 0;
     font-size: 1rem;
 
+    &.color_dark{
+        color: rgb(var(--color-accent))
+    }
     & svg{
         font-size: 1.3rem;
     }

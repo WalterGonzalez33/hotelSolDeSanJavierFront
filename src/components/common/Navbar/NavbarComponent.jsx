@@ -118,7 +118,7 @@ const NavbarComponent = () => {
             </a>
           </div>
 
-          {widthWindowState < 992 && <BtnReservation />}
+          {widthWindowState < 992 && <BtnReservation color={"light"} />}
 
           <div
             className={` ${style.collapse_navbar} ${
@@ -141,7 +141,7 @@ const NavbarComponent = () => {
               <BtnLogin />
             </ul>
           </div>
-          {widthWindowState >= 992 && <BtnReservation />}
+          {widthWindowState >= 992 && <BtnReservation color={"light"} />}
         </Container>
       </nav>
     </header>
