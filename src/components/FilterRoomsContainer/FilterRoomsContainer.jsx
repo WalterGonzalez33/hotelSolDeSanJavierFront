@@ -9,7 +9,7 @@ import notReservation from "../../assets/cerca.png";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
-import "./custom-swiper-bullet.css";
+import "../../styles/custom-swiper-bullet.css";
 import { useParams } from "react-router-dom";
 
 const FilterRoomsContainer = () => {
