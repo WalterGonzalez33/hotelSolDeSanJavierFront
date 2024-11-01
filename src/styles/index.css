@@ -66,14 +66,6 @@ clip-path: polygon(0 0, 100% 0, 100% 95%, 50% 100%, 50% 100%, 0 95%);
   align-items: center;
 }
 
-.seccion3 {
-  background-color: rgb(179, 172, 172);
-}
-
-.imagenHotel {
-  object-fit: cover;
-}
-
 @media (min-width: 992px) {
   .seccion1{
     clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 50% 100%, 0 90%);
