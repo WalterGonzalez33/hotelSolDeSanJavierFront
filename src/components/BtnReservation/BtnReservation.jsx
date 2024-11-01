@@ -1,5 +1,7 @@
 import { FaConciergeBell } from "react-icons/fa";
 import style from "./BtnReservation.module.css";
+import  { Link } from "react-router-dom";
+
 
 const BtnReservation = ({ color }) => {
   return (
@@ -8,13 +10,13 @@ const BtnReservation = ({ color }) => {
         color !== "light" && style.color_dark
       }`}
     >
-      <button
+      <Link to="/reservacion"
         className={`${style.btnReservation} ${
           color !== "light" && style.color_dark
         }`}
       >
         <FaConciergeBell /> Reservar
-      </button>
+      </Link>
     </div>
   );
 };
