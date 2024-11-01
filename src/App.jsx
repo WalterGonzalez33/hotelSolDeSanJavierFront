@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./components/pages/Index";
 import QuienesSomos from "./components/pages/quienesSomos";
-import Login from "../src/components/pages/Login/Login";
+import Login from "./components/pages/Login/Login.jsx";
 
 
 
