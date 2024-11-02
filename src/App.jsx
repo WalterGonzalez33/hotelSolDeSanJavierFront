@@ -15,7 +15,6 @@ function App() {
     <main>
       <BrowserRouter>
         <AppContent />
-        <Footer></Footer>
       </BrowserRouter>
     </main>
   );
@@ -44,6 +43,7 @@ const AppContent = () => {
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer></Footer>
     </>
   );
 };
