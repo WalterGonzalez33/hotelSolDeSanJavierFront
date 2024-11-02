@@ -7,13 +7,14 @@ import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
+import RoomsContainer from "./components/pages/Rooms.jsx";
+
 
 function App() {
   return (
     <main>
       <BrowserRouter>
         <AppContent />
-        <Footer></Footer>
       </BrowserRouter>
     </main>
   );
@@ -33,7 +34,7 @@ const AppContent = () => {
             element={<FilterRoomsContain />}
           />
         </Route>
-        <Route path="/habitaciones" element={<h1>Habitaciones</h1>} />
+        <Route path="/habitaciones" element={<RoomsContainer/>} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
@@ -42,6 +43,7 @@ const AppContent = () => {
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer></Footer>
     </>
   );
 };
