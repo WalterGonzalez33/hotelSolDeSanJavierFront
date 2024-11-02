@@ -18,6 +18,7 @@ const RoomsContainer = () => {
               broad_description={room.broad_description}
               benefits={room.benefits}
             />
+            
           ))}
       </Container>
     );
