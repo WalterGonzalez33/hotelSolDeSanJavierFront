@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+
+
 const Registro = () => {
   const {
     register,
@@ -22,7 +24,7 @@ const Registro = () => {
             className=" mb-1 letter-spacing "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <h1 className="mt-4  mb-4 mx-5 letter-spacin">CONTACTO</h1>
+            <h1 className="mt-4 mb-4 mx-5 text-success letter-spacing">CONTACTO</h1>
             <h6 className="text-center">
               <i class="bi bi-telephone"></i> (+54 9) (0381) 155-279796
             </h6>

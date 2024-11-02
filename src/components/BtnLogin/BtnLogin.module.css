@@ -1,13 +1,16 @@
 
 .btn_login{
     background-color: var(--color-light-secondary);
-    border: 2px solid rgba(0, 0, 0, 0.6);
+    color: var(--color-light-secondary);
+    background-color: transparent;
+    padding: 0 8px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     font-size: 1.1rem;
     transition: all .3s ease;
 
     &:hover{
-        background-color: rgba(244, 246, 255, .5);
+        background-color: rgba(244, 246, 255, .2);
         transition: all .3s ease;
     }
 }

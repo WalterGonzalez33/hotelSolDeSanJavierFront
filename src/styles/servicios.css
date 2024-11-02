@@ -1,0 +1,43 @@
+
+.section-services{
+    margin: 50px 0px;
+}
+
+.slider {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+  }
+  
+  .slider-track {
+    display: flex;
+    animation: scroll 35s linear infinite;
+    width: calc(180px * 12);
+  }
+
+  .slider-track > * {
+    margin: 0 20px;
+    flex-shrink: 0;
+  }
+
+  .slide{
+
+    img{
+        width: 180px;
+    }
+
+    h4{
+        text-align: center;
+        font-size: 1.2rem;
+    }
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-180px * 6));
+    }
+  }
