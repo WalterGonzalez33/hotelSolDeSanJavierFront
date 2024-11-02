@@ -7,6 +7,7 @@ import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
+import Admin from "./components/pages/Admin/Admin.jsx";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ const AppContent = () => {
 
   return (
     <>
-      {location.pathname !== "/login" && <NavbarComponent />}
+      {location.pathname !== "/login" ||
+        (location.pathname !== "/admin" && <NavbarComponent />)}
 
       <Routes>
         <Route path="/" element={<Index />}>
@@ -39,7 +41,7 @@ const AppContent = () => {
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<h1>Administrador</h1>}>
+        <Route path="/admin" element={<Admin />}>
           <Route path="users" component={<h1>users</h1>}>
             <Route path="edit/:id" component={<h1>edit user</h1>} />
           </Route>
@@ -48,6 +50,7 @@ const AppContent = () => {
             <Route path="edit/:id" component={<h1>edit reserva</h1>} />
           </Route>
           <Route path="rooms" component={<h1>users</h1>}>
+            ~
             <Route path="edit/:id" component={<h1>edit habitaciones</h1>} />
           </Route>
         </Route>

@@ -1,0 +1,14 @@
+
+.admin_container{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: start;
+}
+
+@media (min-width: 992px) {
+    .admin_container{
+        flex-flow: column;
+        min-height: 100dvh;
+    }
+}
