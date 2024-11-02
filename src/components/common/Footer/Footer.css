@@ -6,16 +6,18 @@ h5 {
 
 .footer-background {
   position: relative;
+  
 
 }
 
 .text-link {
-  color: #00652F;
+  color: white;
   text-decoration: none;
+ background-color:#95C46C;
 }
 
 .text-link:hover {
-  color: #218838;
+  color:#00652F;
   text-decoration: underline; 
   transition: color 0.3s ease;
 }
