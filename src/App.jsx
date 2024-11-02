@@ -34,12 +34,23 @@ const AppContent = () => {
         </Route>
         <Route path="/habitaciones" element={<h1>Habitaciones</h1>} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
-        <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<h1>Contacto</h1>} />
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<h1>Administrador</h1>}>
+          <Route path="users" component={<h1>users</h1>}>
+            <Route path="edit/:id" component={<h1>edit user</h1>} />
+          </Route>
+
+          <Route path="reservations" component={<h1>reservas</h1>}>
+            <Route path="edit/:id" component={<h1>edit reserva</h1>} />
+          </Route>
+          <Route path="rooms" component={<h1>users</h1>}>
+            <Route path="edit/:id" component={<h1>edit habitaciones</h1>} />
+          </Route>
+        </Route>
       </Routes>
     </>
   );
