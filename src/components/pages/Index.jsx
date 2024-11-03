@@ -5,7 +5,7 @@ import FormularioIndex from "../indexComponents/FormularioIndex";
 import AcercaDeNosotros from "../indexComponents/AcercaDeNosotros";
 import Servicios from "../indexComponents/Servicios";
 import Experiencias from "../indexComponents/Experiencias";
-import Promociones from "../indexComponents/Promociones.jsx";
+import Promociones from "../indexComponents/Promociones";
 import { Outlet } from "react-router-dom";
 import { useRef, useState } from "react";
 
