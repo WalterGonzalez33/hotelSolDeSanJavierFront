@@ -1,6 +1,6 @@
 import style from "./NavAdmin.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { FaUserAlt, FaCalendarWeek, FaHotel, FaBars } from "react-icons/fa";
+import { FaUserAlt, FaCalendarWeek, FaHotel } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 
 const NavAdmin = () => {
@@ -8,9 +8,6 @@ const NavAdmin = () => {
 
   return (
     <article className={`p-3 m-2  ${style.admin_nav_container} `}>
-      <div className={` ${style.nav_bar_icon_container} `}>
-        <FaBars />
-      </div>
       <Link to={"users"}>
         <Button
           className={` ${style.admin_tabLink} ${
@@ -18,6 +15,7 @@ const NavAdmin = () => {
           } `}
         >
           <FaUserAlt />
+          <span className="ms-md-2">Usuarios</span>
         </Button>
       </Link>
 
@@ -28,6 +26,7 @@ const NavAdmin = () => {
           }`}
         >
           <FaCalendarWeek />
+          <span className="ms-md-2">Reservaciones</span>
         </Button>
       </Link>
 
@@ -38,6 +37,7 @@ const NavAdmin = () => {
           }`}
         >
           <FaHotel />
+          <span className="ms-md-2">Habitaciones</span>
         </Button>
       </Link>
     </article>

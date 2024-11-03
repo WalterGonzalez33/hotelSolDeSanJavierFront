@@ -1,0 +1,30 @@
+.users_container{
+    max-width: 100%;
+    margin-top: 20px;
+}
+
+.table{
+    --bs-table-bg: background-color: transparent !important;
+    
+}
+.thead_table{
+    background-color: transparent !important;
+}
+.tr_user{
+    background-color: transparent !important;
+    vertical-align: middle;
+    
+    th{
+        color: rgba(42, 42, 42, .7) !important;
+    }
+    & :last-child{
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .users_container{
+        max-width: 85%;
+        margin-top: 20px;
+    }
+}
