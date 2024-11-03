@@ -9,6 +9,7 @@ import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsCon
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
+import Registro from "./components/pages/Registro.jsx";
 
 
 function App() {
@@ -43,6 +44,7 @@ const AppContent = () => {
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro/>} />
       </Routes>
       <Footer></Footer>
     </>

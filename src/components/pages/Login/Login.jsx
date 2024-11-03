@@ -79,7 +79,7 @@ const Login = () => {
               <Button variant="outline-primary rounded-5" type="submit">
                 Iniciar Sesión
               </Button>
-              <Link to="/Registro.jsx">
+              <Link to="/registro">
                 <Button variant="outline-success rounded-5" type="button">
                   Registrarse
                 </Button>
