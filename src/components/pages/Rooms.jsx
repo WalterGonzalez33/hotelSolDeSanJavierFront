@@ -17,6 +17,7 @@ const RoomsContainer = () => {
               image={room.image}
               broad_description={room.broad_description}
               benefits={room.benefits}
+              available={false}
             />
             
           ))}

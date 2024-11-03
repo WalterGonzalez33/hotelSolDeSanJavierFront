@@ -8,6 +8,7 @@ import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
+import Contactos from "./components/pages/Contactos.jsx";
 
 
 function App() {
@@ -38,7 +39,7 @@ const AppContent = () => {
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
-        <Route path="/contacto" element={<h1>Contacto</h1>} />
+        <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />

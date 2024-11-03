@@ -18,7 +18,7 @@ const CardRoom = ({
   };
   return (
     <article className={` ${style.card_container} `}>
-      {/* {available && <span className={` ${style.card_available} `}>Disponible</span>} */}
+      {available && <span className={` ${style.card_available} `}>Disponible</span>}
       <div className={` ${style.card_img_container} `}>
         <Image src={image} className={` ${style.card_img} `} />
       </div>
