@@ -16,18 +16,18 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
     formState: { errors },
   } = useForm();
   const navegacion = useNavigate();
+
   const onSubmit = async (usuario) => {
     const respuesta = await login(usuario);
     try {
-      if (respuesta && respuesta.status === 200) {
-        const datos = await respuesta.json()
+      if (respuesta.status === 200) {
         Swal.fire({
           title: "Listo!",
           text: "Has iniciado sesión correctamente.",
           icon: "success",
           confirmButtonText: "Aceptar",
         });
-
+        const datos = await respuesta.json()
         sessionStorage.setItem(
           "usuariosHotel",
           JSON.stringify({ email: datos.email })
@@ -43,8 +43,11 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
         });
       }
     } catch (error) {
-      console.error(error);
-      return { error: "Error en el login" };
+      Swal.fire(
+        "Ocurrió un error",
+        "Ocurrió un error,intentalo en unos minutos",
+        "error"
+      );
     }
   };
   return (

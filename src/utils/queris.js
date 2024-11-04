@@ -7,6 +7,7 @@ export const login = async (usuario) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(usuario),
     });
+    return respuesta
   } catch (error) {
     console.error(error);
     return { error: "Error en el login" };
