@@ -10,7 +10,8 @@ import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
-
+import AdminRoute from "./components/routes/AdminRoute.jsx";
+import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ const AppContent = () => {
 
   return (
     <>
-      {location.pathname !== "/login" && <NavbarComponent />}
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <NavbarComponent />
+      )}
 
       <Routes>
         <Route path="/" element={<Index />}>
@@ -36,17 +39,26 @@ const AppContent = () => {
             element={<FilterRoomsContain />}
           />
         </Route>
-        <Route path="/habitaciones" element={<RoomsContainer/>} />
+        <Route path="/habitaciones" element={<RoomsContainer />} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
-        <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Registro/>} />
+        <Route path="/registro" element={<Registro />} />
+        <Route
+          path="/admin/*"
+          element={
+            <RouteProtectAdmin>
+              <AdminRoute />
+            </RouteProtectAdmin>
+          }
+        />
       </Routes>
-      <Footer></Footer>
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <Footer />
+      )}
     </>
   );
 };
