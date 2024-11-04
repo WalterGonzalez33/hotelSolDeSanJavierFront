@@ -2,7 +2,29 @@
     max-width: 100%;
     margin-top: 20px;
 }
-
+.tabs_admin_container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+.loading_search{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin: auto;
+    text-align: center;
+    min-height: 80dvh;
+    gap: 20px;
+}
 .table{
     --bs-table-bg: background-color: transparent !important;
     
@@ -26,5 +48,11 @@
     .users_container{
         max-width: 85%;
         margin-top: 20px;
+    }
+
+    .tabs_admin_container{
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
     }
 }

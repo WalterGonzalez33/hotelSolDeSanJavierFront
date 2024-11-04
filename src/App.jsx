@@ -9,6 +9,8 @@ import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsCon
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import Admin from "./components/pages/Admin/Admin.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
+import Contactos from "./components/pages/Contactos.jsx";
+import Registro from "./components/pages/Registro.jsx";
 
 function App() {
   return (
@@ -37,9 +39,9 @@ const AppContent = () => {
         <Route path="/habitaciones" element={<RoomsContainer />} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/galeria" element={<Gallery />} />
-        <Route path="/contacto" element={<h1>Contacto</h1>} />
+        <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
-        <Route path="/reservacion" element={<ReservationForm />} />
+        <Route path="/reservar" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />}>
           <Route path="users" component={<h1>users</h1>}>
@@ -54,6 +56,7 @@ const AppContent = () => {
             <Route path="edit/:id" component={<h1>edit habitaciones</h1>} />
           </Route>
         </Route>
+        <Route path="/registro" element={<Registro />} />
       </Routes>
       {location.pathname !== "/login" && <Footer />}
     </>
