@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import useFetch from "../../hooks/useFetch";
+import { createUser } from "../../utils/requests";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 if (!apiUrl) {
@@ -11,15 +10,6 @@ if (!apiUrl) {
 }
 
 const Registro = () => {
-
-  // const [dataUser,setdataUser] = useState(null)
-
-  // const {data,loading,error,triggerFetch} = useFetch({endPoint: '/users',
-  //   method:'POST',
-  //   body: dataUser
-  // })
-
-
   const {
     register,
     handleSubmit,
@@ -27,23 +17,14 @@ const Registro = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    
+    console.log(data);
+
+    createUser(data);
   };
-
-
-
-  // useEffect(()=>{
-  //   if(dataUser !== null ){
-  //     triggerFetch()
-  //   } 
-  // },[dataUser]) 
-
-  
- 
 
   return (
     <Container className="d-flex justify-content-center vh-80 bg-light rounded-4 mt-1 mb-1">
-      <Row>
+      <Row className="register-container">
         <Col md={12} xs={12}>
           <Form
             className=" mb-4 letter-spacing"
@@ -59,7 +40,7 @@ const Registro = () => {
                 className=" rounded-5 border-3 "
                 type="text"
                 placeholder="Ej: Juan paez"
-                {...register("nombreyapellido", {
+                {...register("username", {
                   required: "El nombre y apellido es obligatorio",
                   minLength: {
                     value: 10,
@@ -75,7 +56,7 @@ const Registro = () => {
               />
             </Form.Group>
             <Form.Text className="text-danger">
-              {errors.nombreyapellido?.message}
+              {errors.username?.message}
             </Form.Text>
 
             <Form.Group
@@ -87,7 +68,7 @@ const Registro = () => {
                 className=" rounded-5 border-3 "
                 type="password"
                 placeholder="Password"
-                {...register("contraseña", {
+                {...register("password", {
                   required: "La contraseña es obligatorio",
                   minLength: {
                     value: 5,
@@ -101,17 +82,21 @@ const Registro = () => {
                   },
                   pattern: {
                     value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
-                    message: "El password debe contener al menos una letra mayúscula, una letra minúscula y un número",
-                  }
+                    message:
+                      "El password debe contener al menos una letra mayúscula, una letra minúscula y un número",
+                  },
                 })}
               />
 
               <Form.Text className="text-danger">
-                {errors.contraseña?.message}
+                {errors.password?.message}
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3 " controlId="exampleForm.ControlInputEmail">
+            <Form.Group
+              className="mb-3 "
+              controlId="exampleForm.ControlInputEmail"
+            >
               <Form.Label>Email</Form.Label>
               <Form.Control
                 className=" rounded-5 border-3 "
@@ -129,18 +114,17 @@ const Registro = () => {
                       "Nombre y apellido debe tener como maximo 20caracteres",
                   },
                   pattern: {
-                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
-                    message:
-                    "Formato de email incorrecto",
-                  }
+                    value:
+                      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+                    message: "Formato de email incorrecto",
+                  },
                 })}
               />
               <Form.Text className="text-danger">
-              {errors.email?.message}
-            </Form.Text>
+                {errors.email?.message}
+              </Form.Text>
             </Form.Group>
-            
-             
+
             <Button
               className="text-center rounded-5 border-3  mx-5 "
               variant="success"
