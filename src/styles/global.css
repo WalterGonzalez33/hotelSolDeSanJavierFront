@@ -28,6 +28,13 @@
     box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
   }
 
+  .register-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+
   /* Estilos para el formulario de reservas */
   .form-container {
     background-color: #FFF5EB; /* Beige para el fondo del formulario */

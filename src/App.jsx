@@ -27,7 +27,9 @@ const AppContent = () => {
 
   return (
     <>
-      {location.pathname !== "/login" && <NavbarComponent />}
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <NavbarComponent />
+      )}
 
       <Routes>
         <Route path="/" element={<Index />}>
@@ -58,7 +60,9 @@ const AppContent = () => {
         </Route>
         <Route path="/registro" element={<Registro />} />
       </Routes>
-      {location.pathname !== "/login" && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <Footer />
+      )}
     </>
   );
 };

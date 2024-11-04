@@ -1,7 +1,7 @@
-import { useForm } from 'react-hook-form';
-import { BsFacebook, BsEnvelopeFill } from 'react-icons/bs';
-import { Button, Form, Col, Row, Container } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import { useForm } from "react-hook-form";
+import { BsFacebook, BsEnvelopeFill } from "react-icons/bs";
+import { Button, Form, Col, Row, Container } from "react-bootstrap";
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./Login.css";
@@ -10,25 +10,25 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
     Swal.fire({
-      title: 'Listo!',
-      text: 'Has iniciado sesión correctamente.',
-      icon: 'success',
-      confirmButtonText: 'Aceptar'
+      title: "Listo!",
+      text: "Has iniciado sesión correctamente.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
     });
-    console.log('Formulario enviado', data);
+    console.log("Formulario enviado", data);
   };
 
   return (
     <Container
-      className="bg-light d-flex justify-content-center align-items-center vh-100 rounded-4"
-      style={{ maxWidth: '500px', maxHeight: '640px', margin: 'auto' }}
+      className=" d-flex justify-content-center align-items-center vh-100 rounded-4"
+      style={{ maxWidth: "500px", maxHeight: "640px", margin: "auto" }}
     >
-      <Row>
+      <Row className="login-container">
         <Col md={12}>
           <div className="text-center mb-4">
             <img src={logo} alt="Logo" className="img-fluid" />
@@ -41,12 +41,12 @@ const Login = () => {
                 className="rounded-5 border-3"
                 type="email"
                 placeholder="Ingresa tu email"
-                {...register('email', {
-                  required: 'El email es requerido.',
+                {...register("email", {
+                  required: "El email es requerido.",
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: 'El email no tiene un formato válido.'
-                  }
+                    message: "El email no tiene un formato válido.",
+                  },
                 })}
                 isInvalid={!!errors.email}
               />
@@ -61,12 +61,12 @@ const Login = () => {
                 className="rounded-5 border-3"
                 type="password"
                 placeholder="Ingresa tu contraseña"
-                {...register('password', {
-                  required: 'La contraseña es requerida.',
+                {...register("password", {
+                  required: "La contraseña es requerida.",
                   minLength: {
                     value: 8,
-                    message: 'La contraseña debe tener al menos 8 caracteres.'
-                  }
+                    message: "La contraseña debe tener al menos 8 caracteres.",
+                  },
                 })}
                 isInvalid={!!errors.password}
               />
@@ -90,13 +90,25 @@ const Login = () => {
           <div className="text-center mt-4">
             <p className="fs-5">O registrarse con</p>
             <div className="d-flex justify-content-center gap-3">
-              <a href="https://www.facebook.com/login" style={{ textDecoration: 'none' }}>
-                <Button variant="primary" className="d-flex align-items-center rounded-5">
+              <a
+                href="https://www.facebook.com/login"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  variant="primary"
+                  className="d-flex align-items-center rounded-5"
+                >
                   <BsFacebook size={20} className="me-2" /> Facebook
                 </Button>
               </a>
-              <a href="https://accounts.google.com/login" style={{ textDecoration: 'none' }}>
-                <Button variant="danger" className="d-flex align-items-center rounded-5">
+              <a
+                href="https://accounts.google.com/login"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  variant="danger"
+                  className="d-flex align-items-center rounded-5"
+                >
                   <BsEnvelopeFill size={20} className="me-2" /> Gmail
                 </Button>
               </a>
@@ -115,4 +127,3 @@ const Login = () => {
 };
 
 export default Login;
-
