@@ -7,10 +7,11 @@ import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
-import Admin from "./components/pages/Admin/Admin.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
+import AdminRoute from "./components/routes/AdminRoute.jsx";
+import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 
 function App() {
   return (
@@ -45,20 +46,15 @@ const AppContent = () => {
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />}>
-          <Route path="users" component={<h1>users</h1>}>
-            <Route path="edit/:id" component={<h1>edit user</h1>} />
-          </Route>
-
-          <Route path="reservations" component={<h1>reservas</h1>}>
-            <Route path="edit/:id" component={<h1>edit reserva</h1>} />
-          </Route>
-          <Route path="rooms" component={<h1>users</h1>}>
-            ~
-            <Route path="edit/:id" component={<h1>edit habitaciones</h1>} />
-          </Route>
-        </Route>
         <Route path="/registro" element={<Registro />} />
+        <Route
+          path="/admin/*"
+          element={
+            <RouteProtectAdmin>
+              <AdminRoute />
+            </RouteProtectAdmin>
+          }
+        />
       </Routes>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
         <Footer />
