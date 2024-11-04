@@ -17,8 +17,7 @@ const Registro = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-
-    create(data);
+    create(data, "users");
   };
 
   return (

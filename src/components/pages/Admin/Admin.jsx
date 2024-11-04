@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import style from "./Admin.module.css";
 import NavAdmin from "../../adminComponents/NavAdmin/NavAdmin";
-import UserContainer from "../../adminComponents/UsersContainer/UserContainer";
+import { Outlet } from "react-router-dom";
 
 const Admin = () => {
   return (
@@ -9,7 +9,7 @@ const Admin = () => {
       <section className={` ${style.admin_container} `}>
         <NavAdmin />
         <article className={` ${style.admin_content_container} `}>
-          <UserContainer />
+          <Outlet />
         </article>
       </section>
     </Container>
