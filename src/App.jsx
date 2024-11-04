@@ -7,6 +7,7 @@ import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
+import Admin from "./components/pages/Admin/Admin.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
@@ -31,7 +32,9 @@ const AppContent = () => {
 
   return (
     <>
-      {location.pathname !== "/login" && <NavbarComponent />}
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <NavbarComponent />
+      )}
 
       <Routes>
         <Route path="/" element={<Index />}>
@@ -40,9 +43,8 @@ const AppContent = () => {
             element={<FilterRoomsContain />}
           />
         </Route>
-        <Route path="/habitaciones" element={<RoomsContainer/>} />
+        <Route path="/habitaciones" element={<RoomsContainer />} />
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
-        <Route path="/admin" element={<h1>Administrador</h1>} />
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
@@ -50,7 +52,9 @@ const AppContent = () => {
         <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>} />
         <Route path="/registro" element={<Registro/>} />
       </Routes>
-      <Footer></Footer>
+      {location.pathname !== "/login" && location.pathname !== "/registro" && (
+        <Footer />
+      )}
     </>
   );
 };

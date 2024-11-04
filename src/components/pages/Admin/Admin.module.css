@@ -1,0 +1,20 @@
+
+.admin_container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin_content_container{
+    width: 100%;
+    min-height: 100dvh;
+}
+@media (min-width: 992px) {
+    .admin_container{
+        flex-flow: row;
+        justify-content: end;
+        min-height: 100dvh;
+    }
+}

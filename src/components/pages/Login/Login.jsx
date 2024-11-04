@@ -30,7 +30,7 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
         const datos = await respuesta.json()
         sessionStorage.setItem(
           "usuariosHotel",
-          JSON.stringify({ email: datos.email })
+          JSON.stringify({ email: datos.email, token: datos.token })
         );
         setUsuarioLogueado(datos);
         navegacion("/administrador");
@@ -52,10 +52,10 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
   };
   return (
     <Container
-      className="bg-light d-flex justify-content-center align-items-center vh-100 rounded-4"
+      className=" d-flex justify-content-center align-items-center vh-100 rounded-4"
       style={{ maxWidth: "500px", maxHeight: "640px", margin: "auto" }}
     >
-      <Row>
+      <Row className="login-container">
         <Col md={12}>
           <div className="text-center mb-4">
             <img src={logo} alt="Logo" className="img-fluid" />
