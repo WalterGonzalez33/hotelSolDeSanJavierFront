@@ -42,29 +42,36 @@ const UserContainer = () => {
             Crear <BiPlus />
           </Button>
 
-          <ModalAdmin show={show} handleClose={handleClose} />
+          <ModalAdmin
+            show={show}
+            handleClose={handleClose}
+            title={"Crea un usuario"}
+            form={"user"}
+          />
         </div>
       )}
       {currentData && (
-        <Table striped responsive="lg" className={` ${style.table} `}>
-          <thead className={` ${style.thead_table} `}>
-            <tr className={` ${style.tr_user} `}>
-              <th></th>
-              <th>Nombre</th>
-              <th>Email</th>
-              <th>Estado</th>
-              <th>Permisos</th>
-              <th>
-                <FaCog />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.map((user) => {
-              return <RowUser key={user._id} {...user} />;
-            })}
-          </tbody>
-        </Table>
+        <div className={` ${style.table_container} `}>
+          <Table striped responsive="lg" className={` ${style.table} `}>
+            <thead className={` ${style.thead_table} `}>
+              <tr className={` ${style.tr_user} `}>
+                <th></th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Permisos</th>
+                <th>
+                  <FaCog />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentData.map((user) => {
+                return <RowUser key={user._id} {...user} />;
+              })}
+            </tbody>
+          </Table>
+        </div>
       )}
     </div>
   );

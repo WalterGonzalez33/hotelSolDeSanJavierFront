@@ -56,9 +56,9 @@ const AppContent = () => {
           }
         />
       </Routes>
-      {location.pathname !== "/login" && location.pathname !== "/registro" && (
-        <Footer />
-      )}
+      {location.pathname !== "/login" &&
+        location.pathname !== "/registro" &&
+        !location.pathname.includes("admin") && <Footer />}
     </>
   );
 };
