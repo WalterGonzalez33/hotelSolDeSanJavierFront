@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import useFetch from "../../hooks/useFetch";
+
+const apiUrl = import.meta.env.VITE_API_URL;
+if (!apiUrl) {
+  console.warn(
+    "Warning: `VITE_API_URL` is not defined in the environment variables."
+  );
+}
 
 const Registro = () => {
+
+  // const [dataUser,setdataUser] = useState(null)
+
+  // const {data,loading,error,triggerFetch} = useFetch({endPoint: '/users',
+  //   method:'POST',
+  //   body: dataUser
+  // })
+
+
   const {
     register,
     handleSubmit,
@@ -10,8 +27,19 @@ const Registro = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    
   };
+
+
+
+  // useEffect(()=>{
+  //   if(dataUser !== null ){
+  //     triggerFetch()
+  //   } 
+  // },[dataUser]) 
+
+  
+ 
 
   return (
     <Container className="d-flex justify-content-center vh-80 bg-light rounded-4 mt-1 mb-1">
@@ -24,7 +52,7 @@ const Registro = () => {
             <h4 className="mt-4  mb-4 mx-5">Registrate</h4>
             <Form.Group
               className="mb-3 mt-4"
-              controlId="exampleForm.ControlInput1"
+              controlId="exampleForm.ControlInputName"
             >
               <Form.Label>Nombre y apellido</Form.Label>
               <Form.Control
@@ -52,7 +80,7 @@ const Registro = () => {
 
             <Form.Group
               className="mb-3  mt-3"
-              controlId="exampleForm.ControlInput1"
+              controlId="exampleForm.ControlInputPassword"
             >
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
@@ -71,6 +99,10 @@ const Registro = () => {
                     message:
                       "La contraseña debe tener un maximo de 15 caracteres",
                   },
+                  pattern: {
+                    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                    message: "El password debe contener al menos una letra mayúscula, una letra minúscula y un número",
+                  }
                 })}
               />
 
@@ -79,7 +111,7 @@ const Registro = () => {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3 " controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3 " controlId="exampleForm.ControlInputEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 className=" rounded-5 border-3 "
@@ -92,10 +124,15 @@ const Registro = () => {
                     message: "El mail debe que tener minimo 10  caracteres",
                   },
                   maxLength: {
-                    value: 20,
+                    value: 60,
                     message:
                       "Nombre y apellido debe tener como maximo 20caracteres",
                   },
+                  pattern: {
+                    value: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+                    message:
+                    "Formato de email incorrecto",
+                  }
                 })}
               />
               <Form.Text className="text-danger">
