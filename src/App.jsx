@@ -10,11 +10,10 @@ import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
-import { useState } from "react";
-
+import AdminRoute from "./components/routes/AdminRoute.jsx";
+import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 
 function App() {
-  
   return (
     <main>
       <BrowserRouter>
@@ -26,8 +25,6 @@ function App() {
 
 const AppContent = () => {
   const location = useLocation();
-  const usuario = JSON.parse(sessionStorage.getItem("usuariosHotel") || "null");
-  const [usuarioLogueado, setUsuarioLogueado] = useState(usuario)
 
   return (
     <>
@@ -48,8 +45,16 @@ const AppContent = () => {
         <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
-        <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>} />
-        <Route path="/registro" element={<Registro/>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route
+          path="/admin/*"
+          element={
+            <RouteProtectAdmin>
+              <AdminRoute />
+            </RouteProtectAdmin>
+          }
+        />
       </Routes>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
         <Footer />

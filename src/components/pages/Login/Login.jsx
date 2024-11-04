@@ -2,54 +2,27 @@ import { useForm } from "react-hook-form";
 import { BsFacebook, BsEnvelopeFill } from "react-icons/bs";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
-import useFetch from "../../../hooks/useFetch";
+import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./Login.css";
-import { useState, useEffect } from "react";
-import {login} from "../../../utils/queris";
 
-const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
+const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navegacion = useNavigate();
 
-  const onSubmit = async (usuario) => {
-    const respuesta = await login(usuario);
-    try {
-      if (respuesta.status === 200) {
-        Swal.fire({
-          title: "Listo!",
-          text: "Has iniciado sesión correctamente.",
-          icon: "success",
-          confirmButtonText: "Aceptar",
-        });
-        const datos = await respuesta.json()
-        sessionStorage.setItem(
-          "usuariosHotel",
-          JSON.stringify({ email: datos.email, token: datos.token })
-        );
-        setUsuarioLogueado(datos);
-        navegacion("/administrador");
-      } else {
-        Swal.fire({
-          title: "Error",
-          text: "No se pudo iniciar sesión. Verifica tus credenciales.",
-          icon: "error",
-          confirmButtonText: "Aceptar",
-        });
-      }
-    } catch (error) {
-      Swal.fire(
-        "Ocurrió un error",
-        "Ocurrió un error,intentalo en unos minutos",
-        "error"
-      );
-    }
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "Listo!",
+      text: "Has iniciado sesión correctamente.",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+    });
+    console.log("Formulario enviado", data);
   };
+
   return (
     <Container
       className=" d-flex justify-content-center align-items-center vh-100 rounded-4"
