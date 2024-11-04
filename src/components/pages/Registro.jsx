@@ -1,6 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { createUser } from "../../utils/requests";
+import { create } from "../../utils/requests";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 if (!apiUrl) {
@@ -17,9 +17,8 @@ const Registro = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
 
-    createUser(data);
+    create(data);
   };
 
   return (

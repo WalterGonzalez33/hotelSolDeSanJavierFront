@@ -1,7 +1,7 @@
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-export const createUser = async (dataBody) => {
+export const create = async (dataBody) => {
     try {
         const parseData = JSON.stringify(dataBody)
         const response = await fetch(`${apiUrl}users`, {
@@ -19,5 +19,6 @@ export const createUser = async (dataBody) => {
 
     } catch (err) {
         console.error(err)
+        return err
     }
 }

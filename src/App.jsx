@@ -43,7 +43,7 @@ const AppContent = () => {
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
-        <Route path="/reservar" element={<ReservationForm />} />
+        <Route path="/reservacion" element={<ReservationForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />}>
           <Route path="users" component={<h1>users</h1>}>
