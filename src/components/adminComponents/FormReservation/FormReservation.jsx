@@ -11,12 +11,19 @@ const FormReservation = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
   const [users, setUsers] = useState([]);
   const [rooms, setRooms] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+  const [loadingRooms, setLoadingRooms] = useState(false);
   const [error, setError] = useState(null);
+
+ 
+  const checkIn = watch("check_in");
+  const checkOut = watch("check_out");
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -31,27 +38,37 @@ const FormReservation = () => {
       } catch (err) {
         setError(`Error al obtener los usuarios: ${err.message}`);
       } finally {
-        setLoading(false);
-      }
-    };
-
-    const fetchRooms = async () => {
-      try {
-        const url = `${apiUrl}/rooms`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Error al obtener las habitaciones");
-        }
-        const data = await response.json();
-        setRooms(data);
-      } catch (err) {
-        setError(`Error al obtener las habitaciones: ${err.message}`);
+        setLoadingUsers(false);
       }
     };
 
     fetchUsers();
-    fetchRooms();
-  }, []);
+  }, []); 
+
+ 
+  useEffect(() => {
+    if (checkIn && checkOut) {
+      const fetchRooms = async () => {
+        try {
+          setLoadingRooms(true);
+         
+          const url = `${apiUrl}/rooms/${checkIn}/${checkOut}`;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Error al obtener las habitaciones disponibles");
+          }
+          const data = await response.json();
+          setRooms(data);
+        } catch (err) {
+          console.error(err)
+        } finally {
+          setLoadingRooms(false);
+        }
+      };
+
+      fetchRooms();
+    }
+  }, [checkIn, checkOut]); 
 
   const onSubmit = (data) => {
     const validateresult = validationDate(data.check_in, data.check_out);
@@ -66,7 +83,7 @@ const FormReservation = () => {
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
       <Form.Group className="mb-3" controlId="formUserName">
         <Form.Label>Seleccionar usuario</Form.Label>
-        {loading ? (
+        {loadingUsers ? (
           <Form.Text>Cargando usuarios...</Form.Text>
         ) : error ? (
           <Form.Text className="text-danger">{error}</Form.Text>
@@ -81,7 +98,7 @@ const FormReservation = () => {
             <option value="">Seleccione un usuario</option>
             {users.length > 0 ? (
               users.map((user) => (
-                <option key={user.id} value={user.id}>
+                <option key={user._id} value={user._id}>
                   {user.username}
                 </option>
               ))
@@ -127,7 +144,7 @@ const FormReservation = () => {
 
       <Form.Group className="mb-3" controlId="formRoom">
         <Form.Label>Seleccionar habitación</Form.Label>
-        {loading ? (
+        {loadingRooms ? (
           <Form.Text>Cargando habitaciones...</Form.Text>
         ) : error ? (
           <Form.Text className="text-danger">{error}</Form.Text>
@@ -142,7 +159,7 @@ const FormReservation = () => {
             <option value="">Seleccione una habitación</option>
             {rooms.length > 0 ? (
               rooms.map((room) => (
-                <option key={room.id} value={room.id}>
+                <option key={room._id} value={room._id}>
                   {room.room_name}
                 </option>
               ))
