@@ -1,24 +1,17 @@
 import Modal from "react-bootstrap/Modal";
-import { useEffect, useRef } from "react";
 import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
+import FormUserEdit from "../FormUserEdit/FormUserEdit";
 
-function ModalAdmin({ show, handleClose, title, form }) {
-  const triggerRef = useRef(null);
-  const modalTitleRef = useRef(null);
-
-  useEffect(() => {
-    if (show) {
-      triggerRef.current = document.activeElement;
-      modalTitleRef.current?.focus();
-
-      document.querySelector("#main-content").setAttribute("inert", "");
-    } else if (triggerRef.current) {
-      triggerRef.current.focus();
-      document.querySelector("#main-content").removeAttribute("inert");
-    }
-  }, [show]);
-
+function ModalAdmin({
+  show,
+  handleClose,
+  title,
+  form,
+  setReload,
+  reload,
+  dataUser,
+}) {
   return (
     <Modal
       show={show}
@@ -31,12 +24,24 @@ function ModalAdmin({ show, handleClose, title, form }) {
         closeButton
         className={`${style.modal} ${style.modal_header}`}
       >
-        <Modal.Title ref={modalTitleRef} tabIndex="-1">
-          {title}
-        </Modal.Title>
+        <Modal.Title tabIndex="-1">{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className={`${style.modal} ${style.modal_body}`}>
-        {form === "user" && <FormUser handleClose={handleClose}/>}
+        {form === "user" && (
+          <FormUser
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+          />
+        )}
+        {form === "userEdit" && (
+          <FormUserEdit
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            dataUser={dataUser}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );
