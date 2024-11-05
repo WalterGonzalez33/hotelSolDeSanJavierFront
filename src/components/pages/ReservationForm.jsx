@@ -2,13 +2,12 @@ import { useForm } from "react-hook-form";
 import "../../styles/global.css";
 import { Button, Col, Form, Row, Carousel } from "react-bootstrap";
 import Swal from "sweetalert2";
-import image1 from "../../assets/imgInicio/vista2.jpg"
+import image1 from "../../assets/imgInicio/vista2.jpg";
 import image2 from "../../assets/imgInicio/salaDeJuegos.jpg";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const ReservationForm = () => {
-
   const navigate = useNavigate();
 
   const {
@@ -19,17 +18,15 @@ const ReservationForm = () => {
     watch,
   } = useForm();
 
- const checkInDate = watch("checkIn");
+  const checkInDate = watch("checkIn");
 
+  useEffect(() => {
+    const token = sessionStorage.getItem("usuariosHotel");
 
-  useEffect(()=>{
-    const token = sessionStorage.getItem("authToken");
-
-    if (!token){
-      navigate("/login")
+    if (!token) {
+      navigate("/login");
     }
-  })
-
+  });
 
   const reservaRealizada = (data) => {
     Swal.fire({
@@ -91,7 +88,10 @@ const ReservationForm = () => {
                 {...register("checkOut", {
                   required: "La fecha de Check-Out es obligatoria",
                   validate: (value) => {
-                    if (checkInDate && new Date(value) < new Date(checkInDate)) {
+                    if (
+                      checkInDate &&
+                      new Date(value) < new Date(checkInDate)
+                    ) {
                       return "La fecha de salida no puede ser anterior a la fecha de entrada.";
                     }
                     return true;
