@@ -18,7 +18,7 @@ const HandleLoading = () => {
 };
 
 const ReservationContainer = () => {
-  const { data, loading, error } = useFetch({ endPoint: "reservation/list" });
+  const { data, loading } = useFetch({ endPoint: "reservation/list" });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
 
