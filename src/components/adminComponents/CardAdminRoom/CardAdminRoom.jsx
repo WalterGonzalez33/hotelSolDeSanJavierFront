@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
+import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
 
 const HandleLoading = () => {
   return (
@@ -18,6 +19,10 @@ const HandleLoading = () => {
 const CardAdminRoom = () => {
   const { data, loading, error } = useFetch({ endPoint: "rooms" });
   const [currentData, setCurrentData] = useState(data);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     setCurrentData(data);
@@ -28,9 +33,19 @@ const CardAdminRoom = () => {
       {loading && <HandleLoading />}
       {currentData && (
         <div className={` ${style.tabs_admin_container} `}>
-          <Button variant="success" className="button-custom">
+          <Button
+            variant="success"
+            className="button-custom"
+            onClick={handleShow}
+          >
             Crear <BiPlus />
           </Button>
+          <ModalAdmin
+            show={show}
+            handleClose={handleClose}
+            title={"Crea una habitación"}
+            form={"room"}
+          />
         </div>
       )}
       {currentData && (

@@ -47,7 +47,7 @@ const QuienesSomos = () => {
       {
         image: `${IsaiasGius}`,
         key: 3,
-        title: "Isais Gius",
+        title: "Isaías Gius",
         urlGit: "https://github.com/G1U5",
         urlLink: "https://github.com/MauroConiglio",
       },
