@@ -1,7 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import style from "./ModalAdmin.module.css";
+import FormUser from "../FormUser/FormUser";
+import FormReservation from "../FormReservation/FormReservation";
 
-function ModalAdmin({ show, handleClose }) {
+function ModalAdmin({ show, handleClose, title, form }) {
   return (
     <>
       <Modal
@@ -15,11 +17,11 @@ function ModalAdmin({ show, handleClose }) {
           closeButton
           className={`${style.modal} ${style.modal_header} `}
         >
-          <Modal.Title>Modal title</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body className={`${style.modal} ${style.modal_body} `}>
-          I will not close if you click outside me. Do not even try to press
-          escape key.
+          {form === "user" && <FormUser />}
+          {form === "reservation" && <FormReservation />}
         </Modal.Body>
       </Modal>
     </>
