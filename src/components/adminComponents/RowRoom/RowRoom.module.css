@@ -1,0 +1,66 @@
+
+.tr_room {
+  transition: background-color 0.3s ease;
+}
+
+.tr_room:hover {
+  background-color: #f8f9fa; 
+}
+
+.tr_room td:first-child {
+  text-align: center;
+  width: 40px;
+}
+
+.tr_room td:nth-child(2) {
+  font-weight: bold;
+  color: #343a40;
+}
+
+
+.tr_room td:nth-child(3) {
+  color: #28a745;
+}
+
+
+.tr_room td:nth-child(4) {
+  font-weight: bold;
+  color: #28a745; 
+}
+
+.tr_room td:nth-child(4):not(:has(> span.available)) {
+  color: #dc3545;
+}
+
+
+.tr_room td:nth-child(5) {
+  color: #6c757d; 
+  font-size: 0.9em;
+}
+
+
+.tr_room td:nth-child(6) {
+  font-size: 0.9em;
+  color: #495057;
+}
+
+
+.icon_edit {
+  color: #007bff; 
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.icon_edit:hover {
+  color: #0056b3; 
+}
+
+.icon_delete {
+  color: #dc3545; 
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icon_delete:hover {
+  color: #c82333; 
+}
