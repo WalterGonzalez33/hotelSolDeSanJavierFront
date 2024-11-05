@@ -9,6 +9,7 @@ const FormRoom = () => {
     const {
       register,
       handleSubmit,
+      reset,
       formState: { errors },
     } = useForm();
   
@@ -45,6 +46,8 @@ const FormRoom = () => {
   
         const roomDataResponse = await response.json();
         console.log("Habitación creada:", roomDataResponse);
+
+        reset();
   
       } catch (err) {
         setError(`Error al crear la habitación: ${err.message}`);
@@ -54,19 +57,26 @@ const FormRoom = () => {
     return (
       <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
         <Form.Group className="mb-3" controlId="formRoomName">
-          <Form.Label>Nombre de la habitación</Form.Label>
-          <Form.Control
-            type="text"
-            {...register("room_name", {
-              required: "El nombre de la habitación es obligatorio",
-              validate: {
-                enum: (value) => 
-                  ['Dobles Superiores', 'Departamentos', 'Doble de Lujo', 'Suites Superiores', 'Suite Junior', 'Habitaciones Dobles Deluxe'].includes(value) 
-                  || "Nombre no válido."
-              }
-            })}
-            isInvalid={!!errors.room_name}
-          />
+        <Form.Label>Nombre de la habitación</Form.Label>
+  <Form.Select
+    {...register("room_name", {
+      required: "El nombre de la habitación es obligatorio",
+      validate: {
+        enum: (value) => 
+          ['Dobles Superiores', 'Departamentos', 'Doble de Lujo', 'Suites Superiores', 'Suite Junior', 'Habitaciones Dobles Deluxe'].includes(value) 
+          || "Nombre no válido."
+      }
+    })}
+    isInvalid={!!errors.room_name}
+  >
+    <option value="">Seleccione una habitación...</option>
+    <option value="Dobles Superiores">Dobles Superiores</option>
+    <option value="Departamentos">Departamentos</option>
+    <option value="Doble de Lujo">Doble de Lujo</option>
+    <option value="Suites Superiores">Suites Superiores</option>
+    <option value="Suite Junior">Suite Junior</option>
+    <option value="Habitaciones Dobles Deluxe">Habitaciones Dobles Deluxe</option>
+  </Form.Select>
           <Form.Control.Feedback type="invalid">
             {errors.room_name?.message}
           </Form.Control.Feedback>

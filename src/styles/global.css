@@ -37,17 +37,17 @@
 
   /* Estilos para el formulario de reservas */
   .form-container {
-    background-color: #FFF5EB; /* Beige para el fondo del formulario */
+    background-color: #FFF5EB;
     border-radius: 8px;
     padding: 30px;
     width: 100%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #D9B59E; /* Línea de borde sutil en marrón claro */
+    border: 1px solid #D9B59E;
 }
 
 .form-container h3 {
   text-align: start;
-  color: #4B2E2A; /* Título en marrón oscuro */
+  color: #4B2E2A;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -59,8 +59,8 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #D9B59E;
-  background-color: #FFF0E0; /* Color de fondo del input */
-  color: #4B2E2A; /* Color del texto */
+  background-color: #FFF0E0;
+  color: #4B2E2A;
   font-size: 16px;
 }
 
@@ -68,8 +68,8 @@
 .form-container select:focus,
 .form-container textarea:focus {
     outline: none;
-    border-color: #A67B5B; /* Color de borde al enfocar */
-    background-color: #FFE6CC; /* Color de fondo al enfocar */
+    border-color: #A67B5B;
+    background-color: #FFE6CC;
 }
 
 textarea{
