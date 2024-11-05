@@ -11,14 +11,12 @@ export const create = async (dataBody, endpoint) => {
             },
             body: parseData
           })
-          if (!response.ok){
+          if (response.status >= 500){
             throw new Error(`Error ${response.status}: ${response.message}`);
           }
-          const result = await response.json()
-          return result
+          return response
 
     } catch (err) {
-        console.error(err)
         return err
     }
 }

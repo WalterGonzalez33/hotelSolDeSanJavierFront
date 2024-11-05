@@ -1,16 +1,52 @@
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
 import style from "./FormUser.module.css";
+import { create } from "../../../utils/requests";
+import { showCustomAlert } from "../../../utils/customAlert";
 
-const FormUser = () => {
+const FormUser = ({ handleClose }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  // const funcCallback = () => {
+  //   console.log("continuo");
+
+  //   Swal.fire({
+  //     title: "¡Confirmado!",
+  //     text: "Has decidido continuar.",
+  //     icon: "success",
+  //     confirmButtonColor: "#95c46c",
+  //   });
+  // };
+  // showCustomAlert({
+  //   callback: funcCallback,
+  //   continueConfirm: true,
+  //   showCancel: true,
+  // });
+
   const onSubmit = (data) => {
-    console.log(data);
+    const request = async () => {
+      const request = await create(data, "users");
+      if (request.status === 201) {
+        showCustomAlert({
+          alertTitle: "Éxito",
+          alertText: "El usuario fue creado correctamente",
+        });
+        handleClose();
+      }
+      if (request.status === 400) {
+        const res = await request.json();
+        showCustomAlert({
+          alertTitle: "Cuidado!",
+          alertText: `${res.message ? res.message : res.mensaje}`,
+          icon: "warning",
+        });
+      }
+    };
+    request();
   };
 
   return (
@@ -20,6 +56,7 @@ const FormUser = () => {
         <Form.Control
           className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="text"
+          autoComplete="username"
           placeholder="ingrese el nombre del usuario"
           {...register("username", {
             required: "El nombre de usuario es un campo requerido",
@@ -45,6 +82,7 @@ const FormUser = () => {
         <Form.Control
           className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="email"
+          autoComplete="email"
           placeholder="Ingrese el email"
           {...register("email", {
             required: "El email es un campo requerido",
@@ -74,6 +112,7 @@ const FormUser = () => {
         <Form.Control
           className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="password"
+          autoComplete="new-password"
           placeholder="Ingrese la contraseña"
           {...register("password", {
             required: "La Contraseña es un campo requerido",
