@@ -3,13 +3,11 @@ import { BsFacebook, BsEnvelopeFill } from "react-icons/bs";
 import { Button, Form, Col, Row, Container } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
-import useFetch from "../../../hooks/useFetch";
 import logo from "../../../assets/logo.png";
 import "./Login.css";
-import { useState, useEffect } from "react";
 import {login} from "../../../utils/queris";
 
-const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
+const Login = ({ setUsuarioLogueado}) => {
   const {
     register,
     handleSubmit,
@@ -30,7 +28,7 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
         const datos = await respuesta.json()
         sessionStorage.setItem(
           "usuariosHotel",
-          JSON.stringify({ id: datos._id, token: datos.token })
+          JSON.stringify({ id: datos.id, token: datos.token })
         );
         setUsuarioLogueado(datos);
         navegacion("/admin");
