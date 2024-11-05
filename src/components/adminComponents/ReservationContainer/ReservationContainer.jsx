@@ -42,7 +42,11 @@ const ReservationContainer = () => {
             Crear <BiPlus />
           </Button>
 
-          <ModalAdmin show={show} handleClose={handleClose} />
+          <ModalAdmin 
+          show={show} 
+          handleClose={handleClose} 
+          title={"Crea una reserva"}
+          form={"reservation"}/>
         </div>
       )}
       {currentData && (
