@@ -14,8 +14,9 @@ const FormRoom = () => {
   
     const [error, setError] = useState(null);
 
-    
-  
+
+    const token = JSON.parse(sessionStorage.getItem('usuariosHotel'))
+    console.log(token.token)
     const onSubmit = async (data) => {
 
       const benefitsArray = [];
@@ -33,7 +34,7 @@ const FormRoom = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            'Authorization': `Bearer ${token}`
+            'x-token': `${token.token}`
           },
           body: JSON.stringify(roomData),
         });
@@ -77,8 +78,8 @@ const FormRoom = () => {
             type="number"
             {...register("price", {
               required: "El precio es obligatorio",
-              min: { value: 5000, message: "El precio mínimo es 5000" },
-              max: { value: 1000000, message: "El precio máximo es 1000000" }
+              minLength: { value: 3, message: "El precio mínimo es 500" },
+              maxLength: { value: 7, message: "El precio máximo es 1000000" }
             })}
             isInvalid={!!errors.price}
           />
