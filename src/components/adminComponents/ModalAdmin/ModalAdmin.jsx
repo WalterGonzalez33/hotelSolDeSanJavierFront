@@ -3,6 +3,7 @@ import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
 import FormUserEdit from "../FormUserEdit/FormUserEdit";
 import FormReservation from "../FormReservation/FormReservation";
+import FormRoom from "../FormrRoom/FormRoom"
 
 function ModalAdmin({
   show,
@@ -44,6 +45,7 @@ function ModalAdmin({
           />
         )}
         {form === "reservation" && <FormReservation />}
+          {form === "room" && <FormRoom/>}
       </Modal.Body>
     </Modal>
   );

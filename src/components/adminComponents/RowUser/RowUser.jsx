@@ -78,7 +78,7 @@ const RowUser = ({
             className={` ${style.action_button} `}
             onClick={handleClickEdit}
           >
-            <FaPen />;
+            <FaPen />
           </Button>
           <Button className={` ${style.action_button} `}>
             <FaTrash />
