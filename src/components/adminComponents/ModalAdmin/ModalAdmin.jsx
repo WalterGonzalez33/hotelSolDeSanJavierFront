@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
+import FormReservation from "../FormReservation/FormReservation";
 
 function ModalAdmin({ show, handleClose, title, form }) {
   return (
@@ -20,6 +21,7 @@ function ModalAdmin({ show, handleClose, title, form }) {
         </Modal.Header>
         <Modal.Body className={`${style.modal} ${style.modal_body} `}>
           {form === "user" && <FormUser />}
+          {form === "reservation" && <FormReservation />}
         </Modal.Body>
       </Modal>
     </>
