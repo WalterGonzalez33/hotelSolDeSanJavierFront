@@ -55,7 +55,7 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
       className=" d-flex justify-content-center align-items-center vh-100 rounded-4"
       style={{ maxWidth: "500px", maxHeight: "640px", margin: "auto" }}
     >
-      <Row className="login-container">
+      <Row className="login-container mt-4">
         <Col md={12}>
           <div className="text-center mb-4">
             <img src={logo} alt="Logo" className="img-fluid" />
@@ -142,7 +142,7 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
             </div>
           </div>
 
-          <div className="text-center mt-4">
+          <div className="text-center my-4">
             <Link to="/">
               <Button variant="dark rounded-5">Volver al inicio</Button>
             </Link>

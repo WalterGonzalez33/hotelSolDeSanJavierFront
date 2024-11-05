@@ -5,8 +5,10 @@ import logo from "../../../assets/logo.png";
 import { useEffect, useState, useRef } from "react";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import NavLink from "../NavLink/NavLink";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
-const NavbarComponent = ({setUsuarioLogueado,usuarioLogueado}) => {
+const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
   const [currentLink, setCurrentLink] = useState(
@@ -137,8 +139,19 @@ const NavbarComponent = ({setUsuarioLogueado,usuarioLogueado}) => {
                   />
                 );
               })}
-
-              <BtnLogin setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>
+              {!usuarioLogueado && (
+                <li className="nav-item">
+                  {" "}
+                  <Link to="/registro" className={style.register_link}>
+                    {" "}
+                    Registro{" "}
+                  </Link>{" "}
+                </li>
+              )}
+              <BtnLogin
+                setUsuarioLogueado={setUsuarioLogueado}
+                usuarioLogueado={usuarioLogueado}
+              />
             </ul>
           </div>
           {widthWindowState >= 992 && <BtnReservation color={"light"} />}
