@@ -2,6 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
 import FormUserEdit from "../FormUserEdit/FormUserEdit";
+import FormReservation from "../FormReservation/FormReservation";
 
 function ModalAdmin({
   show,
@@ -42,6 +43,7 @@ function ModalAdmin({
             dataUser={dataUser}
           />
         )}
+        {form === "reservation" && <FormReservation />}
       </Modal.Body>
     </Modal>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsFillTelephoneFill ,  BsGeoAltFill  } from "react-icons/bs";

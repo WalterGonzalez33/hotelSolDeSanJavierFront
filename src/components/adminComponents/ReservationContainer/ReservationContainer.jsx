@@ -18,7 +18,7 @@ const HandleLoading = () => {
 };
 
 const ReservationContainer = () => {
-  const { data, loading, error } = useFetch({ endPoint: "reservation/list" });
+  const { data, loading } = useFetch({ endPoint: "reservation/list" });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
 
@@ -42,7 +42,11 @@ const ReservationContainer = () => {
             Crear <BiPlus />
           </Button>
 
-          <ModalAdmin show={show} handleClose={handleClose} />
+          <ModalAdmin 
+          show={show} 
+          handleClose={handleClose} 
+          title={"Crea una reserva"}
+          form={"reservation"}/>
         </div>
       )}
       {currentData && (
