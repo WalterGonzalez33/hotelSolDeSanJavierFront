@@ -9,9 +9,9 @@ const AdminRoute = () => {
     <Routes>
       <Route path="/" element={<Admin />}>
         <Route path="users" element={<UserContainer />}>
-          <Route path="edit/:id" element={<h1>edit user</h1>} />
+          <Route path="edit/:id" element={<></>} />
         </Route>
-        <Route path="reservations" element={<ReservationContainer/>}>
+        <Route path="reservations" element={<ReservationContainer />}>
           <Route path="edit/:id" element={<h1>edit reserva</h1>} />
         </Route>
         <Route path="rooms" element={<CardAdminRoom/>}>

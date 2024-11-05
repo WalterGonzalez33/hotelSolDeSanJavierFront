@@ -14,13 +14,14 @@ const useFetch = ({
   reqMethod = "GET",
   bodyData = null,
   headers = {},
+  reload,
 }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [counter, setCounter] = useState(0);
 
-  const prevValues = useRef({ endPoint, reqMethod, bodyData, headers });
+  const prevValues = useRef({ endPoint, reqMethod, bodyData, headers, reload });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,14 +53,15 @@ const useFetch = ({
     if (
       prevValues.current.endPoint !== endPoint ||
       prevValues.current.reqMethod !== reqMethod ||
+      prevValues.current.reload !== reload ||
       JSON.stringify(prevValues.current.bodyData) !==
         JSON.stringify(bodyData) ||
       JSON.stringify(prevValues.current.headers) !== JSON.stringify(headers)
     ) {
       setCounter((prev) => prev + 1);
-      prevValues.current = { endPoint, reqMethod, bodyData, headers };
+      prevValues.current = { endPoint, reqMethod, bodyData, headers, reload };
     }
-  }, [endPoint, reqMethod, bodyData, headers]);
+  }, [endPoint, reqMethod, bodyData, headers, reload]);
 
   return { data, loading, error };
 };
