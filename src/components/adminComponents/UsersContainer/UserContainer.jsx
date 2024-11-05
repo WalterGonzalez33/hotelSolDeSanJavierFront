@@ -18,12 +18,17 @@ const HandleLoading = () => {
 };
 
 const UserContainer = () => {
-  const { data, loading, error } = useFetch({ endPoint: "users" });
+  const [reload, setReload] = useState(false);
+  const { data, loading } = useFetch({ endPoint: "users", reload });
+  const [dataUser, setDataUser] = useState(null);
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setEditShow(false);
+  const handleShowEdit = () => setEditShow(true);
 
   useEffect(() => {
     setCurrentData(data);
@@ -47,6 +52,17 @@ const UserContainer = () => {
             handleClose={handleClose}
             title={"Crea un usuario"}
             form={"user"}
+            setReload={setReload}
+            reload={reload}
+          />
+          <ModalAdmin
+            show={editShow}
+            handleClose={handleCloseEdit}
+            title={"Edita el usuario"}
+            form={"userEdit"}
+            setReload={setReload}
+            reload={reload}
+            dataUser={dataUser}
           />
         </div>
       )}
@@ -67,7 +83,14 @@ const UserContainer = () => {
             </thead>
             <tbody>
               {currentData.map((user) => {
-                return <RowUser key={user._id} {...user} />;
+                return (
+                  <RowUser
+                    key={user._id}
+                    {...user}
+                    handleShowEdit={handleShowEdit}
+                    setDataUser={setDataUser}
+                  />
+                );
               })}
             </tbody>
           </Table>
