@@ -11,18 +11,51 @@ export const create = async (dataBody, endpoint) => {
             },
             body: parseData
           })
-          if (!response.ok){
+          if (response.status >= 500){
             throw new Error(`Error ${response.status}: ${response.message}`);
           }
-          const result = await response.json()
-          return result
+          return response
 
     } catch (err) {
-        console.error(err)
+        console.warn(err)
         return err
     }
 }
 
+export const getItem = async (endpoint) => {
+  try {
+    const response = await fetch(`${apiUrl}${endpoint}`)
+      if (response.status >= 500){
+        throw new Error(`Error ${response.status}: ${response.message}`);
+      }
+    const res = await response.json()
+    return res
+  } catch (err) {
+    console.warn(err)
+    return err
+  }
+}
+
+export const editItem = async (dataBody, endpoint) => {
+  try {
+      const parseData = JSON.stringify(dataBody)
+      const response = await fetch(`${apiUrl}${endpoint}`, {
+          method: 'PUT',
+          headers:{
+              "Content-Type": "application/json",
+          },
+          body: parseData
+        })
+        if (response.status >= 500){
+          throw new Error(`Error ${response.status}: ${response.message}`);
+        }
+        return response
+
+  } catch (err) {
+      console.warn(err)
+      return err
+  }
+}
 
 
 export const deleteItem = async (endpoint) => {

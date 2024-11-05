@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const Admin = () => {
   return (
-    <Container fluid>
+    <Container fluid id="main-content">
       <section className={` ${style.admin_container} `}>
         <NavAdmin />
         <article className={` ${style.admin_content_container} `}>

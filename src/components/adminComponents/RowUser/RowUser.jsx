@@ -9,7 +9,25 @@ import {
 } from "react-icons/fa";
 import { BiSolidUserRectangle } from "react-icons/bi";
 
-const RowUser = ({ username, email, status, roll }) => {
+const RowUser = ({
+  _id,
+  username,
+  email,
+  status,
+  roll,
+  handleShowEdit,
+  setDataUser,
+}) => {
+  const handleClickEdit = () => {
+    handleShowEdit();
+    setDataUser({
+      username,
+      email,
+      status,
+      roll,
+      _id,
+    });
+  };
   return (
     <tr className={` ${style.user_row_container} `}>
       <td className={` ${style.user_icon} `}>
@@ -56,8 +74,11 @@ const RowUser = ({ username, email, status, roll }) => {
           <Button className={` ${style.action_button} `}>
             <FaCalendarDay />
           </Button>
-          <Button className={` ${style.action_button} `}>
-            <FaPen />
+          <Button
+            className={` ${style.action_button} `}
+            onClick={handleClickEdit}
+          >
+            <FaPen />;
           </Button>
           <Button className={` ${style.action_button} `}>
             <FaTrash />
