@@ -12,6 +12,7 @@ import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
+import { useState } from "react";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
 
 const AppContent = () => {
   const location = useLocation();
+  const usuario = JSON.parse(sessionStorage.getItem("usuariosHotel") || "null");
+  const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
 
   return (
     <>
@@ -45,7 +48,7 @@ const AppContent = () => {
         <Route path="/contacto" element={<Contactos />} />
         <Route path="*" element={<h1>404 Not found</h1>} />
         <Route path="/reservacion" element={<ReservationForm />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>} />
         <Route path="/registro" element={<Registro />} />
         <Route
           path="/admin/*"
