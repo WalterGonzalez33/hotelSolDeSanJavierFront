@@ -22,3 +22,27 @@ export const create = async (dataBody, endpoint) => {
         return err
     }
 }
+
+
+
+export const deleteItem = async (endpoint) => {
+    try {
+        const response = await fetch(`${apiUrl}${endpoint}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        return result;
+
+    } catch (err) {
+        console.error(err);
+        return err;
+    }
+};
