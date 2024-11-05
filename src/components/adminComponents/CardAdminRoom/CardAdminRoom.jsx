@@ -40,9 +40,7 @@ const CardAdminRoom = () => {
               <th></th>
               <th>Nombre</th>
               <th>Precio</th>
-              <th>Disponibilidad</th>
               <th>Descripción</th>
-              <th>Beneficios</th>
               <th>
                 <FaCog />
               </th>
