@@ -30,7 +30,7 @@ const Login = ({ setUsuarioLogueado, usuarioLogueado }) => {
         const datos = await respuesta.json()
         sessionStorage.setItem(
           "usuariosHotel",
-          JSON.stringify({ email: datos.email, token: datos.token })
+          JSON.stringify({ id: datos._id, token: datos.token })
         );
         setUsuarioLogueado(datos);
         navegacion("/admin");
