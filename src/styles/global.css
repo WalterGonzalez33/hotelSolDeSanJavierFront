@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-primary-dark: #1E201E;
+    --color-secondary-dark: #3C3D37;
+    --color-bg-light: #d3dade;
+    --color-accent: 0, 101, 47; /* #00652F */
+    --color-accent-light: 149, 196, 108; /* #95c46c */
+    --color-light: #ECDFCC;
+    --color-light-secondary: #F4F6FF;
+    --color-bg-card: #eef6e7;
+  }
+  
+  body{
+    background-color: var(--color-bg-card);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+  }
+
+  main{
+    flex-wrap: 1;
+  }
+
+  .card_integrated{
+    box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
+  }
+
+  .register-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+
+  /* Estilos para el formulario de reservas */
+  .form-container {
+    background-color: #FFF5EB;
+    border-radius: 8px;
+    padding: 30px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #D9B59E;
+}
+
+.form-container h3 {
+  text-align: start;
+  color: #4B2E2A;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #D9B59E;
+  background-color: #FFF0E0;
+  color: #4B2E2A;
+  font-size: 16px;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: #A67B5B;
+    background-color: #FFE6CC;
+}
+
+textarea{
+  resize: none;
+}
+
+.reservation-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color:  #00652F;
+  text-align: center; 
+  margin-bottom: 1rem;
+}
+
+/* Fin  de la sección de estilos para el formulario de reserva */
+
+
+/* global.css */
+
+
+  .button-custom {
+    background: transparent;
+    backface-visibility: hidden;
+    border-radius: .375rem;
+    border-style: solid;
+    border-width: .125rem;
+    box-sizing: border-box;
+    color: rgb(var(--color-accent));
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: .875rem 1.125rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-custom:not(:disabled):hover {
+    transform: scale(1.05);
+  }
+  
+  .button-custom:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+  }
+  
+  .button-custom:focus {
+    outline: 0 solid transparent;
+  }
+  
+  .button-custom:focus:before {
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+  }
+  
+  .button-custom:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+  }
+  
+  .button-custom:focus:not(:focus-visible):before {
+    border-width: 0;
+  }
+  
+  .button-custom:not(:disabled):active {
+    transform: translateY(.125rem);
+  }

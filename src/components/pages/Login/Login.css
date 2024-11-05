@@ -1,0 +1,26 @@
+.letter-spacing {
+  letter-spacing: 0.1em;
+}
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.custom-btn {
+  background-color:#1b673b;
+  color: #fff; 
+  border: none; 
+}
+
+.custom-btn:hover {
+  background-color: #1b673b; 
+}
+.login-container{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

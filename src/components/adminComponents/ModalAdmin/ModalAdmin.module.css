@@ -1,0 +1,7 @@
+
+.modal_container{
+}
+.modal_header{
+    background-color: var(--color-bg-card);
+    color: rgb(var(--color-accent-light));
+}

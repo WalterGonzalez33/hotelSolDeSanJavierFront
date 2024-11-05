@@ -1,0 +1,168 @@
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.navbar {
+  background-color: rgb(var(--color-accent)) !important;
+  transition: all 0.5s ease;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+  &.scroll_active {
+    background-color: rgba(var(--color-accent), 1) !important;
+    backdrop-filter: blur(5px);
+  }
+}
+
+.btn_toggle {
+  display: flex;
+  flex-flow: column;
+  width: 3rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: transparent;
+  gap: 0.65rem;
+  cursor: pointer;
+
+  & div {
+    background-color: #ffffff;
+    width: 100%;
+    height: 2px;
+    border-radius: 5px;
+    transition: all 0.5s;
+    transform-origin: left;
+  }
+}
+/* Aplicar animación a los estados */
+.btn_toggle_disabled div:first-child {
+  transform: rotate(0deg);
+}
+.btn_toggle_disabled div:nth-child(2) {
+  opacity: 1;
+}
+.btn_toggle_disabled div:last-child {
+  transform: rotate(0deg);
+}
+.btn_toggle_active div:first-child {
+  transform: rotate(45deg);
+}
+.btn_toggle_active div:nth-child(2) {
+  opacity: 0;
+}
+.btn_toggle_active div:last-child {
+  transform: rotate(-45deg);
+}
+
+.navbar_brand {
+  width: 55px;
+  height: 55px;
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.collapse_navbar {
+  width: 100%;
+  position: absolute;
+  top: 66px;
+  left: 0;
+  padding-bottom: 200px;
+  background-color: rgba(250, 194, 20, 1) !important;
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 9;
+
+  -webkit-animation: slide-fwd-br 0.5s ease forwards;
+  animation: slide-fwd-br 0.5s ease forwards;
+
+  &.navbar_collapse_active {
+    display: flex;
+    -webkit-animation: slide-fwd-br-active 0.5s ease forwards;
+    animation: slide-fwd-br-active 0.5s ease forwards;
+  }
+}
+
+.register_link {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: var(--color-light-secondary);
+  background-color: transparent;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  &:hover {
+    background-color: rgba(244, 246, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+}
+
+/* * ----------------------------------------
+ * animation slide-fwd-br
+ * ---------------------------------------- */
+
+@keyframes slide-fwd-br-active {
+  0% {
+    width: 0px;
+    height: 0px;
+    border-bottom-right-radius: 50%;
+  }
+  100% {
+    width: 100%;
+    height: calc(100vh + 66px);
+    border-bottom-right-radius: 0%;
+  }
+}
+@keyframes slide-fwd-br {
+  0% {
+    width: 100%;
+    height: calc(100vh + 66px);
+    border-bottom-right-radius: 0%;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    border-bottom-right-radius: 50%;
+    display: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .btn_toggle {
+    display: none;
+  }
+  .collapse_navbar {
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: 1.1rem;
+    padding-bottom: 0px;
+    position: static;
+    display: flex;
+    animation: none;
+    background-color: transparent !important;
+    backdrop-filter: none;
+
+    &.navbar_collapse_active {
+      animation: none;
+    }
+  }
+  .navbar_brand {
+    margin-left: 10px;
+  }
+}
