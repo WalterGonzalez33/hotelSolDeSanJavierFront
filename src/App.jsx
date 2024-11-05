@@ -32,7 +32,7 @@ const AppContent = () => {
   return (
     <>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
-        <NavbarComponent />
+        <NavbarComponent setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado} />
       )}
 
       <Routes>

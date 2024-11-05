@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from "react";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import NavLink from "../NavLink/NavLink";
 
-const NavbarComponent = () => {
+const NavbarComponent = ({setUsuarioLogueado,usuarioLogueado}) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
   const [currentLink, setCurrentLink] = useState(
@@ -138,7 +138,7 @@ const NavbarComponent = () => {
                 );
               })}
 
-              <BtnLogin />
+              <BtnLogin setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>
             </ul>
           </div>
           {widthWindowState >= 992 && <BtnReservation color={"light"} />}
