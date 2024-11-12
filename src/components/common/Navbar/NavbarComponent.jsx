@@ -15,6 +15,7 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado}) => {
     sessionStorage.getItem("currentLink") || "inicio"
   );
   const navbarRef = useRef(null);
+  const tokenUser = JSON.parse(sessionStorage.getItem("usuariosHotel"))
 
   const routesList = [
     {
@@ -37,10 +38,13 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado}) => {
       pathToLink: "/galeria",
       routeName: "Galería",
     },
-    {
-      pathToLink: "/admin",
-      routeName: "Administrador",
-    },
+    ...(tokenUser ? [
+      {
+        pathToLink: "/admin",
+        routeName: "Administrador",
+      },
+    ] : []),
+    
   ];
 
   const handleResizeWindow = () => {
