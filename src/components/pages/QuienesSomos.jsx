@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
+import { Container, Row} from "react-bootstrap";
 import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg"
 import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
 import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
@@ -47,7 +47,7 @@ const QuienesSomos = () => {
       {
         image: `${IsaiasGius}`,
         key: 3,
-        title: "Isais Gius",
+        title: "Isaías Gius",
         urlGit: "https://github.com/G1U5",
         urlLink: "https://github.com/MauroConiglio",
       },

@@ -1,0 +1,88 @@
+
+.user_row_container{
+    background-color: transparent !important;
+
+    .user_icon{
+        font-size: 2rem; 
+        svg{
+            color: rgb(var(--color-accent));
+        }
+    }
+    &:nth-child(odd){
+        .user_icon{
+            svg{
+                color: rgb(var(--color-accent-light));
+            }
+        }
+    }
+}
+
+.buttons_container{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.user_active{
+    border-radius: 8px;
+    background-color: rgb(var(--color-accent-light));
+    padding: 5px 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.user_inactive{
+    border-radius: 8px;
+    background-color: rgba(250, 194, 20, 1);
+    padding: 5px 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.user_roll{
+    svg{
+        color: rgba(81, 81, 81, 0.9);
+        font-size: 1.2rem;
+        margin-left: 7px;
+    }
+}
+.action_button{
+    background-color: transparent !important;
+    color: rgb(var(--color-accent));
+    transition: all .5s ease;
+    border: 1px solid rgba(var(--color-accent-light), .8);
+
+    &:hover{
+        transition: all .5s ease;
+        color: rgba(var(--color-accent), .5);
+        border: 1px solid rgba(var(--color-accent-light), .6);
+    }
+    &:focus{
+        color: rgba(var(--color-accent), .5) !important;
+        border: 1px solid rgba(var(--color-accent-light), .6) !important; 
+    }
+    
+    &:last-child{
+        color: rgb(255, 106, 106);
+        border: 1px solid rgb(255, 106, 106, .8);
+        &:hover{
+            color: rgba(255, 106, 106, .6);
+            border: 1px solid rgb(255, 106, 106, .6);
+        }
+        &:focus{
+            color: rgb(255, 106, 106) !important;
+            border: 1px solid  rgb(255, 106, 106, .8) !important; 
+        }
+    }
+}
+
+td{
+    background-color: transparent !important;
+    text-align: start;
+    vertical-align: middle;
+    color: rgba(31, 31, 31, 0.9) !important;
+    font-weight: 400;
+
+    div{
+        span{
+            margin-top: auto;
+        }
+    }
+}

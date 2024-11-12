@@ -9,8 +9,10 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
+    border: 2px rgb(var(--color-accent)) solid;
     background-color: var(--color-bg-card);
-    border-radius: 5px;
+    border-radius: 2px;
+    box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
 }
 .card_available{
     position: absolute;
@@ -35,6 +37,7 @@
     overflow: hidden;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    border-right: 2px rgb(var(--color-accent)) solid;
     cursor: pointer;
 }
 

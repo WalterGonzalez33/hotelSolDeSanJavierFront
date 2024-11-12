@@ -5,8 +5,10 @@ import logo from "../../../assets/logo.png";
 import { useEffect, useState, useRef } from "react";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import NavLink from "../NavLink/NavLink";
+import { Link } from "react-router-dom";
 
-const NavbarComponent = () => {
+
+const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado}) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
   const [currentLink, setCurrentLink] = useState(
@@ -127,18 +129,33 @@ const NavbarComponent = () => {
           >
             <ul className="navbar-nav text-center">
               {routesList.map((route, index) => {
-                return (
-                  <NavLink
-                    key={index}
-                    handleLink={handleLink}
-                    pathToLink={route.pathToLink}
-                    routeName={route.routeName}
-                    currentLink={currentLink}
-                  />
-                );
+    
+                  return (
+                    
+                    <NavLink
+                      key={index}
+                      handleLink={handleLink}
+                      pathToLink={route.pathToLink}
+                      routeName={route.routeName}
+                      currentLink={currentLink}
+                    />
+                  );
+                
+        
               })}
-
-              <BtnLogin />
+              {!usuarioLogueado && (
+                <li className="nav-item">
+                  {" "}
+                  <Link to="/registro" className={style.register_link}>
+                    {" "}
+                    Registro{" "}
+                  </Link>{" "}
+                </li>
+              )}
+              <BtnLogin
+                setUsuarioLogueado={setUsuarioLogueado}
+                usuarioLogueado={usuarioLogueado}
+              />
             </ul>
           </div>
           {widthWindowState >= 992 && <BtnReservation color={"light"} />}
