@@ -1,24 +1,37 @@
 h5 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   letter-spacing: 0.2rem;
-  margin-bottom: 1rem; 
+  margin-bottom: 1.5rem; 
+  color: #00652F;
+}
+h5:hover{
+  color:#00652F;
+  background-color: rgba(255, 255, 255, 0.781) ;
+  text-decoration:wavy; 
+  transition: color 0.3s ease;
+  cursor:text;
+  display:inline-block;
 }
 
 .footer-background {
   position: relative;
-  
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
 }
 
 .text-link {
-  color: white;
+  color: black;
   text-decoration: none;
- background-color:#95C46C;
+ padding: 0.3rem 0.5rem;
+  display: inline-block;
+  border-radius: 0.25rem;
 }
 
 .text-link:hover {
-  color:#00652F;
-  text-decoration: underline; 
+  color:white;
+  background-color:#95C46C;
+  text-decoration:wavy; 
   transition: color 0.3s ease;
 }
 
@@ -41,5 +54,9 @@ h5 {
 
 .icon {
   font-size: 1.5rem;
-  margin-right: 8px;
+  margin-right: 10px;
+}
+
+ul.list-unstyled li {
+  margin-bottom: 1rem;
 }
