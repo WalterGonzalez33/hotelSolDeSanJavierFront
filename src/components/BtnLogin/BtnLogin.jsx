@@ -17,7 +17,7 @@ const BtnLogin = () => {
         className={`mt-2 ms-lg-3 mt-lg-0 ${style.btn_login}`}
         onClick={handleAuth}
       >
-        {tokenUser ? "Log out" : "Log in"}
+        {tokenUser ? "Salir" : "Iniciar Sesión"}
       </button>
     </Link>
   );
