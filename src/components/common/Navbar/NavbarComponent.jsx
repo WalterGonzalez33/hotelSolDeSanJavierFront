@@ -147,13 +147,13 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado}) => {
                 
         
               })}
-              {!usuarioLogueado && (
+              {!tokenUser && (
                 <li className="nav-item">
                   {" "}
                   <Link to="/registro" className={style.register_link}>
-                    {" "}
-                    Registro{" "}
-                  </Link>{" "}
+                    
+                    Registro
+                  </Link>
                 </li>
               )}
               <BtnLogin
