@@ -68,7 +68,7 @@ const Footer = () => {
         <h5 className="fs-3 rounded-5">Contacto</h5>
         <p className="text-link fs-5">
         <BsFillEnvelopeFill className="icon" />
-          reservas@hotelsolsanjavier.com.ar
+          hotelsolsanjavier@gmail.com
         </p>
         <p className="text-link fs-5">
         <BsWhatsapp className="icon" />
