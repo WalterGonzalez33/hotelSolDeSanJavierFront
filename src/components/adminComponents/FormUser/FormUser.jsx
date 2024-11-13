@@ -23,6 +23,7 @@ const FormUser = ({
       showCustomAlert({
         alertTitle: "Éxito",
         alertText: "El usuario fue creado correctamente",
+        confirmText: 'CONFIRMAR'
       });
       handleClose();
       setReload(!reload);
@@ -63,7 +64,6 @@ const FormUser = ({
                 "El nombre de usuario no puede tener mas de 80 caracteres",
             },
           })}
-          value={dataUser && edit ? dataUser.username : ""}
           isInvalid={!!errors.username}
         />
         <Form.Control.Feedback type="invalid">
@@ -93,7 +93,6 @@ const FormUser = ({
               message: "El email no puede tener mas de 320 caracteres",
             },
           })}
-          value={dataUser && edit ? dataUser.email : ""}
           isInvalid={!!errors.email}
         />
         <Form.Control.Feedback type="invalid">
@@ -124,7 +123,6 @@ const FormUser = ({
                 "La contraseña tiene que tener una minúscula(a-z), una mayúscula(A-Z) y un numero(0-9)",
             },
           })}
-          value={dataUser && edit ? dataUser.password : ""}
           isInvalid={!!errors.password}
         />
         <Form.Control.Feedback type="invalid">
@@ -139,7 +137,6 @@ const FormUser = ({
           {...register("status", {
             required: "El estado es un campo requerido",
           })}
-          value={dataUser && edit ? dataUser.status : "Activo"}
           isInvalid={!!errors.status}
         >
           <option value="Activo">Activa</option>
@@ -157,7 +154,6 @@ const FormUser = ({
           {...register("roll", {
             required: "Los permisos son un campo requerido",
           })}
-          value={dataUser && edit ? dataUser.roll : "Usuario"}
           isInvalid={!!errors.roll}
         >
           <option value="Usuario" className={` ${style.option} `}>

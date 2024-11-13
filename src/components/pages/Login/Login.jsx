@@ -5,9 +5,9 @@ import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./Login.css";
-import {login} from "../../../utils/queris";
+import { login } from "../../../utils/queris";
 
-const Login = ({ setUsuarioLogueado}) => {
+const Login = ({ setUsuarioLogueado }) => {
   const {
     register,
     handleSubmit,
@@ -16,8 +16,8 @@ const Login = ({ setUsuarioLogueado}) => {
   const navegacion = useNavigate();
 
   const onSubmit = async (usuario) => {
-    const respuesta = await login(usuario);
     try {
+      const respuesta = await login(usuario);
       if (respuesta.status === 200) {
         Swal.fire({
           title: "Listo!",
@@ -25,13 +25,13 @@ const Login = ({ setUsuarioLogueado}) => {
           icon: "success",
           confirmButtonText: "Aceptar",
         });
-        const datos = await respuesta.json()
+        const datos = await respuesta.json();
         sessionStorage.setItem(
           "usuariosHotel",
           JSON.stringify({ id: datos.id, token: datos.token })
         );
         setUsuarioLogueado(datos);
-        navegacion("/admin");
+        navegacion("/");
       } else {
         Swal.fire({
           title: "Error",
@@ -41,11 +41,13 @@ const Login = ({ setUsuarioLogueado}) => {
         });
       }
     } catch (error) {
-      Swal.fire(
-        "Ocurrió un error",
-        "Ocurrió un error,intentalo en unos minutos",
-        "error"
-      );
+      if (error) {
+        Swal.fire(
+          "Ocurrió un error",
+          "Ocurrió un error,intentalo en unos minutos",
+          "error"
+        );
+      }
     }
   };
   return (
