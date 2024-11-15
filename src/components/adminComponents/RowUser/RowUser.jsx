@@ -8,6 +8,8 @@ import {
   FaWrench,
 } from "react-icons/fa";
 import { BiSolidUserRectangle } from "react-icons/bi";
+import { showCustomAlert } from "../../../utils/customAlert";
+import { deleteItem } from "../../../utils/requests";
 
 const RowUser = ({
   _id,
@@ -17,6 +19,8 @@ const RowUser = ({
   roll,
   handleShowEdit,
   setDataUser,
+  setReload,
+  reload,
 }) => {
   const handleClickEdit = () => {
     handleShowEdit();
@@ -28,6 +32,40 @@ const RowUser = ({
       _id,
     });
   };
+
+  const handleDelete = async () => {
+    try {
+      const deleteUserResponse = await deleteItem(`/users/${_id}`);
+      if (!deleteUserResponse.ok) {
+        const resultDeleteUser = await deleteUserResponse.json();
+        showCustomAlert({
+          alertTitle: "No se pudo eliminar el usuario!!",
+          alertText: "",
+          icon: "danger",
+        });
+        throw new Error(resultDeleteUser.message);
+      }
+      showCustomAlert({
+        alertTitle: "El usuario fue eliminado correctamente!!",
+        alertText: "",
+      });
+      setReload(!reload);
+    } catch (err) {
+      console.error(err, err.message);
+    }
+  };
+
+  const handleClickDelete = () => {
+    showCustomAlert({
+      alertTitle: "Quieres eliminar el usuario?",
+      alertText: "Luego de esta acción no podrás volver atrás!!",
+      icon: "warning",
+      showCancel: true,
+      continueConfirm: true,
+      callback: handleDelete,
+    });
+  };
+
   return (
     <tr className={` ${style.user_row_container} `}>
       <td className={` ${style.user_icon} `}>
@@ -80,7 +118,10 @@ const RowUser = ({
           >
             <FaPen />
           </Button>
-          <Button className={` ${style.action_button} `}>
+          <Button
+            className={` ${style.action_button} `}
+            onClick={handleClickDelete}
+          >
             <FaTrash />
           </Button>
         </div>
