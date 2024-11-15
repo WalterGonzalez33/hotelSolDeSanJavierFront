@@ -1,15 +1,13 @@
 import { useForm } from "react-hook-form";
-import "../../styles/global.css";
 import { Button, Col, Form, Row, Carousel } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import image1 from "../../assets/imgInicio/vista2.jpg";
 import image2 from "../../assets/imgInicio/salaDeJuegos.jpg";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const ReservationForm = () => {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -17,32 +15,25 @@ const ReservationForm = () => {
     reset,
     watch,
   } = useForm();
-
+  
   const checkInDate = watch("checkIn");
 
   useEffect(() => {
     const token = sessionStorage.getItem("usuariosHotel");
-
     if (!token) {
       navigate("/login");
     }
-  });
+  }, [navigate]);
 
-  const reservaRealizada = (data) => {
-    Swal.fire({
-      title: "Reserva Realizada",
-      text: "Tu solicitud de reserva ha sido enviada exitosamente. Nos pondremos en contacto contigo pronto.",
-      icon: "success",
-      confirmButtonText: "Aceptar",
-    });
-    reset();
-    console.log(data);
+  const reservaRealizada = async (data) => {
+    const token = sessionStorage.getItem("usuariosHotel");
+    const userId = JSON.parse(token)?.userId;
   };
 
   return (
     <section className="container my-4">
-      {/* carrousel de imagenes */}
       <Carousel className="my-4">
+        {/* Carousel de imágenes */}
         <Carousel.Item>
           <img className="d-block w-100" src={image1} alt="First slide" />
           <Carousel.Caption>
@@ -60,10 +51,7 @@ const ReservationForm = () => {
       </Carousel>
 
       <h1 className="reservation-title">Solicitud de reserva</h1>
-      <Form
-        className="my-4 form-container"
-        onSubmit={handleSubmit(reservaRealizada)}
-      >
+      <Form className="my-4 form-container" onSubmit={handleSubmit(reservaRealizada)}>
         <Form.Group>
           <h3 className="my-3">Datos de la estadía</h3>
           <hr />
@@ -76,11 +64,7 @@ const ReservationForm = () => {
                   required: "La fecha de Check-In es obligatoria",
                 })}
               />
-              <div>
-                <Form.Text className="text-danger">
-                  {errors.checkIn?.message}
-                </Form.Text>
-              </div>
+              <Form.Text className="text-danger">{errors.checkIn?.message}</Form.Text>
 
               <Form.Label className="mt-4">Check-Out</Form.Label>
               <Form.Control
@@ -88,25 +72,16 @@ const ReservationForm = () => {
                 {...register("checkOut", {
                   required: "La fecha de Check-Out es obligatoria",
                   validate: (value) => {
-                    if (
-                      checkInDate &&
-                      new Date(value) < new Date(checkInDate)
-                    ) {
+                    if (checkInDate && new Date(value) < new Date(checkInDate)) {
                       return "La fecha de salida no puede ser anterior a la fecha de entrada.";
                     }
                     return true;
                   },
                 })}
               />
-              <div>
-                <Form.Text className="text-danger">
-                  {errors.checkOut?.message}
-                </Form.Text>
-              </div>
-
-              <Form.Label className="mt-4">Comentarios</Form.Label>
-              <Form.Control as="textarea" rows={4} />
+              <Form.Text className="text-danger">{errors.checkOut?.message}</Form.Text>
             </Col>
+
             <Col md={6} xs={12}>
               <Form.Label className="mt-2">Cantidad de personas</Form.Label>
               <Form.Select
@@ -115,37 +90,26 @@ const ReservationForm = () => {
                 })}
               >
                 <option value="">Seleccione...</option>
-                {[...Array(10)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1} {i + 1 === 1 ? "persona" : "personas"}
-                  </option>
-                ))}
+                <option value="1">1 Persona</option>
+                <option value="2">2 Personas</option>
+                <option value="3">3 Personas</option>
+                <option value="4">4 Personas</option>
               </Form.Select>
-              <div>
-                <Form.Text className="text-danger">
-                  {errors.personas?.message}
-                </Form.Text>
-              </div>
+              <Form.Text className="text-danger">{errors.personas?.message}</Form.Text>
 
               <Form.Label className="mt-4">Tipo de habitación</Form.Label>
               <Form.Select
-                {...register("roomType", {
+                {...register("room_id", {
                   required: "El tipo de habitación es obligatorio",
                 })}
               >
                 <option value="">Seleccione...</option>
-                <option>Dobles superiores</option>
-                <option>Departamentos</option>
-                <option>Dobles de lujo</option>
-                <option>Suite superior</option>
+                <option value="dobles-superiores">Dobles superiores</option>
+                <option value="departamentos">Departamentos</option>
+                <option value="dobles-lujo">Dobles de lujo</option>
+                <option value="suite-superior">Suite superior</option>
               </Form.Select>
-              <div>
-                <Form.Text className="text-danger">
-                  {errors.roomType?.message}
-                </Form.Text>
-              </div>
-              <Form.Label>Hora estimada de llegada</Form.Label>
-              <Form.Control type="time" />
+              <Form.Text className="text-danger">{errors.room_id?.message}</Form.Text>
             </Col>
           </Row>
         </Form.Group>
