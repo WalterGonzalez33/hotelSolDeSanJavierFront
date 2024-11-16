@@ -1,5 +1,7 @@
 .room_row_container{
     background-color: transparent !important;
+    width: 20%;
+    height: auto;
 }
 
 .buttons_container{
@@ -46,6 +48,7 @@ td{
     vertical-align: middle;
     color: rgba(31, 31, 31, 0.9) !important;
     font-weight: 400;
+    word-wrap: break-word;
 
     div{
         span{
@@ -54,12 +57,21 @@ td{
     }
 }
 
+.description_text {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 750px;
+}
+
 .room_image {
-    width: 70%;
+    width: 10%;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
   }
+
+  
 
   
 

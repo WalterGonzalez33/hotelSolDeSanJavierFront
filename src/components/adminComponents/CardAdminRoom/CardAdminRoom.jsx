@@ -6,6 +6,7 @@ import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
 import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
+import AdminSearch from "../AdminSearch/AdminSearch.jsx"
 
 const HandleLoading = () => {
   return (
@@ -33,6 +34,7 @@ const CardAdminRoom = () => {
       {loading && <HandleLoading />}
       {currentData && (
         <div className={` ${style.tabs_admin_container} `}>
+          <AdminSearch data={data} setData={setCurrentData} />
           <Button
             variant="success"
             className="button-custom"
