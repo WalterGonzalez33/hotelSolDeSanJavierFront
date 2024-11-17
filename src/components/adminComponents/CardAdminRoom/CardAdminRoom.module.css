@@ -6,7 +6,7 @@
     width: 100%;
     display: flex;
     flex-flow: column;
-    align-items: center;
+    align-items: end;
     justify-content: center;
     margin-top: 30px;
 }
@@ -27,9 +27,8 @@
     gap: 20px;
 }
 .table_container{
-    max-height: 700px;
+    max-height: 650px;
     margin-top: 30px;
-    overflow: hidden;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
@@ -64,12 +63,12 @@
 }
 
 @media (min-width: 992px) {
-    .users_container{
+    .rooms_container{
         max-width: 85%;
         margin-top: 20px;
     }
 
-    .tabs_admin_container{
+    .tabs_room_container{
         flex-flow: row;
         align-items: center;
         justify-content: space-between;

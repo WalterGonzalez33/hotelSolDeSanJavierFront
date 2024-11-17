@@ -1,7 +1,20 @@
+
 .room_row_container{
     background-color: transparent !important;
-    width: 20%;
-    height: auto;
+
+    .user_icon{
+        font-size: 2rem; 
+        svg{
+            color: rgb(var(--color-accent));
+        }
+    }
+    &:nth-child(odd){
+        .user_icon{
+            svg{
+                color: rgb(var(--color-accent-light));
+            }
+        }
+    }
 }
 
 .buttons_container{
@@ -48,7 +61,6 @@ td{
     vertical-align: middle;
     color: rgba(31, 31, 31, 0.9) !important;
     font-weight: 400;
-    word-wrap: break-word;
 
     div{
         span{
@@ -65,7 +77,7 @@ td{
 }
 
 .room_image {
-    width: 10%;
+    width: 50%;
     height: auto;
     border-radius: 4px;
     object-fit: cover;

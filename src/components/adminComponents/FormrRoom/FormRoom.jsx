@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
-import style from "../FormUser/FormUser.module.css";
+import style from "./FormRoom.module.css";
 import Swal from "sweetalert2";
 const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const FormRoom = ({ handleClose }) => {
   const {
@@ -71,6 +72,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formRoomName">
         <Form.Label>Nombre de la habitación</Form.Label>
         <Form.Select
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           {...register("room_name", {
             required: "El nombre de la habitación es obligatorio",
             validate: {
@@ -105,6 +107,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formPrice">
         <Form.Label>Precio</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`} 
           type="number"
           {...register("price", {
             required: "El precio es obligatorio",
@@ -121,6 +124,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formNumberRooms">
         <Form.Label>Número de habitaciones</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="number"
           {...register("number_rooms", {
             required: "El número de habitaciones es obligatorio",
@@ -138,6 +142,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formImage">
         <Form.Label>URL de la imagen</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="text"
           {...register("image", {
             required: "La URL de la imagen es obligatoria",
@@ -158,6 +163,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formBriefDescription">
         <Form.Label>Descripción breve</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
           rows={3}
           {...register("brief_description", {
@@ -175,8 +181,9 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formBroadDescription">
         <Form.Label>Descripción amplia</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
-          rows={5}
+          rows={4}
           {...register("broad_description", {
             required: "La descripción amplia es obligatoria",
             minLength: { value: 50, message: "Mínimo 50 caracteres." },
