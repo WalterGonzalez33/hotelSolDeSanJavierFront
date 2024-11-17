@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./Login.css";
 import { login } from "../../../utils/queris";
+import { showCustomAlert } from "../../../utils/customAlert";
 
 const Login = ({ setUsuarioLogueado }) => {
   const {
@@ -19,11 +20,11 @@ const Login = ({ setUsuarioLogueado }) => {
     try {
       const respuesta = await login(usuario);
       if (respuesta.status === 200) {
-        Swal.fire({
-          title: "Listo!",
-          text: "Has iniciado sesión correctamente.",
+        showCustomAlert({
+          alertTitle: "Listo!",
+          alertText: "Has iniciado sesión correctamente.",
           icon: "success",
-          confirmButtonText: "Aceptar",
+          confirmText: "Aceptar",
         });
         const datos = await respuesta.json();
         sessionStorage.setItem(
@@ -33,11 +34,11 @@ const Login = ({ setUsuarioLogueado }) => {
         setUsuarioLogueado(datos);
         navegacion("/");
       } else {
-        Swal.fire({
-          title: "Error",
-          text: "No se pudo iniciar sesión. Verifica tus credenciales.",
-          icon: "error",
-          confirmButtonText: "Aceptar",
+        showCustomAlert({
+          alertTitle: "Error",
+          alertText: "No se pudo iniciar sesión. Verifica tus credenciales.",
+          icon: "warning",
+          confirmText: "Aceptar",
         });
       }
     } catch (error) {
