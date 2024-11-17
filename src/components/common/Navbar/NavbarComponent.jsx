@@ -6,15 +6,16 @@ import { useEffect, useState, useRef } from "react";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import NavLink from "../NavLink/NavLink";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 
-const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
+
+const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado}) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
   const [currentLink, setCurrentLink] = useState(
     sessionStorage.getItem("currentLink") || "inicio"
   );
   const navbarRef = useRef(null);
+  const tokenUser = JSON.parse(sessionStorage.getItem("usuariosHotel"))
 
   const routesList = [
     {
@@ -37,10 +38,13 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
       pathToLink: "/galeria",
       routeName: "Galería",
     },
-    {
-      pathToLink: "/admin",
-      routeName: "Administrador",
-    },
+    ...(tokenUser ? [
+      {
+        pathToLink: "/admin",
+        routeName: "Administrador",
+      },
+    ] : []),
+    
   ];
 
   const handleResizeWindow = () => {
@@ -129,23 +133,27 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
           >
             <ul className="navbar-nav text-center">
               {routesList.map((route, index) => {
-                return (
-                  <NavLink
-                    key={index}
-                    handleLink={handleLink}
-                    pathToLink={route.pathToLink}
-                    routeName={route.routeName}
-                    currentLink={currentLink}
-                  />
-                );
+    
+                  return (
+                    
+                    <NavLink
+                      key={index}
+                      handleLink={handleLink}
+                      pathToLink={route.pathToLink}
+                      routeName={route.routeName}
+                      currentLink={currentLink}
+                    />
+                  );
+                
+        
               })}
-              {!usuarioLogueado && (
+              {!tokenUser && (
                 <li className="nav-item">
                   {" "}
                   <Link to="/registro" className={style.register_link}>
-                    {" "}
-                    Registro{" "}
-                  </Link>{" "}
+                    
+                    Registro
+                  </Link>
                 </li>
               )}
               <BtnLogin

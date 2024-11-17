@@ -12,7 +12,8 @@ import Contactos from "./components/pages/Contactos.jsx";
 import Registro from "./components/pages/Registro.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getItem } from "./utils/requests.js";
 
 function App() {
   return (
@@ -28,11 +29,25 @@ const AppContent = () => {
   const location = useLocation();
   const usuario = JSON.parse(sessionStorage.getItem("usuariosHotel") || "null");
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
+  const [rollUser,setrollUser] = useState(null)
+
+  useEffect(()=>{
+    const getUserRoll = async()=>{
+      const userLog = await getItem(`users/${usuario.id}`)
+      if(userLog){
+        setrollUser(userLog.roll)
+      } 
+    }
+    if(usuario){
+      getUserRoll()
+    }
+  },[usuario])
+
 
   return (
     <>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
-        <NavbarComponent setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado} />
+        <NavbarComponent setUsuarioLogueado={setUsuarioLogueado} rollUsuario={rollUser} />
       )}
 
       <Routes>
@@ -53,7 +68,7 @@ const AppContent = () => {
         <Route
           path="/admin/*"
           element={
-            <RouteProtectAdmin>
+            <RouteProtectAdmin rollUser={rollUser}>
               <AdminRoute />
             </RouteProtectAdmin>
           }

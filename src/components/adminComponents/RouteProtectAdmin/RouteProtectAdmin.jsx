@@ -1,4 +1,8 @@
-const RouteProtectAdmin = ({ children }) => {
-  return <div>{children}</div>;
+
+const RouteProtectAdmin = ({ children , rollUser }) => {
+
+ return <> {
+  rollUser === 'Admin' && children
+ }</>
 };
 export default RouteProtectAdmin;

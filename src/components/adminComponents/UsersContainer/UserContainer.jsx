@@ -19,12 +19,12 @@ const HandleLoading = () => {
 
 const UserContainer = () => {
   const [reload, setReload] = useState(false);
-  const { data, loading } = useFetch({ endPoint: "users", reload });
   const [dataUser, setDataUser] = useState(null);
+  const { data, loading } = useFetch({ endPoint: "users", reload });  
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
-
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleCloseEdit = () => setEditShow(false);
