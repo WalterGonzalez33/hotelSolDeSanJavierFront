@@ -7,6 +7,7 @@ import AdminSearch from "../AdminSearch/AdminSearch.jsx";
 import { useEffect, useState } from "react";
 import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
 import { BiPlus } from "react-icons/bi";
+import { useParams } from "react-router-dom";
 
 const HandleLoading = () => {
   return (
@@ -20,13 +21,29 @@ const HandleLoading = () => {
 const ReservationContainer = () => {
   const { data, loading } = useFetch({ endPoint: "reservation/list" });
   const [currentData, setCurrentData] = useState(data);
+  const [currentReservationUser, setCurrentReservationUser] = useState(null);
   const [show, setShow] = useState(false);
+
+  const { user } = useParams();
+  console.log(useParams());
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const fillReservationUser = () => {
+    if (!data) {
+      throw new Error("[ERROR] reservation not find");
+    }
+    const filterReservationUser = data.filter(
+      (reservation) => reservation.user_id === user
+    );
+    setCurrentReservationUser(filterReservationUser);
+  };
   useEffect(() => {
     setCurrentData(data);
+    if (data && user) {
+      fillReservationUser();
+    }
   }, [data]);
   return (
     <div className={` ${style.users_container} `}>
@@ -42,11 +59,12 @@ const ReservationContainer = () => {
             Crear <BiPlus />
           </Button>
 
-          <ModalAdmin 
-          show={show} 
-          handleClose={handleClose} 
-          title={"Crea una reserva"}
-          form={"reservation"}/>
+          <ModalAdmin
+            show={show}
+            handleClose={handleClose}
+            title={"Crea una reserva"}
+            form={"reservation"}
+          />
         </div>
       )}
       {currentData && (
@@ -55,7 +73,7 @@ const ReservationContainer = () => {
             <tr className={` ${style.tr_user} `}>
               <th></th>
               <th>Email</th>
-              <th>Habitacion</th>
+              <th>Habitación</th>
               <th>Check-in</th>
               <th>Check-out</th>
               <th>Personas</th>
@@ -65,9 +83,18 @@ const ReservationContainer = () => {
             </tr>
           </thead>
           <tbody>
-            {currentData.map((reservation) => {
-              return <ReservationRow key={reservation._id} {...reservation} />;
-            })}
+            {user &&
+              currentReservationUser.map((reservation) => {
+                return (
+                  <ReservationRow key={reservation._id} {...reservation} />
+                );
+              })}
+            {!user &&
+              currentData.map((reservation) => {
+                return (
+                  <ReservationRow key={reservation._id} {...reservation} />
+                );
+              })}
           </tbody>
         </Table>
       )}

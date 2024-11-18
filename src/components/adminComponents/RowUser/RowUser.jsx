@@ -10,6 +10,7 @@ import {
 import { BiSolidUserRectangle } from "react-icons/bi";
 import { showCustomAlert } from "../../../utils/customAlert";
 import { deleteItem } from "../../../utils/requests";
+import { useNavigate } from "react-router-dom";
 
 const RowUser = ({
   _id,
@@ -22,6 +23,8 @@ const RowUser = ({
   setReload,
   reload,
 }) => {
+  const navigate = useNavigate();
+
   const handleClickEdit = () => {
     handleShowEdit();
     setDataUser({
@@ -33,6 +36,21 @@ const RowUser = ({
     });
   };
 
+  const redirectionReservation = () => {
+    navigate(`/admin/reservations/${_id}`);
+  };
+  const handleReservationsClick = () => {
+    showCustomAlert({
+      alertTitle: `Quieres ver las reservas del usuario (${username})`,
+      alertText: "",
+      icon: "warning",
+      confirmText: "CONTINUAR",
+      cancelText: "VOLVER",
+      showCancel: true,
+      continueConfirm: true,
+      callback: redirectionReservation,
+    });
+  };
   const handleDelete = async () => {
     try {
       const deleteUserResponse = await deleteItem(`/users/${_id}`);
@@ -57,7 +75,7 @@ const RowUser = ({
 
   const handleClickDelete = () => {
     showCustomAlert({
-      alertTitle: "Quieres eliminar el usuario?",
+      alertTitle: `Quieres eliminar el usuario (${username})`,
       alertText: "Luego de esta acción no podrás volver atrás!!",
       icon: "warning",
       showCancel: true,
@@ -109,7 +127,10 @@ const RowUser = ({
       </td>
       <td>
         <div className={` ${style.buttons_container} `}>
-          <Button className={` ${style.action_button} `}>
+          <Button
+            className={` ${style.action_button} `}
+            onClick={handleReservationsClick}
+          >
             <FaCalendarDay />
           </Button>
           <Button
