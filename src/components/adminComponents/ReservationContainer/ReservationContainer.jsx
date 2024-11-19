@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
 import { BiPlus } from "react-icons/bi";
 import { useParams } from "react-router-dom";
+import { getItem } from "../../../utils/requests.js";
 
 const HandleLoading = () => {
   return (
@@ -21,36 +22,55 @@ const HandleLoading = () => {
 const ReservationContainer = () => {
   const { data, loading } = useFetch({ endPoint: "reservation/list" });
   const [currentData, setCurrentData] = useState(data);
-  const [currentReservationUser, setCurrentReservationUser] = useState(null);
+  const [currentReservationUser, setCurrentReservationUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
   const [show, setShow] = useState(false);
 
   const { user } = useParams();
-  console.log(useParams());
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const fillReservationUser = () => {
-    if (!data) {
-      throw new Error("[ERROR] reservation not find");
-    }
-    const filterReservationUser = data.filter(
-      (reservation) => reservation.user_id === user
-    );
-    setCurrentReservationUser(filterReservationUser);
-  };
   useEffect(() => {
+    const fillReservationUser = () => {
+      if (!data) {
+        throw new Error("[ERROR] reservation not find");
+      }
+      const filterReservationUser = data.filter(
+        (reservation) => reservation.user_id === user
+      );
+
+      setCurrentReservationUser(filterReservationUser);
+    };
     setCurrentData(data);
     if (data && user) {
       fillReservationUser();
     }
-  }, [data]);
+  }, [data, user]);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await getItem(`users/${user}`);
+      setCurrentUser(response);
+    };
+    if (user) {
+      getUser();
+    }
+  }, [user]);
   return (
     <div className={` ${style.users_container} `}>
       {loading && <HandleLoading />}
       {currentData && (
         <div className={` ${style.tabs_admin_container} `}>
-          <AdminSearch data={data} setData={setCurrentData} />
+          {!user && <AdminSearch data={data} setData={setCurrentData} />}
+          {currentUser && (
+            <div className={` ${style.user_data_container} `}>
+              <h3 className={` ${style.user_data} `}>{currentUser.username}</h3>
+              <h3 className={` ${style.user_data} ${style.user_data_email}`}>
+                {currentUser.email}
+              </h3>
+            </div>
+          )}
           <Button
             variant="success"
             className="button-custom"
@@ -84,11 +104,15 @@ const ReservationContainer = () => {
           </thead>
           <tbody>
             {user &&
+              currentReservationUser.length > 0 &&
               currentReservationUser.map((reservation) => {
                 return (
                   <ReservationRow key={reservation._id} {...reservation} />
                 );
               })}
+            {user && currentReservationUser.length === 0 && (
+              <h1>no hay reservas</h1>
+            )}
             {!user &&
               currentData.map((reservation) => {
                 return (

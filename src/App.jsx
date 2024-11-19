@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Index from "./components/pages/Index";
 import Footer from "./components/common/Footer/Footer";
 import QuienesSomos from "./components/pages/QuienesSomos.jsx";
@@ -29,25 +35,27 @@ const AppContent = () => {
   const location = useLocation();
   const usuario = JSON.parse(sessionStorage.getItem("usuariosHotel") || "null");
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
-  const [rollUser,setrollUser] = useState(null)
+  const [rollUser, setRollUser] = useState(null);
 
-  useEffect(()=>{
-    const getUserRoll = async()=>{
-      const userLog = await getItem(`users/${usuario.id}`)
-      if(userLog){
-        setrollUser(userLog.roll)
-      } 
+  useEffect(() => {
+    const getUserRoll = async () => {
+      const userLog = await getItem(`users/${usuario.id}`);
+      if (userLog) {
+        setRollUser(userLog.roll);
+      }
+    };
+    if (usuario) {
+      getUserRoll();
     }
-    if(usuario){
-      getUserRoll()
-    }
-  },[usuario])
-
+  }, [usuario]);
 
   return (
     <>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
-        <NavbarComponent setUsuarioLogueado={setUsuarioLogueado} rollUsuario={rollUser} />
+        <NavbarComponent
+          setUsuarioLogueado={setUsuarioLogueado}
+          rollUsuario={rollUser}
+        />
       )}
 
       <Routes>
@@ -61,9 +69,17 @@ const AppContent = () => {
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<Contactos />} />
-        <Route path="*" element={<h1>404 Not found</h1>} />
+        <Route path="*" element={<Navigate to="/" />} />
         <Route path="/reservacion" element={<ReservationForm />} />
-        <Route path="/login" element={<Login setUsuarioLogueado={setUsuarioLogueado} usuarioLogueado={usuarioLogueado}/>} />
+        <Route
+          path="/login"
+          element={
+            <Login
+              setUsuarioLogueado={setUsuarioLogueado}
+              usuarioLogueado={usuarioLogueado}
+            />
+          }
+        />
         <Route path="/registro" element={<Registro />} />
         <Route
           path="/admin/*"

@@ -15,7 +15,7 @@ const AdminSearch = ({ data, setData }) => {
     filterData(inputElementValue);
   };
   return (
-    <div className="mb-3">
+    <div className="mb-0">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Row>
           <Col xs="auto">
