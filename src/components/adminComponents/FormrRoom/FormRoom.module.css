@@ -1,0 +1,15 @@
+
+.form{
+    label{
+        color: rgb(var(--color-accent-light)) !important;
+    }
+}
+.input{
+    &:focus{
+        border: 1px solid rgb(var(--color-accent-light)) !important;
+    }
+}
+
+.select:focus option {
+    background-color: #efefef !important;
+  }
