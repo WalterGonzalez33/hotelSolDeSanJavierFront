@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
-import style from "../FormUser/FormUser.module.css";
-
+import style from "./FormRoom.module.css";
+import Swal from "sweetalert2";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const FormRoom = () => {
+
+const FormRoom = ({ handleClose }) => {
   const {
     register,
     handleSubmit,
@@ -14,14 +15,16 @@ const FormRoom = () => {
   } = useForm();
 
   const [error, setError] = useState(null);
+  const [isFormVisible, setIsFormVisible] = useState(true);
 
   const token = JSON.parse(sessionStorage.getItem("usuariosHotel"));
-  console.log(token.token);
+
   const onSubmit = async (data) => {
     const benefitsArray = [];
     if (data.tv) benefitsArray.push("TV");
-    if (data.wifi) benefitsArray.push("Wifi");
+    if (data.wifi) benefitsArray.push("WIFI");
     if (data.bathroom) benefitsArray.push("Baño privado");
+    if (data.phone) benefitsArray.push("Teléfono");
 
     const roomData = {
       ...data,
@@ -42,20 +45,34 @@ const FormRoom = () => {
         throw new Error("Error al crear la habitación");
       }
 
-      const roomDataResponse = await response.json();
-      console.log("Habitación creada:", roomDataResponse);
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "La habitación ha sido creada correctamente.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
 
+  
+      setIsFormVisible(false);
       reset();
+      window.location.reload();
+
     } catch (err) {
       setError(`Error al crear la habitación: ${err.message}`);
+      Swal.fire({
+        title: "Error",
+        text: `Hubo un problema al crear la habitación: ${err.message}`,
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
     }
   };
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
       <Form.Group className="mb-3" controlId="formRoomName">
         <Form.Label>Nombre de la habitación</Form.Label>
         <Form.Select
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           {...register("room_name", {
             required: "El nombre de la habitación es obligatorio",
             validate: {
@@ -79,7 +96,7 @@ const FormRoom = () => {
           <option value="Suites Superiores">Suites Superiores</option>
           <option value="Suite Junior">Suite Junior</option>
           <option value="Habitaciones Dobles Deluxe">
-            Habitaciones Dobles Deluxe
+          Habitaciones Dobles Deluxe
           </option>
         </Form.Select>
         <Form.Control.Feedback type="invalid">
@@ -90,6 +107,7 @@ const FormRoom = () => {
       <Form.Group className="mb-3" controlId="formPrice">
         <Form.Label>Precio</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`} 
           type="number"
           {...register("price", {
             required: "El precio es obligatorio",
@@ -106,6 +124,7 @@ const FormRoom = () => {
       <Form.Group className="mb-3" controlId="formNumberRooms">
         <Form.Label>Número de habitaciones</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="number"
           {...register("number_rooms", {
             required: "El número de habitaciones es obligatorio",
@@ -123,6 +142,7 @@ const FormRoom = () => {
       <Form.Group className="mb-3" controlId="formImage">
         <Form.Label>URL de la imagen</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="text"
           {...register("image", {
             required: "La URL de la imagen es obligatoria",
@@ -143,6 +163,7 @@ const FormRoom = () => {
       <Form.Group className="mb-3" controlId="formBriefDescription">
         <Form.Label>Descripción breve</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
           rows={3}
           {...register("brief_description", {
@@ -160,8 +181,9 @@ const FormRoom = () => {
       <Form.Group className="mb-3" controlId="formBroadDescription">
         <Form.Label>Descripción amplia</Form.Label>
         <Form.Control
+        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
-          rows={5}
+          rows={4}
           {...register("broad_description", {
             required: "La descripción amplia es obligatoria",
             minLength: { value: 50, message: "Mínimo 50 caracteres." },
@@ -187,6 +209,11 @@ const FormRoom = () => {
       <Form.Group className="mb-3">
         <Form.Label>¿Tiene Baño privado?</Form.Label>
         <Form.Check type="checkbox" label="Sí" {...register("bathroom")} />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>¿Tiene teléfono?</Form.Label>
+        <Form.Check type="checkbox" label="Sí" {...register("phone")} />
       </Form.Group>
 
       <Button variant="success" type="submit">

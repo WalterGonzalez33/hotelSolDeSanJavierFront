@@ -20,7 +20,8 @@ const HandleLoading = () => {
 };
 
 const ReservationContainer = () => {
-  const { data, loading } = useFetch({ endPoint: "reservation/list" });
+  const [reload, setReload] = useState(false);
+  const { data, loading } = useFetch({ endPoint: "reservation/list", reload });
   const [currentData, setCurrentData] = useState(data);
   const [currentReservationUser, setCurrentReservationUser] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -84,43 +85,47 @@ const ReservationContainer = () => {
             handleClose={handleClose}
             title={"Crea una reserva"}
             form={"reservation"}
+            setReload={setReload}
+            reload={reload}
           />
         </div>
       )}
       {currentData && (
-        <Table striped responsive="lg" className={` ${style.table} `}>
-          <thead className={` ${style.thead_table} `}>
-            <tr className={` ${style.tr_user} `}>
-              <th></th>
-              <th>Email</th>
-              <th>Habitación</th>
-              <th>Check-in</th>
-              <th>Check-out</th>
-              <th>Personas</th>
-              <th>
-                <FaCog />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {user &&
-              currentReservationUser.length > 0 &&
-              currentReservationUser.map((reservation) => {
-                return (
-                  <ReservationRow key={reservation._id} {...reservation} />
-                );
-              })}
-            {user && currentReservationUser.length === 0 && (
-              <h1>no hay reservas</h1>
-            )}
-            {!user &&
-              currentData.map((reservation) => {
-                return (
-                  <ReservationRow key={reservation._id} {...reservation} />
-                );
-              })}
-          </tbody>
-        </Table>
+        <div className={` ${style.table_container} `}>
+          <Table striped responsive="lg" className={` ${style.table} `}>
+            <thead className={` ${style.thead_table} `}>
+              <tr className={` ${style.tr_user} `}>
+                <th></th>
+                <th>Email</th>
+                <th>Habitación</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th>Personas</th>
+                <th>
+                  <FaCog />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {user &&
+                currentReservationUser.length > 0 &&
+                currentReservationUser.map((reservation) => {
+                  return (
+                    <ReservationRow key={reservation._id} {...reservation} />
+                  );
+                })}
+              {user && currentReservationUser.length === 0 && (
+                <h1>no hay reservas</h1>
+              )}
+              {!user &&
+                currentData.map((reservation) => {
+                  return (
+                    <ReservationRow key={reservation._id} {...reservation} />
+                  );
+                })}
+            </tbody>
+          </Table>
+        </div>
       )}
     </div>
   );

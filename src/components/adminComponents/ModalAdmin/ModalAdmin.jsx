@@ -44,7 +44,10 @@ function ModalAdmin({
             dataUser={dataUser}
           />
         )}
-        {form === "reservation" && <FormReservation />}
+        {form === "reservation" && <FormReservation 
+         handleClose={handleClose} 
+         setReload={setReload}
+          reload={reload}/>}
           {form === "room" && <FormRoom/>}
       </Modal.Body>
     </Modal>
