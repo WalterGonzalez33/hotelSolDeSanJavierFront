@@ -6,12 +6,14 @@ import { validationDate } from "../../../utils/validateDate";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const FormReservation = () => {
+const FormReservation = ({handleClose,reload,setReload} ) => {
+  console.log(setReload)
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm();
 
   const [users, setUsers] = useState([]);
@@ -20,11 +22,11 @@ const FormReservation = () => {
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [error, setError] = useState(null);
 
- 
+
   const checkIn = watch("check_in");
   const checkOut = watch("check_out");
 
-
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -43,15 +45,13 @@ const FormReservation = () => {
     };
 
     fetchUsers();
-  }, []); 
+  }, []);
 
- 
   useEffect(() => {
     if (checkIn && checkOut) {
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-         
           const url = `${apiUrl}/rooms/${checkIn}/${checkOut}`;
           const response = await fetch(url);
           if (!response.ok) {
@@ -60,7 +60,7 @@ const FormReservation = () => {
           const data = await response.json();
           setRooms(data);
         } catch (err) {
-          console.error(err)
+          console.error(err);
         } finally {
           setLoadingRooms(false);
         }
@@ -68,12 +68,47 @@ const FormReservation = () => {
 
       fetchRooms();
     }
-  }, [checkIn, checkOut]); 
+  }, [checkIn, checkOut]);
 
-  const onSubmit = (data) => {
+
+
+  const onSubmit = async (data) => {
     const validateresult = validationDate(data.check_in, data.check_out);
     if (validateresult.valid) {
       console.log("Las fechas son correctas");
+
+      try {
+        console.log(data.username)
+        const reservationData = {
+          user_id: data.username,
+          room_id: data.room,
+          check_in: data.check_in,
+          check_out: data.check_out,
+          persons: data.persons,
+        };
+      
+       
+        const response = await fetch(`${apiUrl}reservation/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reservationData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Error al crear la reserva");
+        }
+
+        const result = await response.json();
+        alert("Reserva creada con éxito: " + result.message);
+        reset();
+        setReload(!reload);
+        handleClose();
+      } catch (err) {
+        console.error("Error al crear la reserva:", err);
+        alert("Hubo un error al crear la reserva");
+      }
     } else {
       console.log(validateresult.msj);
     }

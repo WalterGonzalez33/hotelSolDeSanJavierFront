@@ -18,9 +18,11 @@ const HandleLoading = () => {
 };
 
 const ReservationContainer = () => {
-  const { data, loading } = useFetch({ endPoint: "reservation/list" });
+  const [reload, setReload] = useState(false);
+  const { data, loading } = useFetch({ endPoint: "reservation/list" , reload });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
+  
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -46,10 +48,15 @@ const ReservationContainer = () => {
           show={show} 
           handleClose={handleClose} 
           title={"Crea una reserva"}
-          form={"reservation"}/>
+          form={"reservation"}
+          setReload={setReload}
+          reload={reload}
+           />
+           
         </div>
       )}
       {currentData && (
+        <div className={` ${style.table_container} `}>
         <Table striped responsive="lg" className={` ${style.table} `}>
           <thead className={` ${style.thead_table} `}>
             <tr className={` ${style.tr_user} `}>
@@ -70,6 +77,7 @@ const ReservationContainer = () => {
             })}
           </tbody>
         </Table>
+        </div>
       )}
     </div>
   );

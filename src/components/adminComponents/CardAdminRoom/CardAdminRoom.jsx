@@ -6,6 +6,7 @@ import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
 import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
+import AdminSearch from "../AdminSearch/AdminSearch.jsx"
 
 const HandleLoading = () => {
   return (
@@ -49,7 +50,8 @@ const CardAdminRoom = () => {
         </div>
       )}
       {currentData && (
-        <Table striped responsive="lg" className={` ${style.table} `}>
+        <div className={` ${style.table_container} `}>
+          <Table striped responsive="lg" className={` ${style.table} `}>
           <thead className={` ${style.thead_table} `}>
             <tr className={` ${style.tr_room} `}>
               <th></th>
@@ -67,6 +69,7 @@ const CardAdminRoom = () => {
             })}
           </tbody>
         </Table>
+        </div>
       )}
     </div>
   );
