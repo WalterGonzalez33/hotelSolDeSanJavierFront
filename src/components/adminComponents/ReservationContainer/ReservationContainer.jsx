@@ -6,7 +6,7 @@ import ReservationRow from "../ReservationRow/ReservationRow.jsx";
 import AdminSearch from "../AdminSearch/AdminSearch.jsx";
 import { useEffect, useState } from "react";
 import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
-import { BiPlus } from "react-icons/bi";
+import { BiPlus, BiSolidXCircle } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { getItem } from "../../../utils/requests.js";
 
@@ -15,6 +15,16 @@ const HandleLoading = () => {
     <div className={` ${style.loading_search} `}>
       <Spinner animation="border" variant="success" />
       <h3 className="text-success m-0">Cargando...</h3>
+    </div>
+  );
+};
+const HandleNotReservation = () => {
+  return (
+    <div className="text-center m-auto mt-4 not-reservation-container">
+      <span className="fs-1 text-danger">
+        <BiSolidXCircle />
+      </span>
+      <h3 className="m-0">El usuario no tiene reservas!!</h3>
     </div>
   );
 };
@@ -63,8 +73,14 @@ const ReservationContainer = () => {
       {loading && <HandleLoading />}
       {currentData && (
         <div className={` ${style.tabs_admin_container} `}>
-          {!user && <AdminSearch data={data} setData={setCurrentData} />}
-          {currentUser && (
+          {!user && (
+            <AdminSearch
+              data={data}
+              setData={setCurrentData}
+              reservation={true}
+            />
+          )}
+          {currentUser && user && (
             <div className={` ${style.user_data_container} `}>
               <h3 className={` ${style.user_data} `}>{currentUser.username}</h3>
               <h3 className={` ${style.user_data} ${style.user_data_email}`}>
@@ -80,14 +96,26 @@ const ReservationContainer = () => {
             Crear <BiPlus />
           </Button>
 
-          <ModalAdmin
-            show={show}
-            handleClose={handleClose}
-            title={"Crea una reserva"}
-            form={"reservation"}
-            setReload={setReload}
-            reload={reload}
-          />
+          {user ? (
+            <ModalAdmin
+              show={show}
+              handleClose={handleClose}
+              title={"Crea una reserva"}
+              form={"reservation"}
+              setReload={setReload}
+              reload={reload}
+              userValue={currentUser}
+            />
+          ) : (
+            <ModalAdmin
+              show={show}
+              handleClose={handleClose}
+              title={"Crea una reserva"}
+              form={"reservation"}
+              setReload={setReload}
+              reload={reload}
+            />
+          )}
         </div>
       )}
       {currentData && (
@@ -98,8 +126,8 @@ const ReservationContainer = () => {
                 <th></th>
                 <th>Email</th>
                 <th>Habitación</th>
-                <th>Check-in</th>
-                <th>Check-out</th>
+                <th>Ingreso</th>
+                <th>Salida</th>
                 <th>Personas</th>
                 <th>
                   <FaCog />
@@ -115,7 +143,7 @@ const ReservationContainer = () => {
                   );
                 })}
               {user && currentReservationUser.length === 0 && (
-                <h1>no hay reservas</h1>
+                <HandleNotReservation />
               )}
               {!user &&
                 currentData.map((reservation) => {
