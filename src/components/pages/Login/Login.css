@@ -9,18 +9,42 @@ a:hover {
   text-decoration: none;
 }
 
-.custom-btn {
-  background-color:#1b673b;
-  color: #fff; 
-  border: none; 
-}
-
-.custom-btn:hover {
-  background-color: #1b673b; 
-}
 .login-container{
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 500px;
+  padding: 4rem;
+}
+
+input, textarea {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%; 
+}
+
+.form-control {
+  flex-shrink: 1;
+  min-width: 0; 
+  border: 2px solid #ced4da;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #A4C961;
+  box-shadow: 0 0 0 0.2rem rgba(164, 201, 97, 0.25);
+}
+
+.form-control.is-invalid {
+  border-color: #dc3545; 
+  box-shadow: none;
+}
+
+.form-control.is-invalid:focus {
+  border-color: #dc3545; 
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
