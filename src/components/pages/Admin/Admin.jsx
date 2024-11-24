@@ -1,9 +1,16 @@
 import { Container } from "react-bootstrap";
 import style from "./Admin.module.css";
 import NavAdmin from "../../adminComponents/NavAdmin/NavAdmin";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Admin = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Container fluid id="main-content">
       <section className={` ${style.admin_container} `}>

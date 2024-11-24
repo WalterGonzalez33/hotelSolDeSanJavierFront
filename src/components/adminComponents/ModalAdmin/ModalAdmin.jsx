@@ -3,7 +3,7 @@ import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
 import FormUserEdit from "../FormUserEdit/FormUserEdit";
 import FormReservation from "../FormReservation/FormReservation";
-import FormRoom from "../FormrRoom/FormRoom"
+import FormRoom from "../FormrRoom/FormRoom";
 
 function ModalAdmin({
   show,
@@ -13,6 +13,7 @@ function ModalAdmin({
   setReload,
   reload,
   dataUser,
+  userValue,
 }) {
   return (
     <Modal
@@ -44,11 +45,15 @@ function ModalAdmin({
             dataUser={dataUser}
           />
         )}
-        {form === "reservation" && <FormReservation 
-         handleClose={handleClose} 
-         setReload={setReload}
-          reload={reload}/>}
-          {form === "room" && <FormRoom/>}
+        {form === "reservation" && (
+          <FormReservation
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            userValue={userValue}
+          />
+        )}
+        {form === "room" && <FormRoom />}
       </Modal.Body>
     </Modal>
   );

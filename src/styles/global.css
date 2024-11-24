@@ -149,3 +149,14 @@ textarea{
   .button-custom:not(:disabled):active {
     transform: translateY(.125rem);
   }
+
+  .not-reservation-container{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+    h3{
+      color: var(--color-secondary-dark);
+    }
+  }

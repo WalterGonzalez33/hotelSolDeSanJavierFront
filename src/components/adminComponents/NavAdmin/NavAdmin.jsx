@@ -22,7 +22,7 @@ const NavAdmin = () => {
       <Link to={"reservations"}>
         <Button
           className={` ${style.admin_tabLink} ${
-            location.pathname === "/admin/reservations" && style.active
+            location.pathname.includes("/admin/reservations") && style.active
           }`}
         >
           <FaCalendarWeek />

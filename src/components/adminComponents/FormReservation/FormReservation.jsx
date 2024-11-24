@@ -6,8 +6,12 @@ import { validationDate } from "../../../utils/validateDate";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const FormReservation = ({handleClose,reload,setReload} ) => {
-  console.log(setReload)
+const FormReservation = ({
+  handleClose,
+  reload,
+  setReload,
+  userValue = null,
+}) => {
   const {
     register,
     handleSubmit,
@@ -22,11 +26,9 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
   const [loadingRooms, setLoadingRooms] = useState(false);
   const [error, setError] = useState(null);
 
-
   const checkIn = watch("check_in");
   const checkOut = watch("check_out");
 
-  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -70,15 +72,10 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
     }
   }, [checkIn, checkOut]);
 
-
-
   const onSubmit = async (data) => {
-    const validateresult = validationDate(data.check_in, data.check_out);
-    if (validateresult.valid) {
-      console.log("Las fechas son correctas");
-
+    const validateResult = validationDate(data.check_in, data.check_out);
+    if (validateResult.valid) {
       try {
-        console.log(data.username)
         const reservationData = {
           user_id: data.username,
           room_id: data.room,
@@ -86,8 +83,7 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
           check_out: data.check_out,
           persons: data.persons,
         };
-      
-       
+
         const response = await fetch(`${apiUrl}reservation/create`, {
           method: "POST",
           headers: {
@@ -99,9 +95,6 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
         if (!response.ok) {
           throw new Error("Error al crear la reserva");
         }
-
-        const result = await response.json();
-        alert("Reserva creada con éxito: " + result.message);
         reset();
         setReload(!reload);
         handleClose();
@@ -110,7 +103,7 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
         alert("Hubo un error al crear la reserva");
       }
     } else {
-      console.log(validateresult.msj);
+      console.error(validateResult.msj);
     }
   };
 
@@ -130,15 +123,21 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
             })}
             isInvalid={!!errors.username}
           >
-            <option value="">Seleccione un usuario</option>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <option key={user._id} value={user._id}>
-                  {user.username}
-                </option>
-              ))
+            {userValue ? (
+              <option value={userValue._id}>{userValue.username}</option>
+            ) : users.length > 0 ? (
+              <>
+                <option value="">Seleccione un usuario</option>
+                {users.map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.username}
+                  </option>
+                ))}
+              </>
             ) : (
-              <option value="" disabled>No hay usuarios disponibles</option>
+              <option value="" disabled>
+                No hay usuarios disponibles
+              </option>
             )}
           </Form.Select>
         )}
@@ -199,7 +198,9 @@ const FormReservation = ({handleClose,reload,setReload} ) => {
                 </option>
               ))
             ) : (
-              <option value="" disabled>No hay habitaciones disponibles</option>
+              <option value="" disabled>
+                No hay habitaciones disponibles
+              </option>
             )}
           </Form.Select>
         )}
