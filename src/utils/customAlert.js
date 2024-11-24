@@ -3,8 +3,8 @@ import Swal from "sweetalert2";
 export const showCustomAlert = ({
     alertTitle = 'Joya',
     icon = 'success',
-    confirmText = 'confirmar',
-    cancelText = 'cancelar',
+    confirmText = 'CONFIRMAR',
+    cancelText = 'CANCELAR',
     alertText = 'Todo perfecto',
     showCancel = false,
     continueConfirm = false,
