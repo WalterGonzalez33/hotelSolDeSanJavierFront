@@ -1,18 +1,18 @@
 import { Button } from "react-bootstrap";
 import style from "../RowUser/RowUser.module.css";
-import {
-  FaUserCircle,
-  FaPen,
-  FaTrash,
-  FaCalendarDay,
-} from "react-icons/fa";
+import { FaRegCalendarCheck, FaPen, FaTrash } from "react-icons/fa";
 
-
-const ReservationRow = ({ user_reservation, room_reservation, check_in, check_out, persons }) => {
+const ReservationRow = ({
+  user_reservation,
+  room_reservation,
+  check_in,
+  check_out,
+  persons,
+}) => {
   return (
     <tr className={` ${style.user_row_container} `}>
       <td className={` ${style.user_icon} `}>
-        <FaUserCircle />
+        <FaRegCalendarCheck />
       </td>
       <td>
         <div>
@@ -42,9 +42,6 @@ const ReservationRow = ({ user_reservation, room_reservation, check_in, check_ou
 
       <td>
         <div className={` ${style.buttons_container} `}>
-          <Button className={` ${style.action_button} `}>
-            <FaCalendarDay />
-          </Button>
           <Button className={` ${style.action_button} `}>
             <FaPen />
           </Button>
