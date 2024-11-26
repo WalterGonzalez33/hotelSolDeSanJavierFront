@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
-import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
-import AdminSearch from "../AdminSearch/AdminSearch.jsx"
+import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
 
 const HandleLoading = () => {
   return (
@@ -18,7 +17,8 @@ const HandleLoading = () => {
 };
 
 const CardAdminRoom = () => {
-  const { data, loading, error } = useFetch({ endPoint: "rooms" });
+  const [reload, setReload] = useState(false);
+  const { data, loading } = useFetch({ endPoint: "rooms", reload });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
 
@@ -52,23 +52,30 @@ const CardAdminRoom = () => {
       {currentData && (
         <div className={` ${style.table_container} `}>
           <Table striped responsive="lg" className={` ${style.table} `}>
-          <thead className={` ${style.thead_table} `}>
-            <tr className={` ${style.tr_room} `}>
-              <th></th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th>
-                <FaCog />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.map((room) => {
-              return <RowRoom key={room._id} {...room} />;
-            })}
-          </tbody>
-        </Table>
+            <thead className={` ${style.thead_table} `}>
+              <tr className={` ${style.tr_room} `}>
+                <th></th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th>
+                  <FaCog />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentData.map((room) => {
+                return (
+                  <RowRoom
+                    key={room._id}
+                    {...room}
+                    setReload={setReload}
+                    reload={reload}
+                  />
+                );
+              })}
+            </tbody>
+          </Table>
         </div>
       )}
     </div>
