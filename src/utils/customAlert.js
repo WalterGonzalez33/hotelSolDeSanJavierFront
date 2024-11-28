@@ -9,6 +9,8 @@ export const showCustomAlert = ({
     showCancel = false,
     continueConfirm = false,
     callback = null,
+    controlDismissed = false,
+    callbackDismissed = null
 }) => {
     Swal.fire({
       title: alertTitle,
@@ -19,8 +21,8 @@ export const showCustomAlert = ({
       cancelButtonColor: "#ff8a7a", 
       confirmButtonText: `${confirmText}`,
       cancelButtonText: `${cancelText}`,
-      background: "#f4f6f7", 
-      color: "#333",
+      background: "#eff6ef", 
+      color: "#585858",
       customClass: {
         title: "my-title-class",
         popup: "my-popup-class",
@@ -32,6 +34,11 @@ export const showCustomAlert = ({
             if (result.isConfirmed) {
                     callback()
               }
+        }
+        if(controlDismissed){
+            if (result.isDismissed) {
+                    callbackDismissed()
+            }
         }
     });
   };

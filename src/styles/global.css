@@ -24,15 +24,14 @@
     flex-wrap: 1;
   }
 
+  .color-custom-light{
+    color: rgb(var(--color-accent-light))!important;
+  }
+  .color-custom-bold{
+    color: rgb(var(--color-accent))!important;
+  }
   .card_integrated{
     box-shadow: rgba(37, 37, 37, 0.24) 0px 3px 8px;
-  }
-
-  .register-container{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%)
   }
 
   /* Estilos para el formulario de reservas */
