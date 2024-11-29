@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
 import style from "../FormUser/FormUser.module.css";
 import { validationDate } from "../../../utils/validateDate";
+import { showCustomAlert } from "../../../utils/customAlert";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -91,10 +92,19 @@ const FormReservation = ({
           },
           body: JSON.stringify(reservationData),
         });
-
-        if (!response.ok) {
-          throw new Error("Error al crear la reserva");
+        if(response.status === 400){
+          const res = await response.json();
+          return showCustomAlert({
+            alertTitle: "Cuidado!",
+            alertText: `${res.message ? res.message : res.mensaje}`,
+            icon: "warning",
+          })
         }
+        showCustomAlert({
+          alertTitle: "Éxito",
+          alertText: "La reserva fue creada correctamente",
+          confirmText: 'CONFIRMAR'
+        })
         reset();
         setReload(!reload);
         handleClose();
