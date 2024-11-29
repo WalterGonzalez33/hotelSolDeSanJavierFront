@@ -2,12 +2,20 @@ import { FaPen, FaTrash, FaCalendarDay } from "react-icons/fa";
 import style from "./RowRoom.module.css";
 import { Button } from "react-bootstrap";
 import { showCustomAlert } from "../../../utils/customAlert";
+import { deleteItem } from "../../../utils/requests";
 
-
-const RowRoom = ({ _id, image, room_name, price, broad_description, reload, setReload }) => {
+const RowRoom = ({
+  _id,
+  image,
+  room_name,
+  price,
+  broad_description,
+  reload,
+  setReload,
+}) => {
   const deleteRoom = async () => {
     try {
-      const deleteRoomResponse = await deleteRoom(`/rooms/${_id}`);
+      const deleteRoomResponse = await deleteItem(`/rooms/${_id}`);
       if (!deleteRoomResponse.ok) {
         const resultDeleteRoom = await deleteRoomResponse.json();
         showCustomAlert({
@@ -23,12 +31,9 @@ const RowRoom = ({ _id, image, room_name, price, broad_description, reload, setR
         alertText: "",
         icon: "success",
       });
-
-      if (setReload) {
-        setReload(!reload);
-      }
+      setReload(!reload);
     } catch (err) {
-      console.error("Error eliminando habitación:", err.message);
+      console.error("Error al eliminar la habitación:", err.message);
     }
   };
 
@@ -63,9 +68,7 @@ const RowRoom = ({ _id, image, room_name, price, broad_description, reload, setR
           <Button className={style.action_button}>
             <FaPen />
           </Button>
-          <Button
-            className={style.action_button}
-            onClick={handleDeleteRoom}>
+          <Button className={style.action_button} onClick={handleDeleteRoom}>
             <FaTrash />
           </Button>
         </div>

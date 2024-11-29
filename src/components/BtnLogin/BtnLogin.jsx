@@ -1,5 +1,6 @@
 import style from "./BtnLogin.module.css";
 import { Link } from "react-router-dom";
+import { RiLogoutBoxLine, RiLogoutBoxRLine } from "react-icons/ri";
 
 const BtnLogin = () => {
   const tokenUser = JSON.parse(
@@ -17,7 +18,7 @@ const BtnLogin = () => {
         className={`mt-2 ms-lg-3 mt-lg-0 ${style.btn_login}`}
         onClick={handleAuth}
       >
-        {tokenUser ? "Salir" : "Iniciar Sesión"}
+        {tokenUser ? <RiLogoutBoxLine /> : <RiLogoutBoxRLine />}
       </button>
     </Link>
   );

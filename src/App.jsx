@@ -15,11 +15,11 @@ import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsCon
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
-import Registro from "./components/pages/Registro.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 import { useEffect, useState } from "react";
 import { getItem } from "./utils/requests.js";
+import Register from "./components/pages/Register/Register.jsx";
 
 function App() {
   return (
@@ -80,7 +80,7 @@ const AppContent = () => {
             />
           }
         />
-        <Route path="/registro" element={<Registro />} />
+        <Route path="/registro" element={<Register />} />
         <Route
           path="/admin/*"
           element={
