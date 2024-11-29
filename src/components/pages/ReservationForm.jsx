@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { validationDate } from "../../utils/validateDate";
 
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const ReservationForm = () => {
@@ -23,48 +22,48 @@ const ReservationForm = () => {
   } = useForm();
 
   const [rooms, setRooms] = useState([]);
-  const [loadingRooms, setLoadingRooms] = useState(false)
+  const [loadingRooms, setLoadingRooms] = useState(false);
+  const [userId, setUserId] = useState("");
   const [error, setError] = useState(null);
 
   const [checkInDate, checkOutDate] = watch(["check_in", "check_out"]);
-  
+
   const token = JSON.parse(sessionStorage.getItem("usuariosHotel"));
-  const userId = token.id;
 
   useEffect(() => {
-    const token = sessionStorage.getItem("usuariosHotel");
-    if (!token) {
+    if (token) {
+      setUserId(token.id);
+    } else {
       navigate("/login");
     }
-  }, [navigate]);
+  }, [navigate, token]);
 
-
-  useEffect(()=>{
-    if (checkInDate && checkOutDate){
-      const fetchRooms = async () =>{
-        try{
+  useEffect(() => {
+    if (checkInDate && checkOutDate) {
+      const fetchRooms = async () => {
+        try {
           setLoadingRooms(true);
           const url = `${apiUrl}/rooms/${checkInDate}/${checkOutDate}`;
           const response = await fetch(url);
-          if (!response.ok){
+          if (!response.ok) {
             throw new Error("Error al obtener las habitaciones disponibles");
           }
           const data = await response.json();
           setRooms(data);
-        } catch (err){
+        } catch (err) {
           console.error(err);
         } finally {
           setLoadingRooms(false);
         }
-      }
+      };
       fetchRooms();
     }
   }, [checkInDate, checkOutDate]);
 
-  const onSubmit = async (data)=>{
+  const onSubmit = async (data) => {
     const validateResult = validationDate(data.check_in, data.check_out);
-    if (validateResult.valid){
-      try{
+    if (validateResult.valid) {
+      try {
         const reservationData = {
           user_id: userId,
           room_id: data.room_id,
@@ -72,8 +71,8 @@ const ReservationForm = () => {
           check_out: data.check_out,
           persons: data.persons,
         };
-  
-        const response = await fetch(`${apiUrl}reservation/create`,{
+
+        const response = await fetch(`${apiUrl}reservation/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -81,30 +80,28 @@ const ReservationForm = () => {
           },
           body: JSON.stringify(reservationData),
         });
-        if (!response.ok){
+        if (!response.ok) {
           throw new Error("Error al crear la reservación");
         }
-  
+
         Swal.fire({
           title: "Reservación exitosa",
           text: "La reservación ha sido creada correctamente",
           icon: "success",
           confirmButtonText: "Aceptar",
-        })
-      } catch(err){
+        });
+      } catch (err) {
         Swal.fire({
           tittle: "Error",
           text: `Hubo un problema al crear la reservación: ${err.message}`,
           icon: "error",
           confirmButtonText: "Aceptar",
-        })
+        });
       }
     } else {
-      console.error(validateResult.msj)
+      console.error(validateResult.msj);
     }
-     
-  }
-  
+  };
 
   return (
     <section className="container my-4">
@@ -141,7 +138,9 @@ const ReservationForm = () => {
                 })}
                 isInvalid={!!errors.check_in}
               />
-              <Form.Text className="text-danger">{errors.check_in?.message}</Form.Text>
+              <Form.Text className="text-danger">
+                {errors.check_in?.message}
+              </Form.Text>
 
               <Form.Label className="mt-4">Check-Out</Form.Label>
               <Form.Control
@@ -151,7 +150,9 @@ const ReservationForm = () => {
                 })}
                 isInvalid={!!errors.check_out}
               />
-              <Form.Text className="text-danger">{errors.check_out?.message}</Form.Text>
+              <Form.Text className="text-danger">
+                {errors.check_out?.message}
+              </Form.Text>
             </Col>
 
             <Col md={6} xs={12}>
@@ -167,37 +168,40 @@ const ReservationForm = () => {
                 <option value="3">3 Personas</option>
                 <option value="4">4 Personas</option>
               </Form.Select>
-              <Form.Text className="text-danger">{errors.personas?.message}</Form.Text>
+              <Form.Text className="text-danger">
+                {errors.personas?.message}
+              </Form.Text>
 
               <Form.Label className="mt-4">Seleccionar habitación</Form.Label>
-        {loadingRooms ? (
-          <Form.Text>Cargando habitaciones...</Form.Text>
-        ) : error ? (
-          <Form.Text className="text-danger">{error}</Form.Text>
-        ) : (
-          <Form.Select
-            {...register("room_id", {
-              required: "Seleccionar una habitación es un campo requerido",
-            })}
-            isInvalid={!!errors.room}
-          >
-            <option value="">Seleccione...</option>
-            {rooms.length > 0 ? (
-              rooms.map((room) => (
-                <option key={room._id} value={room._id}>
-                  {room.room_name}
-                </option>
-              ))
-            ) : (
-              <option value="" disabled>
-                No hay habitaciones disponibles
-              </option>
-            )}
-          </Form.Select>
-        )}
-        <Form.Control.Feedback type="invalid">
-          {errors.room?.message}
-        </Form.Control.Feedback>
+              {loadingRooms ? (
+                <Form.Text>Cargando habitaciones...</Form.Text>
+              ) : error ? (
+                <Form.Text className="text-danger">{error}</Form.Text>
+              ) : (
+                <Form.Select
+                  {...register("room_id", {
+                    required:
+                      "Seleccionar una habitación es un campo requerido",
+                  })}
+                  isInvalid={!!errors.room}
+                >
+                  <option value="">Seleccione...</option>
+                  {rooms.length > 0 ? (
+                    rooms.map((room) => (
+                      <option key={room._id} value={room._id}>
+                        {room.room_name}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="" disabled>
+                      No hay habitaciones disponibles
+                    </option>
+                  )}
+                </Form.Select>
+              )}
+              <Form.Control.Feedback type="invalid">
+                {errors.room?.message}
+              </Form.Control.Feedback>
             </Col>
           </Row>
         </Form.Group>
