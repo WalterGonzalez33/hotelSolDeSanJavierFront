@@ -35,12 +35,16 @@ const ReservationContainer = () => {
   const [currentData, setCurrentData] = useState(data);
   const [currentReservationUser, setCurrentReservationUser] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [dataReservation, setDataReservation] = useState(null);
   const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
 
   const { user } = useParams();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setEditShow(false);
+  const handleShowEdit = () => setEditShow(true);
 
   useEffect(() => {
     const fillReservationUser = () => {
@@ -116,6 +120,16 @@ const ReservationContainer = () => {
               reload={reload}
             />
           )}
+
+          <ModalAdmin
+            show={editShow}
+            handleClose={handleCloseEdit}
+            title={"Edita la reserva"}
+            form={"reservationEdit"}
+            dataReservation={dataReservation}
+            setReload={setReload}
+            reload={reload}
+          />
         </div>
       )}
       {currentData && (
@@ -139,7 +153,12 @@ const ReservationContainer = () => {
                 currentReservationUser.length > 0 &&
                 currentReservationUser.map((reservation) => {
                   return (
-                    <ReservationRow key={reservation._id} {...reservation} />
+                    <ReservationRow
+                      key={reservation._id}
+                      {...reservation}
+                      setDataReservation={setDataReservation}
+                      handleShowEdit={handleShowEdit}
+                    />
                   );
                 })}
               {user && currentReservationUser.length === 0 && (
@@ -148,7 +167,12 @@ const ReservationContainer = () => {
               {!user &&
                 currentData.map((reservation) => {
                   return (
-                    <ReservationRow key={reservation._id} {...reservation} />
+                    <ReservationRow
+                      key={reservation._id}
+                      {...reservation}
+                      setDataReservation={setDataReservation}
+                      handleShowEdit={handleShowEdit}
+                    />
                   );
                 })}
             </tbody>
