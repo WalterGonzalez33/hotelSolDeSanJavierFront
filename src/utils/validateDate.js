@@ -3,7 +3,7 @@ const formatDate = (date) => {
   const newDate = date.split('/').reverse().join('-')
   return newDate
 }
-export const validationDate = (startDate, endDate) => {
+export const validationDate = (startDate, endDate, watchDate = true) => {
   const normalizeDate = (date) => {
     date.setHours(0, 0, 0, 0)
     return date
@@ -24,8 +24,10 @@ export const validationDate = (startDate, endDate) => {
     const newEndDate = normalizeDate(new Date(formatDate(endDate)))
     const currentDay = normalizeDate(new Date())
     
-    if (newStartDate < currentDay) {
-      return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+    if(watchDate){
+      if (newStartDate < currentDay) {
+        return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+      }
     }
     if(newEndDate < newStartDate){
         return {valid: false, msj: 'La fecha de salida no puede ser antes de la entrada'};
@@ -37,8 +39,10 @@ export const validationDate = (startDate, endDate) => {
     const newEndDate = normalizeDate(new Date(endDate))
     const currentDay = normalizeDate(new Date())
     
-    if (newStartDate < currentDay) {
-      return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+    if(watchDate){
+      if (newStartDate < currentDay) {
+        return { valid: false, msj: 'Solo se puede reservar desde el dia actual en adelante' }
+      }
     }
     if(newEndDate < newStartDate){
         return {valid: false, msj: 'La fecha de salida no puede ser antes de la entrada'};
