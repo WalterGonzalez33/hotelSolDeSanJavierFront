@@ -159,3 +159,7 @@ textarea{
       color: var(--color-secondary-dark);
     }
   }
+
+  .errorImage{
+    max-width: 35%;
+  }
