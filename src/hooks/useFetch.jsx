@@ -9,6 +9,10 @@ if (!apiUrl) {
   );
 }
 
+const getToken = () => {
+  return JSON.parse(sessionStorage.getItem("userToken")).token ?? "";
+};
+
 const useFetch = ({
   endPoint = "/",
   reqMethod = "GET",
@@ -27,10 +31,12 @@ const useFetch = ({
     const fetchData = async () => {
       setLoading(true);
       try {
+        const token = getToken();
         const response = await fetch(`${apiUrl + endPoint}`, {
           method: `${reqMethod}`,
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
             ...headers,
           },
           ...(reqMethod !== "GET" && { body: JSON.stringify(bodyData) }),
