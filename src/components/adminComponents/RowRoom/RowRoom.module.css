@@ -77,13 +77,8 @@ td{
 }
 
 .room_image {
-    width: 50%;
+    width: 70%;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
   }
-
-  
-
-  
-

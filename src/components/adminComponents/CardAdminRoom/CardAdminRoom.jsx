@@ -1,11 +1,12 @@
 import { Button, Spinner, Table } from "react-bootstrap";
-import style from "./CardAdminRoom.module.css";
 import { FaCog } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
-import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
+import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
+import AdminSearch from "../AdminSearch/AdminSearch.jsx"
+import style from "../CardAdminRoom/CardAdminRoom.module.css";
 
 const HandleLoading = () => {
   return (
@@ -17,8 +18,7 @@ const HandleLoading = () => {
 };
 
 const CardAdminRoom = () => {
-  const [reload, setReload] = useState(false);
-  const { data, loading } = useFetch({ endPoint: "rooms", reload });
+  const { data, loading, error } = useFetch({ endPoint: "rooms" });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
 
@@ -33,7 +33,7 @@ const CardAdminRoom = () => {
     <div className={` ${style.rooms_container} `}>
       {loading && <HandleLoading />}
       {currentData && (
-        <div className={` ${style.tabs_admin_container} `}>
+        <div className={` ${style.tabs_admin_container}`}>
           <Button
             variant="success"
             className="button-custom"
@@ -52,30 +52,23 @@ const CardAdminRoom = () => {
       {currentData && (
         <div className={` ${style.table_container} `}>
           <Table striped responsive="lg" className={` ${style.table} `}>
-            <thead className={` ${style.thead_table} `}>
-              <tr className={` ${style.tr_room} `}>
-                <th></th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-                <th>
-                  <FaCog />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentData.map((room) => {
-                return (
-                  <RowRoom
-                    key={room._id}
-                    {...room}
-                    setReload={setReload}
-                    reload={reload}
-                  />
-                );
-              })}
-            </tbody>
-          </Table>
+          <thead className={` ${style.thead_table} `}>
+            <tr className={` ${style.tr_room} `}>
+              <th></th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>
+                <FaCog />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentData.map((room) => {
+              return <RowRoom key={room._id} {...room} />;
+            })}
+          </tbody>
+        </Table>
         </div>
       )}
     </div>
