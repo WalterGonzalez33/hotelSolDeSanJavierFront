@@ -28,7 +28,7 @@ const ReservationForm = () => {
 
   const [checkInDate, checkOutDate] = watch(["check_in", "check_out"]);
 
-  const token = JSON.parse(sessionStorage.getItem("usuariosHotel"));
+  const token = JSON.parse(sessionStorage.getItem("userToken"));
 
   useEffect(() => {
     if (token) {
@@ -76,7 +76,7 @@ const ReservationForm = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "x-token": `${token.token}`,
+            Authorization: `${token.token}`,
           },
           body: JSON.stringify(reservationData),
         });

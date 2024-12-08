@@ -15,7 +15,7 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
     sessionStorage.getItem("currentLink") || "inicio"
   );
   const navbarRef = useRef(null);
-  const tokenUser = JSON.parse(sessionStorage.getItem("usuariosHotel"));
+  const tokenUser = JSON.parse(sessionStorage.getItem("userToken"));
 
   const routesList = [
     {

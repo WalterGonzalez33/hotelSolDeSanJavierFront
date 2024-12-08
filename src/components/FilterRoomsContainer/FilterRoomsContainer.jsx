@@ -20,7 +20,6 @@ const FilterRoomsContainer = () => {
   });
 
   const HandleError = () => {
-    console.error(error);
     return (
       <div className={` ${style.error_search} `}>
         <BsXCircle />
