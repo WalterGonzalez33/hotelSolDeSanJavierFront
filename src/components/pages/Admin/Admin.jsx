@@ -1,12 +1,19 @@
 import { Container } from "react-bootstrap";
 import style from "./Admin.module.css";
 import NavAdmin from "../../adminComponents/NavAdmin/NavAdmin";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 
 const Admin = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const { pathname } = useLocation();
+
+  const navigate = useNavigate()
+
+  useEffect(()=> {
+    navigate(`/admin/users`)
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -158,6 +158,8 @@ const ReservationContainer = () => {
                       {...reservation}
                       setDataReservation={setDataReservation}
                       handleShowEdit={handleShowEdit}
+                      reload={reload}
+                      setReload={setReload}
                     />
                   );
                 })}
@@ -172,6 +174,8 @@ const ReservationContainer = () => {
                       {...reservation}
                       setDataReservation={setDataReservation}
                       handleShowEdit={handleShowEdit}
+                      reload={reload}
+                      setReload={setReload}
                     />
                   );
                 })}
