@@ -15,6 +15,7 @@ function ModalAdmin({
   reload,
   dataUser,
   dataReservation,
+  dataRoom,
   userValue,
 }) {
   return (
@@ -64,6 +65,14 @@ function ModalAdmin({
           />
         )}
         {form === "room" && <FormRoom />}
+        {form === "roomEdit" && (
+          <FormReservationEdit
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            dataRoom={dataRoom}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );
