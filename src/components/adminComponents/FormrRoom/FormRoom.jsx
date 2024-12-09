@@ -5,7 +5,6 @@ import style from "./FormRoom.module.css";
 import Swal from "sweetalert2";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-
 const FormRoom = ({ handleClose }) => {
   const {
     register,
@@ -17,7 +16,7 @@ const FormRoom = ({ handleClose }) => {
   const [error, setError] = useState(null);
   const [isFormVisible, setIsFormVisible] = useState(true);
 
-  const token = JSON.parse(sessionStorage.getItem("usuariosHotel"));
+  const token = JSON.parse(sessionStorage.getItem("userToken"));
 
   const onSubmit = async (data) => {
     const benefitsArray = [];
@@ -36,7 +35,7 @@ const FormRoom = ({ handleClose }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-token": `${token.token}`,
+          Authorization: `${token.token}`,
         },
         body: JSON.stringify(roomData),
       });
@@ -52,11 +51,9 @@ const FormRoom = ({ handleClose }) => {
         confirmButtonText: "Aceptar",
       });
 
-  
       setIsFormVisible(false);
       reset();
       window.location.reload();
-
     } catch (err) {
       setError(`Error al crear la habitación: ${err.message}`);
       Swal.fire({
@@ -72,7 +69,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formRoomName">
         <Form.Label>Nombre de la habitación</Form.Label>
         <Form.Select
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           {...register("room_name", {
             required: "El nombre de la habitación es obligatorio",
             validate: {
@@ -96,7 +93,7 @@ const FormRoom = ({ handleClose }) => {
           <option value="Suites Superiores">Suites Superiores</option>
           <option value="Suite Junior">Suite Junior</option>
           <option value="Habitaciones Dobles Deluxe">
-          Habitaciones Dobles Deluxe
+            Habitaciones Dobles Deluxe
           </option>
         </Form.Select>
         <Form.Control.Feedback type="invalid">
@@ -107,7 +104,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formPrice">
         <Form.Label>Precio</Form.Label>
         <Form.Control
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`} 
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="number"
           {...register("price", {
             required: "El precio es obligatorio",
@@ -124,7 +121,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formNumberRooms">
         <Form.Label>Número de habitaciones</Form.Label>
         <Form.Control
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="number"
           {...register("number_rooms", {
             required: "El número de habitaciones es obligatorio",
@@ -142,7 +139,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formImage">
         <Form.Label>URL de la imagen</Form.Label>
         <Form.Control
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="text"
           {...register("image", {
             required: "La URL de la imagen es obligatoria",
@@ -163,7 +160,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formBriefDescription">
         <Form.Label>Descripción breve</Form.Label>
         <Form.Control
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
           rows={3}
           {...register("brief_description", {
@@ -181,7 +178,7 @@ const FormRoom = ({ handleClose }) => {
       <Form.Group className="mb-3" controlId="formBroadDescription">
         <Form.Label>Descripción amplia</Form.Label>
         <Form.Control
-        className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
+          className={` d-inline-flex focus-ring focus-ring-success ${style.input}`}
           as="textarea"
           rows={4}
           {...register("broad_description", {

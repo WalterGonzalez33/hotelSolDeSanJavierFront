@@ -43,13 +43,9 @@ const FormReservationEdit = ({
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const url = `${apiUrl}/users`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Error al obtener los usuarios");
-        }
-        const data = await response.json();
-        setUsers(data);
+        const url = `/users`;
+        const getUsers = await getItem(url);
+        setUsers(getUsers);
       } catch (err) {
         setError(`Error al obtener los usuarios: ${err.message}`);
       } finally {
@@ -65,13 +61,9 @@ const FormReservationEdit = ({
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-          const url = `${apiUrl}/rooms/${checkIn}/${checkOut}`;
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error("Error al obtener las habitaciones disponibles");
-          }
-          const data = await response.json();
-          setRooms(data);
+          const url = `/rooms/${checkIn}/${checkOut}`;
+          const getRooms = await getItem(url);
+          setRooms(getRooms);
         } catch (err) {
           console.error(err);
         } finally {

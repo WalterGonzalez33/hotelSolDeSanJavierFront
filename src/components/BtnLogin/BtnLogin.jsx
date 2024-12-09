@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import { RiLogoutBoxLine, RiLogoutBoxRLine } from "react-icons/ri";
 
 const BtnLogin = () => {
-  const tokenUser = JSON.parse(
-    sessionStorage.getItem("usuariosHotel") || "null"
-  );
+  const tokenUser = JSON.parse(sessionStorage.getItem("userToken") || "null");
   const handleAuth = () => {
     if (tokenUser) {
-      sessionStorage.removeItem("usuariosHotel");
+      sessionStorage.removeItem("userToken");
     }
   };
 

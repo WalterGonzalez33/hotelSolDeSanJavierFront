@@ -4,6 +4,7 @@ import {
   Route,
   useLocation,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import Index from "./components/pages/Index";
 import Footer from "./components/common/Footer/Footer";
@@ -18,8 +19,9 @@ import Contactos from "./components/pages/Contactos.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 import { useEffect, useState } from "react";
-import { getItem } from "./utils/requests.js";
+import { checkValidateToken, getItem, getToken } from "./utils/requests.js";
 import Register from "./components/pages/Register/Register.jsx";
+import { showCustomAlert } from "./utils/customAlert.js";
 
 function App() {
   return (
@@ -33,9 +35,11 @@ function App() {
 
 const AppContent = () => {
   const location = useLocation();
-  const usuario = JSON.parse(sessionStorage.getItem("usuariosHotel") || "null");
+  const usuario = JSON.parse(sessionStorage.getItem("userToken") || "null");
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuario);
   const [rollUser, setRollUser] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getUserRoll = async () => {
@@ -49,6 +53,35 @@ const AppContent = () => {
     }
   }, [usuario]);
 
+  useEffect(() => {
+    const checkCurrentToken = getToken();
+
+    const redirectionLogin = () => {
+      sessionStorage.removeItem("userToken");
+      navigate("/login");
+    };
+
+    const redirectionInvalidToken = async () => {
+      const token = await checkValidateToken();
+
+      if (!token) {
+        await showCustomAlert({
+          alertTitle: "Lo siento",
+          alertText: "Tu sesión a expirado, ingrese nuevamente",
+          icon: "warning",
+          confirmText: "IR",
+          continueConfirm: true,
+          controlDismissed: true,
+          callback: () => redirectionLogin(),
+          callbackDismissed: () => redirectionLogin(),
+        });
+      }
+    };
+
+    if (checkCurrentToken) {
+      redirectionInvalidToken();
+    }
+  }, [navigate, usuario]);
   return (
     <>
       {location.pathname !== "/login" && location.pathname !== "/registro" && (
