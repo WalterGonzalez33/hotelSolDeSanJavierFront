@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { checkValidateToken } from "../utils/requests";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 if (!apiUrl) {
@@ -8,10 +9,6 @@ if (!apiUrl) {
     "Warning: `VITE_API_URL` is not defined in the environment variables."
   );
 }
-
-const getToken = () => {
-  return JSON.parse(sessionStorage.getItem("userToken")).token ?? "";
-};
 
 const useFetch = ({
   endPoint = "/",
@@ -31,7 +28,10 @@ const useFetch = ({
     const fetchData = async () => {
       setLoading(true);
       try {
-        const token = getToken();
+        const token = await checkValidateToken();
+        if (!token) {
+          return false;
+        }
         const response = await fetch(`${apiUrl + endPoint}`, {
           method: `${reqMethod}`,
           headers: {

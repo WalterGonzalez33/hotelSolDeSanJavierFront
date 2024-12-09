@@ -19,7 +19,7 @@ import Contactos from "./components/pages/Contactos.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
 import { useEffect, useState } from "react";
-import { checkValidateToken, getItem } from "./utils/requests.js";
+import { checkValidateToken, getItem, getToken } from "./utils/requests.js";
 import Register from "./components/pages/Register/Register.jsx";
 import { showCustomAlert } from "./utils/customAlert.js";
 
@@ -54,15 +54,17 @@ const AppContent = () => {
   }, [usuario]);
 
   useEffect(() => {
+    const checkCurrentToken = getToken();
+
     const redirectionLogin = () => {
       sessionStorage.removeItem("userToken");
       navigate("/login");
     };
 
     const redirectionInvalidToken = async () => {
-      const checkToken = await checkValidateToken();
+      const token = await checkValidateToken();
 
-      if (!checkToken) {
+      if (!token) {
         await showCustomAlert({
           alertTitle: "Lo siento",
           alertText: "Tu sesión a expirado, ingrese nuevamente",
@@ -76,7 +78,9 @@ const AppContent = () => {
       }
     };
 
-    redirectionInvalidToken();
+    if (checkCurrentToken) {
+      redirectionInvalidToken();
+    }
   }, [navigate, usuario]);
   return (
     <>

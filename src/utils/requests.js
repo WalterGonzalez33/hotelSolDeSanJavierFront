@@ -1,17 +1,18 @@
-
-const getToken = () => {
-  if(sessionStorage.getItem('userToken')){
-    return JSON.parse(sessionStorage.getItem('userToken')).token
-  }
-  return true
-}
-
 const apiUrl = import.meta.env.VITE_API_URL;
+
+export const getToken = () => {
+  if(sessionStorage.getItem('userToken')){
+    return JSON.parse(sessionStorage.getItem('userToken')).token ?? false
+  }
+  return false
+}
 
 export const checkValidateToken = async () => {
   try {
     const token = getToken()
-    if(token){ return true }
+    
+    if(!token) { return false }
+    
 
     const response = await fetch(`${apiUrl}checkToken`, {
         method: 'POST',
@@ -23,7 +24,7 @@ export const checkValidateToken = async () => {
       if (response.status >= 401){
         return false
       }
-      return true
+      return token
   } catch (err) {
       console.warn(err)
       return err
@@ -46,7 +47,9 @@ export const login = async (usuario) => {
 
 export const create = async (dataBody, endpoint) => {
     try {
-      const token = getToken()
+      const token = await checkValidateToken()
+      if( !token ) { return false }
+
       const parseData = JSON.stringify(dataBody)
       const response = await fetch(`${apiUrl}${endpoint}`, {
           method: 'POST',
@@ -68,7 +71,9 @@ export const create = async (dataBody, endpoint) => {
 
 export const getItem = async (endpoint) => {
   try {
-    const token = getToken()
+    const token = await checkValidateToken()
+    if(!token) { return false }
+
     const response = await fetch(`${apiUrl}${endpoint}`,
       {
         headers:{
@@ -89,7 +94,9 @@ export const getItem = async (endpoint) => {
 
 export const editItem = async (dataBody, endpoint) => {
   try {
-      const token = getToken()
+    const token = await checkValidateToken()
+    if(!token) { return false }
+
       const parseData = JSON.stringify(dataBody)
       const response = await fetch(`${apiUrl}${endpoint}`, {
           method: 'PUT',
@@ -113,7 +120,9 @@ export const editItem = async (dataBody, endpoint) => {
 
 export const deleteItem = async (endpoint) => {
     try {
-        const token = getToken()  
+      const token = await checkValidateToken()
+      if(!token) { return false }
+
         const response = await fetch(`${apiUrl}${endpoint}`, {
             method: 'DELETE',
             headers: {
