@@ -16,6 +16,7 @@ const useFetch = ({
   bodyData = null,
   headers = {},
   reload,
+  ignoreToken = false,
 }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,9 +30,13 @@ const useFetch = ({
       setLoading(true);
       try {
         const token = await checkValidateToken();
-        if (!token) {
-          return false;
+
+        if (!ignoreToken) {
+          if (!token) {
+            return false;
+          }
         }
+
         const response = await fetch(`${apiUrl + endPoint}`, {
           method: `${reqMethod}`,
           headers: {
