@@ -1,61 +1,50 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
-import Swal from "sweetalert2";
 import style from "../FormrRoom/FormRoom.module.css";
 import { editItem } from "../../../utils/requests";
-
+import { showCustomAlert } from "../../../utils/customAlert";
 
 const FormRoomEdit = ({ handleClose, reload, setReload, dataRoom }) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const [error, setError] = useState(null);
 
-  const onSubmit = async (data) => {
-    const benefitsArray = [];
-    if (data.tv) benefitsArray.push("TV");
-    if (data.wifi) benefitsArray.push("WIFI");
-    if (data.bathroom) benefitsArray.push("Baño privado");
-    if (data.phone) benefitsArray.push("Teléfono");
-
-    const roomData = {
-      ...data,
-      benefits: benefitsArray,
-    };
-
-    try {
-      const endpoint = `/rooms/${dataRoom.id}`;
-      const response = await editItem(roomData, endpoint);
-
-      if (!response.ok) {
-        throw new Error("Error al actualizar la habitación");
-      }
-
-      Swal.fire({
-        title: "¡Éxito!",
-        text: "La habitación ha sido actualizada correctamente.",
-        icon: "success",
-        confirmButtonText: "Aceptar",
+  const editRoom = async (data) => {
+    const request = await editItem(data, `rooms/${dataRoom._id}`);
+    if (request.status === 200 || request.status === 201) {
+      showCustomAlert({
+        alertTitle: "Éxito",
+        alertText: "La habitación fue editada correctamente",
       });
-
       handleClose();
       setReload(!reload);
-      reset();
-    } catch (err) {
-      setError(`Error al actualizar la habitación: ${err.message}`);
-      Swal.fire({
-        title: "Error",
-        text: `Hubo un problema al actualizar la habitación: ${err.message}`,
-        icon: "error",
-        confirmButtonText: "Aceptar",
+    }
+    if (request.status === 400) {
+      const res = await request.json();
+      showCustomAlert({
+        alertTitle: "Cuidado!",
+        alertText: `${res.message ? res.message : res.message}`,
+        icon: "warning",
       });
     }
   };
+
+  const onSubmit = (data) =>{
+    const benefits = [];
+    if (data.tv) benefits.push("TV");
+    if (data.wifi) benefits.push("WIFI");
+    if (data.bathroom) benefits.push("Baño privado");
+    if (data.phone) benefits.push("Teléfono");
+    const roomData = {
+      ...data,
+      benefits,
+    };
+    console.log(roomData)
+    editRoom(roomData);
+  }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
@@ -206,8 +195,6 @@ const FormRoomEdit = ({ handleClose, reload, setReload, dataRoom }) => {
       <Button variant="success" type="submit">
         Guardar cambios
       </Button>
-
-      {error && <p className="text-danger">{error}</p>}
     </Form>
   );
 };
