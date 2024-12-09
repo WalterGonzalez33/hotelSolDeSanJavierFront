@@ -4,8 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import style from "../FormUser/FormUser.module.css";
 import { validationDate } from "../../../utils/validateDate";
 import { showCustomAlert } from "../../../utils/customAlert";
-
-const apiUrl = import.meta.env.VITE_API_URL;
+import { create, getItem } from "../../../utils/requests";
 
 const FormReservation = ({
   handleClose,
@@ -33,13 +32,9 @@ const FormReservation = ({
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const url = `${apiUrl}/users`;
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Error al obtener los usuarios");
-        }
-        const data = await response.json();
-        setUsers(data);
+        const url = `/users`;
+        const getUsers = await getItem(url);
+        setUsers(getUsers);
       } catch (err) {
         setError(`Error al obtener los usuarios: ${err.message}`);
       } finally {
@@ -55,13 +50,9 @@ const FormReservation = ({
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-          const url = `${apiUrl}/rooms/${checkIn}/${checkOut}`;
-          const response = await fetch(url);
-          if (!response.ok) {
-            throw new Error("Error al obtener las habitaciones disponibles");
-          }
-          const data = await response.json();
-          setRooms(data);
+          const url = `/rooms/${checkIn}/${checkOut}`;
+          const getRooms = await getItem(url);
+          setRooms(getRooms);
         } catch (err) {
           console.error(err);
         } finally {
@@ -85,26 +76,23 @@ const FormReservation = ({
           persons: data.persons,
         };
 
-        const response = await fetch(`${apiUrl}reservation/create`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(reservationData),
-        });
-        if(response.status === 400){
-          const res = await response.json();
+        const createReservation = await create(
+          reservationData,
+          `reservation/create`
+        );
+        if (createReservation.status === 400) {
+          const res = await createReservation.json();
           return showCustomAlert({
             alertTitle: "Cuidado!",
             alertText: `${res.message ? res.message : res.mensaje}`,
             icon: "warning",
-          })
+          });
         }
         showCustomAlert({
           alertTitle: "Éxito",
           alertText: "La reserva fue creada correctamente",
-          confirmText: 'CONFIRMAR'
-        })
+          confirmText: "CONFIRMAR",
+        });
         reset();
         setReload(!reload);
         handleClose();

@@ -12,7 +12,7 @@ export const showCustomAlert = ({
     controlDismissed = false,
     callbackDismissed = null
 }) => {
-    Swal.fire({
+    return Swal.fire({
       title: alertTitle,
       text: alertText,
       icon: `${icon}`,
