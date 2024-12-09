@@ -2,14 +2,39 @@ import { FaPen, FaTrash, FaCalendarDay } from "react-icons/fa";
 import style from "../RowRoom/RowRoom.module.css";
 import { Button } from "react-bootstrap";
 
+const RowRoom = ({
+  image,
+  room_name,
+  price,
+  broad_description,
+  brief_description,
+  number_rooms,
+  benefits,
+  handleShowEdit,
+  setDataRoom,
+  setReload,
+  reload,
+}) => {
 
-const RowRoom = ({  image, room_name, price, broad_description }) => {
+  const handleClickEdit = () => {
+    setDataRoom({
+      image,
+      room_name,
+      price,
+      broad_description,
+      brief_description,
+      number_rooms,
+      benefits,
+    })
+    handleShowEdit();
+  }
+
   return (
     <tr className={` ${style.room_row_container} `}>
-        <td>
-        <img 
-          src={image} 
-          alt={`Imagen de ${room_name}`} 
+      <td>
+        <img
+          src={image}
+          alt={`Imagen de ${room_name}`}
           className={style.room_image}
         />
       </td>
@@ -18,13 +43,12 @@ const RowRoom = ({  image, room_name, price, broad_description }) => {
       <td className={`${style.description_text}`}>{broad_description}</td>
       <td>
         <div className={`${style.buttons_container}`}>
-        
-            <Button className={` ${style.action_button} `}>
-            <FaPen/>
-            </Button>
-            <Button className={` ${style.action_button} `}>
+          <Button className={` ${style.action_button} `} onClick={handleClickEdit}>
+            <FaPen />
+          </Button>
+          <Button className={` ${style.action_button} `}>
             <FaTrash />
-            </Button>
+          </Button>
         </div>
       </td>
     </tr>
@@ -32,4 +56,3 @@ const RowRoom = ({  image, room_name, price, broad_description }) => {
 };
 
 export default RowRoom;
-

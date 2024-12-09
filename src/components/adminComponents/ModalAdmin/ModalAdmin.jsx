@@ -5,6 +5,7 @@ import FormUserEdit from "../FormUserEdit/FormUserEdit";
 import FormReservation from "../FormReservation/FormReservation";
 import FormRoom from "../FormrRoom/FormRoom";
 import FormReservationEdit from "../FormReservationEdit/FormReservationEdit";
+import FormRoomEdit from "../FormRoomEdit/FormRoomEdit";
 
 function ModalAdmin({
   show,
@@ -64,9 +65,9 @@ function ModalAdmin({
             dataReservation={dataReservation}
           />
         )}
-        {form === "room" && <FormRoom />}
+        {form === "room" && (<FormRoom />)}
         {form === "roomEdit" && (
-          <FormReservationEdit
+          <FormRoomEdit
             handleClose={handleClose}
             setReload={setReload}
             reload={reload}

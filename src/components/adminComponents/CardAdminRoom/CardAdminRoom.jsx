@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import RowRoom from "../RowRoom/RowRoom.jsx";
 import useFetch from "../../../hooks/useFetch.jsx";
-import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx"
-import AdminSearch from "../AdminSearch/AdminSearch.jsx"
+import ModalAdmin from "../ModalAdmin/ModalAdmin.jsx";
+import AdminSearch from "../AdminSearch/AdminSearch.jsx";
 import style from "../CardAdminRoom/CardAdminRoom.module.css";
 
 const HandleLoading = () => {
@@ -18,12 +18,17 @@ const HandleLoading = () => {
 };
 
 const CardAdminRoom = () => {
+  const [reload, setReload] = useState(false);
+  const [dataRoom, setDataRoom] = useState(null);
   const { data, loading, error } = useFetch({ endPoint: "rooms" });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
+  const [editShow, setEditShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setEditShow(false);
+  const handleShowEdit = () => setEditShow(true);
 
   useEffect(() => {
     setCurrentData(data);
@@ -47,28 +52,46 @@ const CardAdminRoom = () => {
             title={"Crea una habitación"}
             form={"room"}
           />
+          <ModalAdmin
+            show={editShow}
+            handleClose={handleCloseEdit}
+            title={"Edita la habitación"}
+            form={"roomEdit"}
+            dataRoom={dataRoom}
+            setReload={setReload}
+            reload={reload}
+          />
         </div>
       )}
       {currentData && (
         <div className={` ${style.table_container} `}>
           <Table striped responsive="lg" className={` ${style.table} `}>
-          <thead className={` ${style.thead_table} `}>
-            <tr className={` ${style.tr_room} `}>
-              <th></th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th>
-                <FaCog />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.map((room) => {
-              return <RowRoom key={room._id} {...room} />;
-            })}
-          </tbody>
-        </Table>
+            <thead className={` ${style.thead_table} `}>
+              <tr className={` ${style.tr_room} `}>
+                <th></th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th>
+                  <FaCog />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentData.map((room) => {
+                return (
+                  <RowRoom
+                    key={room._id}
+                    {...room}
+                    handleShowEdit={handleShowEdit}
+                    setDataRoom={setDataRoom}
+                    setReload={setReload}
+                    reload={reload}
+                  />
+                );
+              })}
+            </tbody>
+          </Table>
         </div>
       )}
     </div>
