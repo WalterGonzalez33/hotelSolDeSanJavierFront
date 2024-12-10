@@ -12,7 +12,7 @@ const AdminRoute = () => {
         <Route path="reservations" element={<ReservationContainer />} />
         <Route path="reservations/:user" element={<ReservationContainer />} />
         <Route path="rooms" element={<CardAdminRoom />}>
-          <Route path="edit/:id" element={<h1>edit habitaciones</h1>} />
+          <Route path="rooms/:id" element={<CardAdminRoom/>} />
         </Route>
       </Route>
     </Routes>
