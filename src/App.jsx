@@ -42,10 +42,16 @@ const AppContent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!location.pathname.includes("/filter/")) {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
+  useEffect(() => {
     const getUserRoll = async () => {
-      const userLog = await getItem(`users/${usuario.id}`);
+      const userLog = await getItem(`/get-roll-user/${usuario.id}`);
       if (userLog) {
-        setRollUser(userLog.roll);
+        setRollUser(userLog);
       }
     };
     if (usuario) {

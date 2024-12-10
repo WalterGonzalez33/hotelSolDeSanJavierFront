@@ -24,6 +24,9 @@
     flex-wrap: 1;
   }
 
+  footer{
+    margin-top: 200px;
+  }
   .color-custom-light{
     color: rgb(var(--color-accent-light))!important;
   }

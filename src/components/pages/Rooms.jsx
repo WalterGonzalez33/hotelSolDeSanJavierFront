@@ -6,7 +6,7 @@ const RoomsContainer = () => {
   const { data } = useFetch({ endPoint: `/rooms`, ignoreToken: true });
 
   return (
-    <Container className="d-flex flex-column gap-3 p-5">
+    <Container className="d-flex flex-column gap-3 pt-5">
       {data !== null &&
         data.length > 0 &&
         data.map((room) => (

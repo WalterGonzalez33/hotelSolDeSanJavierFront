@@ -5,61 +5,79 @@ import logo from "../../../assets/logo.png";
 import { useEffect, useState, useRef } from "react";
 import BtnLogin from "../../BtnLogin/BtnLogin";
 import NavLink from "../NavLink/NavLink";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import { getItem } from "../../../utils/requests";
 
 const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const [widthWindowState, setWidthWindowState] = useState(window.innerWidth);
-  const [currentLink, setCurrentLink] = useState(
-    sessionStorage.getItem("currentLink") || "inicio"
-  );
+  const [routesList, setRoutesList] = useState([]);
   const navbarRef = useRef(null);
-  const tokenUser = JSON.parse(sessionStorage.getItem("userToken"));
+  const userId = JSON.parse(sessionStorage.getItem("userToken"))?.id ?? false;
 
-  const routesList = [
-    {
-      pathToLink: "/",
-      routeName: "Inicio",
-    },
-    {
-      pathToLink: "/habitaciones",
-      routeName: "Habitaciones",
-    },
-    {
-      pathToLink: "/sobre-nosotros",
-      routeName: "Sobre nosotros",
-    },
-    {
-      pathToLink: "/contacto",
-      routeName: "Contacto",
-    },
-    {
-      pathToLink: "/galeria",
-      routeName: "Galería",
-    },
-    ...(tokenUser
-      ? [
-          {
-            pathToLink: "/admin",
-            routeName: "Administrador",
-          },
-        ]
-      : []),
-  ];
+  const location = useLocation();
+
+  const getUserRoll = async () => {
+    if (!userId) {
+      return;
+    }
+    const getUser = await getItem(`/get-roll-user/${userId}`);
+    return getUser ?? false;
+  };
 
   const handleResizeWindow = () => {
     let newWidth = window.innerWidth;
     setWidthWindowState(newWidth);
   };
-  const handleLink = (currentLinkParam) => {
-    sessionStorage.setItem("currentLink", currentLinkParam);
-    setCurrentLink(sessionStorage.getItem("currentLink"));
+  const handleLink = () => {
     setMenuIsActive(!menuIsActive);
   };
   const toggleMenu = () => {
     setMenuIsActive(!menuIsActive);
   };
+
+  useEffect(() => {
+    const fillRoutesList = async () => {
+      const rollUser = await getUserRoll();
+      const listRoutes = [
+        {
+          pathToLink: "/",
+          routeName: "Inicio",
+        },
+        {
+          pathToLink: "/habitaciones",
+          routeName: "Habitaciones",
+        },
+        {
+          pathToLink: "/sobre-nosotros",
+          routeName: "Sobre nosotros",
+        },
+        {
+          pathToLink: "/contacto",
+          routeName: "Contacto",
+        },
+        {
+          pathToLink: "/galeria",
+          routeName: "Galería",
+        },
+        rollUser === "Admin" && {
+          pathToLink: "/admin",
+          routeName: "Administrador",
+        },
+      ];
+
+      if (listRoutes[listRoutes.length - 1]) {
+        setRoutesList(listRoutes);
+        return;
+      } else {
+        listRoutes.pop();
+        setRoutesList(listRoutes);
+      }
+    };
+
+    fillRoutesList();
+  }, [location.pathname]);
 
   useEffect(() => {
     if (menuIsActive) {
@@ -99,7 +117,6 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, [widthWindowState]);
-
   return (
     <header className={` ${style.header} `}>
       <nav
@@ -120,7 +137,7 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
           </button>
 
           <div className={` ${style.navbar_brand} `}>
-            <a className="navbar-brand" href="">
+            <a className="navbar-brand" href="/">
               <img src={logo} alt="" className="img-fluid" />
             </a>
           </div>
@@ -133,22 +150,22 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
             } `}
           >
             <ul className="navbar-nav text-center">
-              {routesList.map((route, index) => {
-                return (
-                  <NavLink
-                    key={index}
-                    handleLink={handleLink}
-                    pathToLink={route.pathToLink}
-                    routeName={route.routeName}
-                    currentLink={currentLink}
-                  />
-                );
-              })}
+              {routesList.length > 0 &&
+                routesList.map((route, index) => {
+                  return (
+                    <NavLink
+                      key={index}
+                      handleLink={handleLink}
+                      pathToLink={route.pathToLink}
+                      routeName={route.routeName}
+                    />
+                  );
+                })}
               <BtnLogin
                 setUsuarioLogueado={setUsuarioLogueado}
                 usuarioLogueado={usuarioLogueado}
               />
-              {!tokenUser && (
+              {!userId && (
                 <li className="nav-item">
                   {" "}
                   <Link to="/registro" className={style.register_link}>
