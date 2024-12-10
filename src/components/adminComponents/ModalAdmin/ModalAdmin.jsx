@@ -65,7 +65,13 @@ function ModalAdmin({
             dataReservation={dataReservation}
           />
         )}
-        {form === "room" && (<FormRoom />)}
+        {form === "room" && (
+          <FormRoom
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+          />
+        )}
         {form === "roomEdit" && (
           <FormRoomEdit
             handleClose={handleClose}

@@ -14,6 +14,7 @@ const RowRoom = ({
   setDataRoom,
   setReload,
   reload,
+  _id,
 }) => {
 
   const handleClickEdit = () => {
@@ -25,6 +26,7 @@ const RowRoom = ({
       brief_description,
       number_rooms,
       benefits,
+      _id,
     })
     handleShowEdit();
   }

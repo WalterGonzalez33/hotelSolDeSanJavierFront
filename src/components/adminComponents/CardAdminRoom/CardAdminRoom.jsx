@@ -20,7 +20,7 @@ const HandleLoading = () => {
 const CardAdminRoom = () => {
   const [reload, setReload] = useState(false);
   const [dataRoom, setDataRoom] = useState(null);
-  const { data, loading, error } = useFetch({ endPoint: "rooms" });
+  const { data, loading, error } = useFetch({ endPoint: "rooms", reload });
   const [currentData, setCurrentData] = useState(data);
   const [show, setShow] = useState(false);
   const [editShow, setEditShow] = useState(false);

@@ -4,13 +4,12 @@ import style from "../FormrRoom/FormRoom.module.css";
 import { editItem } from "../../../utils/requests";
 import { showCustomAlert } from "../../../utils/customAlert";
 
-const FormRoomEdit = ({ handleClose, reload, setReload, dataRoom }) => {
+const FormRoomEdit = ({ handleClose, setReload, reload, dataRoom }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
 
   const editRoom = async (data) => {
     const request = await editItem(data, `rooms/${dataRoom._id}`);
@@ -42,13 +41,12 @@ const FormRoomEdit = ({ handleClose, reload, setReload, dataRoom }) => {
       ...data,
       benefits,
     };
-    console.log(roomData)
     editRoom(roomData);
   }
-
+  const formId = "editModal"
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
-      <Form.Group className="mb-3" controlId="formRoomEditName">
+      <Form.Group className="mb-3" controlId={`formRoomName-${formId}`}>
         <Form.Label>Nombre de la habitación</Form.Label>
         <Form.Select
           className={`d-inline-flex focus-ring focus-ring-success ${style.input}`}
@@ -193,7 +191,7 @@ const FormRoomEdit = ({ handleClose, reload, setReload, dataRoom }) => {
         />
       </Form.Group>
       <Button variant="success" type="submit">
-        Guardar cambios
+        {"Editar"}
       </Button>
     </Form>
   );
