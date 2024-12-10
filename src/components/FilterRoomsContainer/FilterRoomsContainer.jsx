@@ -17,10 +17,10 @@ const FilterRoomsContainer = () => {
 
   const { data, loading, error } = useFetch({
     endPoint: `/rooms/${check_in}/${check_out}`,
+    ignoreToken: true,
   });
 
   const HandleError = () => {
-    console.error(error);
     return (
       <div className={` ${style.error_search} `}>
         <BsXCircle />

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { checkValidateToken } from "../utils/requests";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 if (!apiUrl) {
@@ -15,6 +16,7 @@ const useFetch = ({
   bodyData = null,
   headers = {},
   reload,
+  ignoreToken = false,
 }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,10 +29,19 @@ const useFetch = ({
     const fetchData = async () => {
       setLoading(true);
       try {
+        const token = await checkValidateToken();
+
+        if (!ignoreToken) {
+          if (!token) {
+            return false;
+          }
+        }
+
         const response = await fetch(`${apiUrl + endPoint}`, {
           method: `${reqMethod}`,
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
             ...headers,
           },
           ...(reqMethod !== "GET" && { body: JSON.stringify(bodyData) }),

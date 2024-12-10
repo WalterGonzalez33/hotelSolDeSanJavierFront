@@ -13,6 +13,7 @@
 }
 @media (min-width: 992px) {
     .admin_container{
+        position: relative;
         flex-flow: row;
         justify-content: end;
         min-height: 100dvh;

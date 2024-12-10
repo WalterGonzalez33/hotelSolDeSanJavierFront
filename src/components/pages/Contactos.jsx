@@ -1,8 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { BsFillTelephoneFill ,  BsGeoAltFill  } from "react-icons/bs";
-
-
+import { BsFillTelephoneFill, BsGeoAltFill } from "react-icons/bs";
 
 const Contactos = () => {
   const {
@@ -16,19 +14,21 @@ const Contactos = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center vh-80 bg-light rounded-4 mt-1 mb-1">
+    <Container className="d-flex justify-content-center align-items-center vh-100 rounded-4 mt-1 mb-1 pb-5">
       <Row>
         <Col md={12} xs={12}>
           <Form
             className=" mb-1 letter-spacing "
             onSubmit={handleSubmit(onSubmit)}
           >
-            <h1 className="mt-4 mb-4 mx-5 text-success letter-spacing">CONTACTO</h1>
+            <h1 className="mt-4 mb-4 mx-5 text-success letter-spacing">
+              CONTACTO
+            </h1>
             <h6 className="text-center">
-            <BsFillTelephoneFill /> (+54 9) (0381) 155-279796
+              <BsFillTelephoneFill /> (+54 9) (0381) 155-279796
             </h6>
             <h6 className="text-center">
-            <BsGeoAltFill /> Ruta 340 - Km 23, San Javier
+              <BsGeoAltFill /> Ruta 340 - Km 23, San Javier
             </h6>
             <h6 className="text-center">Tucuman, Argentina</h6>
             <Form.Group

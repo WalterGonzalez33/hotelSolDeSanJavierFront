@@ -8,6 +8,9 @@ import {
   FaWrench,
 } from "react-icons/fa";
 import { BiSolidUserRectangle } from "react-icons/bi";
+import { showCustomAlert } from "../../../utils/customAlert";
+import { deleteItem } from "../../../utils/requests";
+import { useNavigate } from "react-router-dom";
 
 const RowUser = ({
   _id,
@@ -17,7 +20,11 @@ const RowUser = ({
   roll,
   handleShowEdit,
   setDataUser,
+  setReload,
+  reload,
 }) => {
+  const navigate = useNavigate();
+
   const handleClickEdit = () => {
     handleShowEdit();
     setDataUser({
@@ -28,6 +35,55 @@ const RowUser = ({
       _id,
     });
   };
+
+  const redirectionReservation = () => {
+    navigate(`/admin/reservations/${_id}`);
+  };
+  const handleReservationsClick = () => {
+    showCustomAlert({
+      alertTitle: `Quieres ver las reservas del usuario (${username})`,
+      alertText: "",
+      icon: "warning",
+      confirmText: "CONTINUAR",
+      cancelText: "VOLVER",
+      showCancel: true,
+      continueConfirm: true,
+      callback: redirectionReservation,
+    });
+  };
+  const handleDelete = async () => {
+    try {
+      const deleteUserResponse = await deleteItem(`/users/${_id}`);
+      if (!deleteUserResponse.ok) {
+        const resultDeleteUser = await deleteUserResponse.json();
+        showCustomAlert({
+          alertTitle: "No se pudo eliminar el usuario!!",
+          alertText: "",
+          icon: "danger",
+        });
+        throw new Error(resultDeleteUser.message);
+      }
+      showCustomAlert({
+        alertTitle: "El usuario fue eliminado correctamente!!",
+        alertText: "",
+      });
+      setReload(!reload);
+    } catch (err) {
+      console.error(err, err.message);
+    }
+  };
+
+  const handleClickDelete = () => {
+    showCustomAlert({
+      alertTitle: `Quieres eliminar el usuario (${username})`,
+      alertText: "Luego de esta acción no podrás volver atrás!!",
+      icon: "warning",
+      showCancel: true,
+      continueConfirm: true,
+      callback: handleDelete,
+    });
+  };
+
   return (
     <tr className={` ${style.user_row_container} `}>
       <td className={` ${style.user_icon} `}>
@@ -71,7 +127,10 @@ const RowUser = ({
       </td>
       <td>
         <div className={` ${style.buttons_container} `}>
-          <Button className={` ${style.action_button} `}>
+          <Button
+            className={` ${style.action_button} `}
+            onClick={handleReservationsClick}
+          >
             <FaCalendarDay />
           </Button>
           <Button
@@ -80,7 +139,10 @@ const RowUser = ({
           >
             <FaPen />
           </Button>
-          <Button className={` ${style.action_button} `}>
+          <Button
+            className={` ${style.action_button} `}
+            onClick={handleClickDelete}
+          >
             <FaTrash />
           </Button>
         </div>

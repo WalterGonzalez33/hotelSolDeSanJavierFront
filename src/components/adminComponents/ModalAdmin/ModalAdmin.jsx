@@ -3,7 +3,9 @@ import style from "./ModalAdmin.module.css";
 import FormUser from "../FormUser/FormUser";
 import FormUserEdit from "../FormUserEdit/FormUserEdit";
 import FormReservation from "../FormReservation/FormReservation";
-import FormRoom from "../FormrRoom/FormRoom"
+import FormRoom from "../FormrRoom/FormRoom";
+import FormReservationEdit from "../FormReservationEdit/FormReservationEdit";
+import FormRoomEdit from "../FormRoomEdit/FormRoomEdit";
 
 function ModalAdmin({
   show,
@@ -13,6 +15,9 @@ function ModalAdmin({
   setReload,
   reload,
   dataUser,
+  dataReservation,
+  dataRoom,
+  userValue,
 }) {
   return (
     <Modal
@@ -44,8 +49,37 @@ function ModalAdmin({
             dataUser={dataUser}
           />
         )}
-        {form === "reservation" && <FormReservation />}
-          {form === "room" && <FormRoom/>}
+        {form === "reservation" && (
+          <FormReservation
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            userValue={userValue}
+          />
+        )}
+        {form === "reservationEdit" && (
+          <FormReservationEdit
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            dataReservation={dataReservation}
+          />
+        )}
+        {form === "room" && (
+          <FormRoom
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+          />
+        )}
+        {form === "roomEdit" && (
+          <FormRoomEdit
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            dataRoom={dataRoom}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );

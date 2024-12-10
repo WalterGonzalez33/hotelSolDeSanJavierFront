@@ -3,14 +3,16 @@ import Swal from "sweetalert2";
 export const showCustomAlert = ({
     alertTitle = 'Joya',
     icon = 'success',
-    confirmText = 'confirmar',
-    cancelText = 'cancelar',
+    confirmText = 'CONFIRMAR',
+    cancelText = 'CANCELAR',
     alertText = 'Todo perfecto',
     showCancel = false,
     continueConfirm = false,
     callback = null,
+    controlDismissed = false,
+    callbackDismissed = null
 }) => {
-    Swal.fire({
+    return Swal.fire({
       title: alertTitle,
       text: alertText,
       icon: `${icon}`,
@@ -19,8 +21,8 @@ export const showCustomAlert = ({
       cancelButtonColor: "#ff8a7a", 
       confirmButtonText: `${confirmText}`,
       cancelButtonText: `${cancelText}`,
-      background: "#f4f6f7", 
-      color: "#333",
+      background: "#eff6ef", 
+      color: "#585858",
       customClass: {
         title: "my-title-class",
         popup: "my-popup-class",
@@ -32,6 +34,11 @@ export const showCustomAlert = ({
             if (result.isConfirmed) {
                     callback()
               }
+        }
+        if(controlDismissed){
+            if (result.isDismissed) {
+                    callbackDismissed()
+            }
         }
     });
   };

@@ -1,13 +1,12 @@
 import style from "./BtnLogin.module.css";
 import { Link } from "react-router-dom";
+import { RiLogoutBoxLine, RiLogoutBoxRLine } from "react-icons/ri";
 
 const BtnLogin = () => {
-  const tokenUser = JSON.parse(
-    sessionStorage.getItem("usuariosHotel") || "null"
-  );
+  const tokenUser = JSON.parse(sessionStorage.getItem("userToken") || "null");
   const handleAuth = () => {
     if (tokenUser) {
-      sessionStorage.removeItem("usuariosHotel");
+      sessionStorage.removeItem("userToken");
     }
   };
 
@@ -17,7 +16,7 @@ const BtnLogin = () => {
         className={`mt-2 ms-lg-3 mt-lg-0 ${style.btn_login}`}
         onClick={handleAuth}
       >
-        {tokenUser ? "Log out" : "Log in"}
+        {tokenUser ? <RiLogoutBoxLine /> : <RiLogoutBoxRLine />}
       </button>
     </Link>
   );

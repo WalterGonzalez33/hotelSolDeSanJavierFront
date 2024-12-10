@@ -96,7 +96,7 @@
 }
 
 .register_link {
-  border: 2px solid rgba(255, 255, 255, 0.8);
+  border: none;
   border-radius: 8px;
   padding: 10px 20px;
   color: var(--color-light-secondary);
@@ -106,8 +106,9 @@
   cursor: pointer;
   display: inline-block;
   text-align: center;
+  transform: scale(1.8);
   &:hover {
-    background-color: rgba(244, 246, 255, 0.2);
+    color: rgba(244, 246, 255, 0.7);
     transition: all 0.3s ease;
   }
 }
@@ -163,6 +164,9 @@
     }
   }
   .navbar_brand {
+    margin-left: 10px;
+  }
+  .register_link{
     margin-left: 10px;
   }
 }

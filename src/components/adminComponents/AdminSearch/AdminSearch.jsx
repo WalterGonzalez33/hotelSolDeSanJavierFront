@@ -1,13 +1,20 @@
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-const AdminSearch = ({ data, setData }) => {
+const AdminSearch = ({ data, setData, reservation = null }) => {
   const filterData = (element) => {
     const valueInput =
       typeof element === "string" ? element : element.target?.value;
-    const newList = data.filter((user) => {
-      return user.email.includes(valueInput);
-    });
-    setData(newList);
+    if (reservation) {
+      const newList = data.filter((reser) => {
+        return reser.user_reservation.email.includes(valueInput);
+      });
+      setData(newList);
+    } else {
+      const newList = data.filter((user) => {
+        return user.email.includes(valueInput);
+      });
+      setData(newList);
+    }
   };
   const handleSubmit = (form) => {
     form.preventDefault();
@@ -15,7 +22,7 @@ const AdminSearch = ({ data, setData }) => {
     filterData(inputElementValue);
   };
   return (
-    <div className="mb-3">
+    <div className="mb-0">
       <Form onSubmit={(e) => handleSubmit(e)}>
         <Row>
           <Col xs="auto">

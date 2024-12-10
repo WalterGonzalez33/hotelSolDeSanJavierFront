@@ -1,5 +1,20 @@
+
 .room_row_container{
     background-color: transparent !important;
+
+    .user_icon{
+        font-size: 2rem; 
+        svg{
+            color: rgb(var(--color-accent));
+        }
+    }
+    &:nth-child(odd){
+        .user_icon{
+            svg{
+                color: rgb(var(--color-accent-light));
+            }
+        }
+    }
 }
 
 .buttons_container{
@@ -54,12 +69,16 @@ td{
     }
 }
 
+.description_text {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 750px;
+}
+
 .room_image {
     width: 70%;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
   }
-
-  
-

@@ -4,13 +4,15 @@ import { Form, Button } from "react-bootstrap";
 import style from "../FormUser/FormUser.module.css";
 import { validationDate } from "../../../utils/validateDate";
 import { showCustomAlert } from "../../../utils/customAlert";
-import { create, getItem } from "../../../utils/requests";
+import { editItem, getItem } from "../../../utils/requests";
 
-const FormReservation = ({
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const FormReservationEdit = ({
   handleClose,
   reload,
   setReload,
-  userValue = null,
+  dataReservation,
 }) => {
   const {
     register,
@@ -24,10 +26,19 @@ const FormReservation = ({
   const [rooms, setRooms] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [loadingRooms, setLoadingRooms] = useState(false);
+  const [currentUserData, setCurrentUserData] = useState({});
   const [error, setError] = useState(null);
 
   const checkIn = watch("check_in");
   const checkOut = watch("check_out");
+
+  useEffect(() => {
+    const getCurrentUser = async () => {
+      const getUser = await getItem(`/users/${dataReservation.user_id}`);
+      setCurrentUserData(getUser);
+    };
+    getCurrentUser();
+  }, [dataReservation]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -64,42 +75,63 @@ const FormReservation = ({
     }
   }, [checkIn, checkOut]);
 
-  const onSubmit = async (data) => {
-    const validateResult = validationDate(data.check_in, data.check_out);
-    if (validateResult.valid) {
-      try {
-        const reservationData = {
-          user_id: data.username,
-          room_id: data.room,
-          check_in: data.check_in,
-          check_out: data.check_out,
-          persons: data.persons,
-        };
+  useEffect(() => {
+    const getCurrentRoom = async () => {
+      const currentRoom = await getItem(`/rooms/${dataReservation.room_id}`);
+      setRooms([...rooms, currentRoom[0]]);
+    };
+    getCurrentRoom();
+  }, [dataReservation]);
 
-        const createReservation = await create(
-          reservationData,
-          `reservation/create`
-        );
-        if (createReservation.status === 400) {
-          const res = await createReservation.json();
-          return showCustomAlert({
-            alertTitle: "Cuidado!",
-            alertText: `${res.message ? res.message : res.mensaje}`,
-            icon: "warning",
-          });
-        }
-        showCustomAlert({
-          alertTitle: "Éxito",
-          alertText: "La reserva fue creada correctamente",
-          confirmText: "CONFIRMAR",
+  const editReservation = async (data) => {
+    try {
+      const responseEditReservation = await editItem(
+        data,
+        `reservation/${dataReservation._id}`
+      );
+      const dataEditResponse = await responseEditReservation.json();
+      if (responseEditReservation.status === 400) {
+        return showCustomAlert({
+          alertTitle: "Cuidado!",
+          alertText: `${
+            dataEditResponse.message
+              ? dataEditResponse.message
+              : dataEditResponse.mensaje
+          }`,
+          icon: "warning",
         });
-        reset();
-        setReload(!reload);
-        handleClose();
-      } catch (err) {
-        console.error("Error al crear la reserva:", err);
-        alert("Hubo un error al crear la reserva");
       }
+      showCustomAlert({
+        alertTitle: "Éxito",
+        alertText: "La reserva fue editada correctamente",
+        confirmText: "CONFIRMAR",
+      });
+      reset();
+      setReload(!reload);
+      handleClose();
+    } catch (err) {
+      console.error("Error al crear la reserva:", err);
+    }
+  };
+
+  const onSubmit = async (data) => {
+    const validateResult = validationDate(data.check_in, data.check_out, false);
+    const reservationData = {
+      user_id: data.username,
+      room_id: data.room,
+      check_in: data.check_in,
+      check_out: data.check_out,
+      persons: data.persons,
+    };
+    if (validateResult.valid) {
+      showCustomAlert({
+        alertTitle: "Quieres editar la reserva?",
+        alertText: "",
+        icon: "warning",
+        showCancel: true,
+        continueConfirm: true,
+        callback: () => editReservation(reservationData),
+      });
     } else {
       console.error(validateResult.msj);
     }
@@ -107,8 +139,8 @@ const FormReservation = ({
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
-      <Form.Group className="mb-3" controlId="formUserName">
-        <Form.Label>Seleccionar usuario</Form.Label>
+      <Form.Group className="mb-3" controlId="formUserNameEdit">
+        <Form.Label>usuario</Form.Label>
         {loadingUsers ? (
           <Form.Text>Cargando usuarios...</Form.Text>
         ) : error ? (
@@ -121,8 +153,10 @@ const FormReservation = ({
             })}
             isInvalid={!!errors.username}
           >
-            {userValue ? (
-              <option value={userValue._id}>{userValue.username}</option>
+            {currentUserData ? (
+              <option value={currentUserData._id}>
+                {currentUserData.username}
+              </option>
             ) : users.length > 0 ? (
               <>
                 <option value="">Seleccione un usuario</option>
@@ -144,11 +178,12 @@ const FormReservation = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formCheckIn">
+      <Form.Group className="mb-3" controlId="formCheckInEdit">
         <Form.Label>Check-in</Form.Label>
         <Form.Control
           className={`d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="date"
+          defaultValue={dataReservation.check_in}
           {...register("check_in", {
             required: "La fecha de Check-in es un campo requerido",
           })}
@@ -159,11 +194,12 @@ const FormReservation = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formCheckOut">
+      <Form.Group className="mb-3" controlId="formCheckOutEdit">
         <Form.Label>Check-out</Form.Label>
         <Form.Control
           className={`d-inline-flex focus-ring focus-ring-success ${style.input}`}
           type="date"
+          defaultValue={dataReservation.check_out}
           {...register("check_out", {
             required: "La fecha de Check-out es un campo requerido",
           })}
@@ -174,7 +210,7 @@ const FormReservation = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formRoom">
+      <Form.Group className="mb-3" controlId="formRoomEdit">
         <Form.Label>Seleccionar habitación</Form.Label>
         {loadingRooms ? (
           <Form.Text>Cargando habitaciones...</Form.Text>
@@ -207,10 +243,11 @@ const FormReservation = ({
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formPersons">
+      <Form.Group className="mb-3" controlId="formPersonsEdit">
         <Form.Label>Cantidad de personas</Form.Label>
         <Form.Select
           className={`d-inline-flex focus-ring focus-ring-success ${style.input} ${style.select}`}
+          defaultValue={dataReservation.persons}
           {...register("persons", {
             required: "La cantidad de personas es un campo requerido",
           })}
@@ -233,4 +270,4 @@ const FormReservation = ({
   );
 };
 
-export default FormReservation;
+export default FormReservationEdit;
