@@ -1,10 +1,10 @@
-import { Container, Row} from "react-bootstrap";
-import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg"
+import { Container, Row } from "react-bootstrap";
+import MauroConiglio from "../../assets/imgAboutUs/MauroConiglio.jpg";
 import FernandoValdivia from "../../assets/imgAboutUs/FernandoValdivia.jpeg";
 import LeoRecalde from "../../assets/imgAboutUs/LeoRecalde.jpg";
 import TomasSantamarino from "../../assets/imgAboutUs/TomasSantamarino.jpeg";
 import WalterGonzalez from "../../assets/imgAboutUs/WalterGonzalez.jpg";
-import IsaiasGius from "../../assets/imgAboutUs/isaiasGius.jpg"
+import IsaiasGius from "../../assets/imgAboutUs/IsaiasGius.jpg";
 import CardIntegrants from "./CardIntegrants/Card_integrants.jsx";
 
 const QuienesSomos = () => {
@@ -31,47 +31,45 @@ const QuienesSomos = () => {
       urlLink: "https://github.com/MauroConiglio",
     },
     {
-        image: `${LeoRecalde}`,
-        key: 3,
-        title: "Leo Recalde",
-        urlGit: "https://github.com/leorecalde",
-        urlLink: "https://www.linkedin.com/in/leo-recalde-479b772bb/",
-      },
-      {
-        image: `${FernandoValdivia}`,
-        key: 3,
-        title: "Fernando Valdivia",
-        urlGit: "https://github.com/Fernando-Valdivia",
-        urlLink: "https://www.linkedin.com/in/fernando-miguel-valdivia-180218ab/",
-      },
-      {
-        image: `${IsaiasGius}`,
-        key: 3,
-        title: "Isaías Gius",
-        urlGit: "https://github.com/G1U5",
-        urlLink: "https://github.com/MauroConiglio",
-      },
-
+      image: `${LeoRecalde}`,
+      key: 3,
+      title: "Leo Recalde",
+      urlGit: "https://github.com/leorecalde",
+      urlLink: "https://www.linkedin.com/in/leo-recalde-479b772bb/",
+    },
+    {
+      image: `${FernandoValdivia}`,
+      key: 3,
+      title: "Fernando Valdivia",
+      urlGit: "https://github.com/Fernando-Valdivia",
+      urlLink: "https://www.linkedin.com/in/fernando-miguel-valdivia-180218ab/",
+    },
+    {
+      image: `${IsaiasGius}`,
+      key: 3,
+      title: "Isaías Gius",
+      urlGit: "https://github.com/G1U5",
+      urlLink: "https://github.com/MauroConiglio",
+    },
   ];
   return (
     <>
-    <Container className="my-3 text-center">
-      <Row>
-        <h2 className="colorVerdeLetra mt-4 mb-4">¿Quienes Somos?</h2>
+      <Container className="my-3 text-center">
+        <Row>
+          <h2 className="colorVerdeLetra mt-4 mb-4">¿Quienes Somos?</h2>
           {listaIntegrantes.map((integrante, index) => {
-          return (
-            <CardIntegrants
-              key={index}
-              image={integrante.image}
-              title={integrante.title}
-              urlGit={integrante.urlGit}
-              urlLink={integrante.urlLink}
-
-            />
-          );
-        })}
-      </Row>
-    </Container>
+            return (
+              <CardIntegrants
+                key={index}
+                image={integrante.image}
+                title={integrante.title}
+                urlGit={integrante.urlGit}
+                urlLink={integrante.urlLink}
+              />
+            );
+          })}
+        </Row>
+      </Container>
     </>
   );
 };
