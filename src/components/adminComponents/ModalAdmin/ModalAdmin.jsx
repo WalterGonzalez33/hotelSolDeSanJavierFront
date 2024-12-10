@@ -5,6 +5,7 @@ import FormUserEdit from "../FormUserEdit/FormUserEdit";
 import FormReservation from "../FormReservation/FormReservation";
 import FormRoom from "../FormrRoom/FormRoom";
 import FormReservationEdit from "../FormReservationEdit/FormReservationEdit";
+import FormRoomEdit from "../FormRoomEdit/FormRoomEdit";
 
 function ModalAdmin({
   show,
@@ -15,6 +16,7 @@ function ModalAdmin({
   reload,
   dataUser,
   dataReservation,
+  dataRoom,
   userValue,
 }) {
   return (
@@ -63,7 +65,21 @@ function ModalAdmin({
             dataReservation={dataReservation}
           />
         )}
-        {form === "room" && <FormRoom />}
+        {form === "room" && (
+          <FormRoom
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+          />
+        )}
+        {form === "roomEdit" && (
+          <FormRoomEdit
+            handleClose={handleClose}
+            setReload={setReload}
+            reload={reload}
+            dataRoom={dataRoom}
+          />
+        )}
       </Modal.Body>
     </Modal>
   );
