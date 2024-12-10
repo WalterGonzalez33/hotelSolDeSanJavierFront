@@ -17,7 +17,7 @@ import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
 import RoomsContainer from "./components/pages/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
-import RouteProtectAdmin from "./components/adminComponents/routeProtectAdmin/RouteProtectAdmin.jsx";
+import RouteProtectAdmin from "./components/adminComponents/RouteProtectAdmin/RouteProtectAdmin.jsx";
 import { useEffect, useState } from "react";
 import { checkValidateToken, getItem, getToken } from "./utils/requests.js";
 import Register from "./components/pages/Register/Register.jsx";
