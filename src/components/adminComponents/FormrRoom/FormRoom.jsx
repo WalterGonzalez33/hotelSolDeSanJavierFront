@@ -1,22 +1,42 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form, Button } from "react-bootstrap";
 import style from "./FormRoom.module.css";
-import Swal from "sweetalert2";
-const apiUrl = import.meta.env.VITE_API_URL;
+import { create } from "../../../utils/requests";
+import { showCustomAlert } from "../../../utils/customAlert";
 
-const FormRoom = ({ handleClose }) => {
+const FormRoom = ({
+  handleClose,
+  setReload,
+  reload,
+  edit = true,
+  dataRoom,
+}) => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const [error, setError] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(true);
-
-  const token = JSON.parse(sessionStorage.getItem("userToken"));
+  const createRoom = async (data) => {
+    const request = await create(data, "rooms");
+    if (request.status === 201) {
+      showCustomAlert({
+        alertTitle: "Éxito",
+        alertText: "La habitación fue creada correctamente",
+        confirmText: "CONFIRMAR",
+      });
+      handleClose();
+      setReload(!reload);
+    }
+    if (request === 400) {
+      const res = await request.json();
+      showCustomAlert({
+        alertTitle: "Cuidado!",
+        alertText: `${res.message ? res.message : res.message}`,
+        icon: "warning",
+      });
+    }
+  };
 
   const onSubmit = async (data) => {
     const benefitsArray = [];
@@ -29,40 +49,7 @@ const FormRoom = ({ handleClose }) => {
       ...data,
       benefits: benefitsArray,
     };
-
-    try {
-      const response = await fetch(`${apiUrl}/rooms`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token.token}`,
-        },
-        body: JSON.stringify(roomData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al crear la habitación");
-      }
-
-      Swal.fire({
-        title: "¡Éxito!",
-        text: "La habitación ha sido creada correctamente.",
-        icon: "success",
-        confirmButtonText: "Aceptar",
-      });
-
-      setIsFormVisible(false);
-      reset();
-      window.location.reload();
-    } catch (err) {
-      setError(`Error al crear la habitación: ${err.message}`);
-      Swal.fire({
-        title: "Error",
-        text: `Hubo un problema al crear la habitación: ${err.message}`,
-        icon: "error",
-        confirmButtonText: "Aceptar",
-      });
-    }
+    createRoom(roomData);
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={`p-4 ${style.form}`}>
@@ -214,10 +201,8 @@ const FormRoom = ({ handleClose }) => {
       </Form.Group>
 
       <Button variant="success" type="submit">
-        Crear habitación
+        {dataRoom && edit ? "Editar" : "Crear"}
       </Button>
-
-      {error && <p className="text-danger">{error}</p>}
     </Form>
   );
 };
