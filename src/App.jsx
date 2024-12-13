@@ -14,7 +14,7 @@ import Login from "./components/pages/Login/Login.jsx";
 import Gallery from "./components/pages/Gallery.jsx";
 import FilterRoomsContain from "./components/FilterRoomsContainer/FilterRoomsContainer.jsx";
 import NavbarComponent from "./components/common/Navbar/NavbarComponent.jsx";
-import RoomsContainer from "./components/pages/Rooms.jsx";
+import RoomsContainer from "./components/pages/Rooms/Rooms.jsx";
 import Contactos from "./components/pages/Contactos.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import RouteProtectAdmin from "./components/adminComponents/RouteProtectAdmin/RouteProtectAdmin.jsx";
@@ -49,7 +49,7 @@ const AppContent = () => {
 
   useEffect(() => {
     const getUserRoll = async () => {
-      const userLog = await getItem(`/get-roll-user/${usuario.id}`);
+      const userLog = await getItem(`get-roll-user/${usuario.id}`);
       if (userLog) {
         setRollUser(userLog);
       }

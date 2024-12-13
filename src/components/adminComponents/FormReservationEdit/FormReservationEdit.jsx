@@ -34,7 +34,7 @@ const FormReservationEdit = ({
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const getUser = await getItem(`/users/${dataReservation.user_id}`);
+      const getUser = await getItem(`users/${dataReservation.user_id}`);
       setCurrentUserData(getUser);
     };
     getCurrentUser();
@@ -43,7 +43,7 @@ const FormReservationEdit = ({
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const url = `/users`;
+        const url = `users`;
         const getUsers = await getItem(url);
         setUsers(getUsers);
       } catch (err) {
@@ -61,7 +61,7 @@ const FormReservationEdit = ({
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-          const url = `/rooms/${checkIn}/${checkOut}`;
+          const url = `rooms/${checkIn}/${checkOut}`;
           const getRooms = await getItem(url);
           setRooms(getRooms);
         } catch (err) {
@@ -77,7 +77,7 @@ const FormReservationEdit = ({
 
   useEffect(() => {
     const getCurrentRoom = async () => {
-      const currentRoom = await getItem(`/rooms/${dataReservation.room_id}`);
+      const currentRoom = await getItem(`rooms/${dataReservation.room_id}`);
       setRooms([...rooms, currentRoom[0]]);
     };
     getCurrentRoom();

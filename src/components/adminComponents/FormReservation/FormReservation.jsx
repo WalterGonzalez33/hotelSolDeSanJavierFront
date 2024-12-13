@@ -32,7 +32,7 @@ const FormReservation = ({
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const url = `/users`;
+        const url = `users`;
         const getUsers = await getItem(url);
         setUsers(getUsers);
       } catch (err) {
@@ -50,7 +50,7 @@ const FormReservation = ({
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-          const url = `/rooms/${checkIn}/${checkOut}`;
+          const url = `rooms/${checkIn}/${checkOut}`;
           const getRooms = await getItem(url);
           setRooms(getRooms);
         } catch (err) {

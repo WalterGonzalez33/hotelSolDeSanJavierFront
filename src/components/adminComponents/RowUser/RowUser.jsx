@@ -53,7 +53,7 @@ const RowUser = ({
   };
   const handleDelete = async () => {
     try {
-      const deleteUserResponse = await deleteItem(`/users/${_id}`);
+      const deleteUserResponse = await deleteItem(`users/${_id}`);
       if (!deleteUserResponse.ok) {
         const resultDeleteUser = await deleteUserResponse.json();
         showCustomAlert({

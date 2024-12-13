@@ -16,7 +16,7 @@ const FilterRoomsContainer = () => {
   const { check_in, check_out } = useParams();
 
   const { data, loading, error } = useFetch({
-    endPoint: `/rooms/${check_in}/${check_out}`,
+    endPoint: `rooms/${check_in}/${check_out}`,
     ignoreToken: true,
   });
 
