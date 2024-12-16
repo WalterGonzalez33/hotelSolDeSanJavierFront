@@ -163,6 +163,8 @@ Este proyecto fue desarrollado en equipo, combinando nuestros esfuerzos y habili
 >**GitHub**: [Mauro Coniglio](https://github.com/MauroConiglio) o [Walter Gonzalez](https://github.com/WalterGonzalez33) <br>
 >
 
+<br>
+
 <div align="center">
     <p>¡Gracias por visitar este repositorio! 🎉</p>
 </div>
