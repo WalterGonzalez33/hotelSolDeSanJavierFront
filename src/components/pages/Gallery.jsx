@@ -4,34 +4,46 @@ import "../../styles/gallery.css";
 
 const images = {
   habitaciones: [
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/suite-superiores-hotel-sol-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/suite-junior-hotel-sol-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/departamentos-hotel-sol-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/habitaciones-dobles-deluxe-hotel-sol-san-javier-tucuman.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734331888/suite-superiores-hotel-sol-san-javier-tucuman_s0wizm.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734331925/suite-junior-hotel-sol-san-javier-tucuman_hm0izv.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734331968/departamentos-hotel-sol-san-javier-tucuman_mzv1h2.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734331777/habitaciones-dobles-deluxe-hotel-sol-san-javier-tucuman_fhj2l8.jpg",
   ],
   eventos: [
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/24-eventos-realizados-en-hotel-sol-san-javier.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/1-servicio-de-catering.JPG",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/6-catering-del-hotel-sol-san-javier.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/5-eventos.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333707/24-eventos-realizados-en-hotel-sol-san-javier_dlmose.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333748/1-servicio-de-catering_f504ty.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333778/6-catering-del-hotel-sol-san-javier_n3takg.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333842/5-eventos_payxog.jpg",
   ],
   vistas: [
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/2-vistas-aereas-de-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/3-el-cristo-bendicente.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/parapente-loma-bola-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/29-loma-bola.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333880/2-vistas-aereas-de-san-javier-tucuman_e02wls.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333932/3-el-cristo-bendicente_ugpkcv.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333958/parapente-loma-bola-tucuman_a2k0ms.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734333983/29-loma-bola_pxa9ni.jpg",
   ],
   piscina: [
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/19-piscina-del-hotel-sol-san-javier.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/21-vista-del-restaurante-desde-la-piscina.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/4-la-piscina.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/galerias-de-fotos/fotos/16-recreacion-mediante-juegos-en-la-piscina-del-hotel.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334153/19-piscina-del-hotel-sol-san-javier_njynim.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334181/21-vista-del-restaurante-desde-la-piscina_adg8ao.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334228/4-la-piscina_vhbsvq.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334261/16-recreacion-mediante-juegos-en-la-piscina-del-hotel_zsbuq6.jpg",
   ],
   servicios: [
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/spa-sol-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/secciones/gym-hotel-sol-san-javier-tucuman.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/slider/salones-hotel-sol-san-javier-04.jpg",
-    "http://hotelsolsanjavier.com.ar/public/images/slider/spa-hotel-sol-san-javier.jpg",
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334300/spa-sol-san-javier-tucuman_zumj1u.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334326/gym-hotel-sol-san-javier-tucuman_rrebs3.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334352/salones-hotel-sol-san-javier-04_qaexmy.jpg",
+
+    "https://res.cloudinary.com/drxcknzbe/image/upload/v1734334378/spa-hotel-sol-san-javier_rrin3t.jpg",
   ],
 };
 
@@ -62,7 +74,7 @@ const Gallery = () => {
                   <img
                     src={img}
                     alt={`${selectedSection}-${index}`}
-                    className="img-fluid"
+                    className="img-fluid w-100"
                   />
                 </div>
               </div>
