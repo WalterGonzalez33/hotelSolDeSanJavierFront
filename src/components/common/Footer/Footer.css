@@ -43,7 +43,7 @@ h5:hover{
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('http://www.hotelsolsanjavier.com.ar/public/images/slider/PRUEBA%203%20-%20copia.jpg');
+  background-image: url('../../../assets/imgInicio/hotel.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -31,6 +31,7 @@ const RoomsContainer = () => {
             broad_description={room.broad_description}
             benefits={room.benefits}
             available={false}
+            border_card={true}
           />
         ))}
     </Container>

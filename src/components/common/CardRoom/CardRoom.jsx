@@ -12,17 +12,28 @@ const CardRoom = ({
   broad_description,
   benefits,
   available = true,
+  border_card = false,
 }) => {
   const formatNumberWithDots = (number) => {
     return number.toLocaleString("de-DE");
   };
   return (
-    <article className={` ${style.card_container} `}>
-      {available && <span className={` ${style.card_available} `}>Disponible</span>}
+    <article
+      className={` ${style.card_container} ${
+        border_card && style.card_container_border
+      } `}
+    >
+      {available && (
+        <span className={` ${style.card_available} `}>Disponible</span>
+      )}
       <div className={` ${style.card_img_container} `}>
         <Image src={image} className={` ${style.card_img} `} />
       </div>
-      <div className={` ${style.card_info_container} `}>
+      <div
+        className={` ${style.card_info_container} ${
+          border_card && style.card_info_container_expande
+        }`}
+      >
         <h3 className={` ${style.card_title} `}>{room_name}</h3>
         <div className={` ${style.card_description_container} `}>
           <p>{broad_description}</p>
