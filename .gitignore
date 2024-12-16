@@ -7,12 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencias
 node_modules
+# La carpeta node_modules contiene dependencias instaladas y puede ser reconstruida usando el archivo package.json.
+
+# Archivos de build
 dist
 dist-ssr
-*.local
+# Estas carpetas contienen archivos generados tras compilar el proyecto y no deben versionarse.
 
-# Editor directories and files
+# Configuración local
+*.local
+# Archivos de configuración específicos del entorno local no deben incluirse.
+
+# Directorios y archivos de editores
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,5 +31,5 @@ dist-ssr
 *.sln
 *.sw?
 
-#variables de entorno
+# Variables de entorno
 .env
