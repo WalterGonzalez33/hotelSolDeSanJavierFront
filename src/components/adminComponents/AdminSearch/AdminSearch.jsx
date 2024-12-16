@@ -30,7 +30,7 @@ const AdminSearch = ({ data, setData, reservation = null }) => {
               type="text"
               placeholder="Email"
               maxLength={100}
-              className=" mr-sm-2 d-inline-flex focus-ring focus-ring-success border-success"
+              className=" pe-0 mr-sm-2 d-inline-flex focus-ring focus-ring-success border-success"
               onInput={(e) => filterData(e)}
             />
           </Col>

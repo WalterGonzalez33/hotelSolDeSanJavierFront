@@ -27,7 +27,6 @@ const Register = () => {
   const registerUser = async (bodyData) => {
     const registerResponse = await create(bodyData, "users");
     const responseJson = await registerResponse.json();
-
     if (!registerResponse.ok) {
       return showCustomAlert({
         alertTitle: "No te pudimos registrar",

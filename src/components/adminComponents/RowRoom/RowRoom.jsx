@@ -34,7 +34,7 @@ const RowRoom = ({
 
   const deleteRoom = async () => {
     try {
-      const deleteRoomResponse = await deleteItem(`/rooms/${_id}`);
+      const deleteRoomResponse = await deleteItem(`rooms/${_id}`);
       if (!deleteRoomResponse.ok) {
         const resultDeleteRoom = await deleteRoomResponse.json();
         showCustomAlert({

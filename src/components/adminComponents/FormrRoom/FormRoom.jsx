@@ -5,7 +5,7 @@ import style from "./FormRoom.module.css";
 import Swal from "sweetalert2";
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const FormRoom = ({ handleClose }) => {
+const FormRoom = () => {
   const {
     register,
     handleSubmit,
@@ -14,7 +14,6 @@ const FormRoom = ({ handleClose }) => {
   } = useForm();
 
   const [error, setError] = useState(null);
-  const [isFormVisible, setIsFormVisible] = useState(true);
 
   const token = JSON.parse(sessionStorage.getItem("userToken"));
 
@@ -25,13 +24,20 @@ const FormRoom = ({ handleClose }) => {
     if (data.bathroom) benefitsArray.push("Baño privado");
     if (data.phone) benefitsArray.push("Teléfono");
 
+    const price = Number(data.price.replace(/\./g, "").replace(/,/g, "."));
+
     const roomData = {
-      ...data,
+      brief_description: data.brief_description,
+      broad_description: data.broad_description,
+      image: data.image,
+      number_rooms: data.number_rooms,
+      price: price,
+      room_name: data.room_name,
       benefits: benefitsArray,
     };
 
     try {
-      const response = await fetch(`${apiUrl}/rooms`, {
+      const response = await fetch(`${apiUrl}rooms`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,8 +56,6 @@ const FormRoom = ({ handleClose }) => {
         icon: "success",
         confirmButtonText: "Aceptar",
       });
-
-      setIsFormVisible(false);
       reset();
       window.location.reload();
     } catch (err) {

@@ -43,7 +43,7 @@ const ReservationForm = () => {
       const fetchRooms = async () => {
         try {
           setLoadingRooms(true);
-          const url = `${apiUrl}/rooms/${checkInDate}/${checkOutDate}`;
+          const url = `${apiUrl}rooms/${checkInDate}/${checkOutDate}`;
           const response = await fetch(url);
           if (!response.ok) {
             throw new Error("Error al obtener las habitaciones disponibles");

@@ -22,7 +22,7 @@ const NavbarComponent = ({ setUsuarioLogueado, usuarioLogueado }) => {
     if (!userId) {
       return;
     }
-    const getUser = await getItem(`/get-roll-user/${userId}`);
+    const getUser = await getItem(`get-roll-user/${userId}`);
     return getUser ?? false;
   };
 
