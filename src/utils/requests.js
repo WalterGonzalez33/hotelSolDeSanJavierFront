@@ -47,11 +47,15 @@ export const login = async (usuario) => {
 
 export const create = async (dataBody, endpoint) => {
     try {
+      const token = await checkValidateToken()
+      if(!token) { return false }
+
       const parseData = JSON.stringify(dataBody)
       const response = await fetch(`${apiUrl}${endpoint}`, {
           method: 'POST',
           headers:{
               "Content-Type": "application/json",
+              Authorization: token
           },
           body: parseData
         })
