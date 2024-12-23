@@ -103,34 +103,18 @@ const Login = ({ setUsuarioLogueado }) => {
 
             <div className="d-flex justify-content-center gap-3 mt-4 ">
               <Button
-                className="custom-btn rounded-5 btn-success"
+                className="buttonLogin rounded-5 btn-success"
                 type="submit"
               >
                 Iniciar Sesión
               </Button>
               <Link to="/registro">
-                <Button className="rounded-5" type="button">
+                <Button className=" buttonLogin rounded-5" type="button">
                   Registrarse
                 </Button>
               </Link>
             </div>
           </Form>
-
-          <div className="text-center mt-4">
-            <p className="fs-5">O registrarse con</p>
-            <div className="d-flex justify-content-center gap-3">
-              <a href="https://www.facebook.com/login">
-                <Button className="d-flex align-items-center rounded-5 btn-primary">
-                  <BsFacebook size={20} className="me-2" /> Facebook
-                </Button>
-              </a>
-              <a href="https://gmail.com/">
-                <Button className="d-flex align-items-center rounded-5 btn-danger">
-                  <BsEnvelopeFill size={20} className="me-2" /> Gmail
-                </Button>
-              </a>
-            </div>
-          </div>
 
           <div className="text-center my-4">
             <Link to="/">

@@ -1,0 +1,32 @@
+.error_container{
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.img_container{
+    width: 100%;
+    max-width: 500px;
+}
+
+.oops{
+    color: #3F3D56;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 30px;
+}
+.text_error{
+    margin-bottom: 30px;
+    color: rgb(var(--color-accent-light));
+    font-weight: 800;
+}
+
+.btn{
+    color: #3F3D56;
+    border: 2px solid #3F3D56;
+}

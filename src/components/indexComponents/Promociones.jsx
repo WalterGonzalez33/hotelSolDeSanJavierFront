@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
 import "../../styles/custom-swiper-bullet.css";
+import { Link } from "react-router-dom";
 
 const Promociones = () => {
   return (
@@ -26,34 +27,40 @@ const Promociones = () => {
         speed={700}
       >
         <SwiperSlide>
-          <div className="img-banner-container">
-            <img src={vista} alt="vista" />
-            <div className="caption-banner">
-              <h3>Viví una experiencia única</h3>
-              <p>Disfruta de esta promo hecha para vos.</p>
+          <Link to={"/error404"}>
+            <div className="img-banner-container">
+              <img src={vista} alt="vista" />
+              <div className="caption-banner">
+                <h3>Viví una experiencia única</h3>
+                <p>Disfruta de esta promo hecha para vos.</p>
+              </div>
             </div>
-          </div>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="img-banner-container">
-            <img src={room} alt="habitación" />
-            <div className="caption-banner">
-              <h3>Confort & Hospitalidad</h3>
-              <p>
-                Sentirte en tu casa, pero con el lujo y la comodidad de un 4
-                ⭐⭐⭐⭐
-              </p>
+          <Link to={"/error404"}>
+            <div className="img-banner-container">
+              <img src={room} alt="habitación" />
+              <div className="caption-banner">
+                <h3>Confort & Hospitalidad</h3>
+                <p>
+                  Sentirte en tu casa, pero con el lujo y la comodidad de un 4
+                  ⭐⭐⭐⭐
+                </p>
+              </div>
             </div>
-          </div>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="img-banner-container">
-            <img src={vista2} alt="vista de noche" />
-            <div className="caption-banner">
-              <h3>Noches Mágicas</h3>
-              <p>Conoce todas las opciones que tenemos para vos!</p>
+          <Link to={"/error404"}>
+            <div className="img-banner-container">
+              <img src={vista2} alt="vista de noche" />
+              <div className="caption-banner">
+                <h3>Noches Mágicas</h3>
+                <p>Conoce todas las opciones que tenemos para vos!</p>
+              </div>
             </div>
-          </div>
+          </Link>
         </SwiperSlide>
       </Swiper>
     </section>

@@ -7,6 +7,8 @@ import image2 from "../../assets/imgInicio/salaDeJuegos.jpg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { validationDate } from "../../utils/validateDate";
+import { showCustomAlert } from "../../utils/customAlert";
+import { create } from "../../utils/requests";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -60,6 +62,9 @@ const ReservationForm = () => {
     }
   }, [checkInDate, checkOutDate]);
 
+  const redirectionHome = () => {
+    navigate("/");
+  };
   const onSubmit = async (data) => {
     const validateResult = validationDate(data.check_in, data.check_out);
     if (validateResult.valid) {
@@ -72,30 +77,30 @@ const ReservationForm = () => {
           persons: data.persons,
         };
 
-        const response = await fetch(`${apiUrl}reservation/create`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token.token}`,
-          },
-          body: JSON.stringify(reservationData),
-        });
+        const response = await create(reservationData, `reservation/create`);
+        const dataRequest = await response.json();
         if (!response.ok) {
-          throw new Error("Error al crear la reservación");
+          throw new Error(dataRequest.message);
         }
 
-        Swal.fire({
-          title: "Reservación exitosa",
-          text: "La reservación ha sido creada correctamente",
-          icon: "success",
-          confirmButtonText: "Aceptar",
+        showCustomAlert({
+          alertTitle: "",
+          alertText: "La reservación ha sido creada correctamente",
+        });
+        reset();
+        showCustomAlert({
+          alertTitle: "Reserva exitosa",
+          alertText: `Quieres hacer otra reserva?`,
+          showCancel: true,
+          controlCancelCallback: true,
+          cancelCallback: () => redirectionHome(),
         });
       } catch (err) {
-        Swal.fire({
-          tittle: "Error",
-          text: `Hubo un problema al crear la reservación: ${err.message}`,
+        reset();
+        showCustomAlert({
+          alertTitle: "Error al crear la reserva",
+          alertText: `${err.message.slice(7, err.message.length)}`,
           icon: "error",
-          confirmButtonText: "Aceptar",
         });
       }
     } else {
@@ -130,7 +135,9 @@ const ReservationForm = () => {
           <hr />
           <Row>
             <Col md={6} xs={12}>
-              <Form.Label className="mt-2">Check-In</Form.Label>
+              <Form.Label className="mt-2 label-input-reservation">
+                Check-In
+              </Form.Label>
               <Form.Control
                 type="date"
                 {...register("check_in", {
@@ -142,7 +149,9 @@ const ReservationForm = () => {
                 {errors.check_in?.message}
               </Form.Text>
 
-              <Form.Label className="mt-4">Check-Out</Form.Label>
+              <Form.Label className="mt-4 label-input-reservation">
+                Check-Out
+              </Form.Label>
               <Form.Control
                 type="date"
                 {...register("check_out", {
@@ -156,8 +165,11 @@ const ReservationForm = () => {
             </Col>
 
             <Col md={6} xs={12}>
-              <Form.Label className="mt-2">Cantidad de personas</Form.Label>
+              <Form.Label className="mt-2 label-input-reservation">
+                Cantidad de personas
+              </Form.Label>
               <Form.Select
+                className="focus-ring focus-ring-success"
                 {...register("persons", {
                   required: "La cantidad de personas es obligatoria",
                 })}
@@ -172,13 +184,16 @@ const ReservationForm = () => {
                 {errors.personas?.message}
               </Form.Text>
 
-              <Form.Label className="mt-4">Seleccionar habitación</Form.Label>
+              <Form.Label className="mt-4 label-input-reservation">
+                Seleccionar habitación
+              </Form.Label>
               {loadingRooms ? (
                 <Form.Text>Cargando habitaciones...</Form.Text>
               ) : error ? (
                 <Form.Text className="text-danger">{error}</Form.Text>
               ) : (
                 <Form.Select
+                  className="focus-ring focus-ring-success"
                   {...register("room_id", {
                     required:
                       "Seleccionar una habitación es un campo requerido",
