@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import style from "./Register.module.css";
 import { useForm } from "react-hook-form";
-import { create } from "../../../utils/requests";
+import { reqRegister } from "../../../utils/requests";
 import { useState } from "react";
 import { showCustomAlert } from "../../../utils/customAlert";
 import { useNavigate } from "react-router-dom";
@@ -25,9 +25,10 @@ const Register = () => {
   };
 
   const registerUser = async (bodyData) => {
-    const registerResponse = await create(bodyData, "users");
+    const registerResponse = await reqRegister(bodyData, "users");
     const responseJson = await registerResponse.json();
-    if (!registerResponse.ok) {
+
+    if (registerResponse.status === 400) {
       return showCustomAlert({
         alertTitle: "No te pudimos registrar",
         alertText: responseJson.message,

@@ -77,7 +77,11 @@ Construida con **React** y configurada con **Vite**, esta aplicación garantiza 
 
 <br>
 
+  <a href="https://hotelsanjavier.netlify.app/">
+
 ![meme de hotel](https://media0.giphy.com/media/gr5qY4qj8G96o/200w.gif?cid=6c09b952b84cxrs7o3hfbkqb7pcf6rlht64wte0ng9upr6se&ep=v1_gifs_search&rid=200w.gif)
+
+  </a>
 
 ## Instalación 🚀
 
@@ -101,7 +105,7 @@ $ npm install
 Para que la aplicación funcione correctamente, es necesario configurar las **variables de entorno**. El proyecto requiere un archivo `.env` en la raíz, con el siguiente contenido:
 
 ```plaintext
-VITE_API_URL=https://hotel-san-javier-back.vercel.app/api/
+VITE_API_URL=https://hotelsanjavier-back.onrender.com/api/
 # (Puedes cambiarlo por tu backend si deseas)
 ```
 
@@ -115,7 +119,7 @@ $ npm run dev
 
 ## Backend 🔗
 
-La aplicación está conectada a un backend construido con **Node.js**, **Express**, y **MongoDB**, alojado en **Vercel**.  
+La aplicación está conectada a un backend construido con **Node.js**, **Express**, y **MongoDB**.  
 Algunas de las principales funcionalidades incluyen:
 
 Gestión de reservas y usuarios.  
@@ -130,7 +134,7 @@ Más detalles en el [Repositorio del Backend](https://github.com/WalterGonzalez3
 
 - **Frontend:** React, React Router, CSS Modules, Bootstrap 5.3
 - **Backend:** Node.js, Express, MongoDB
-- **Herramientas:** Vite, Git, Netlify, Eslint, Vercel
+- **Herramientas:** Vite, Git, Netlify, Eslint, Render
 
 <br>
 
