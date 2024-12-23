@@ -116,22 +116,6 @@ const Login = ({ setUsuarioLogueado }) => {
             </div>
           </Form>
 
-          <div className="text-center mt-4">
-            <p className="fs-5">O registrarse con</p>
-            <div className="d-flex justify-content-center gap-3">
-              <a href="https://www.facebook.com/login">
-                <Button className="d-flex align-items-center rounded-5 btn-primary">
-                  <BsFacebook size={20} className="me-2" /> Facebook
-                </Button>
-              </a>
-              <a href="https://gmail.com/">
-                <Button className="d-flex align-items-center rounded-5 btn-danger">
-                  <BsEnvelopeFill size={20} className="me-2" /> Gmail
-                </Button>
-              </a>
-            </div>
-          </div>
-
           <div className="text-center my-4">
             <Link to="/">
               <Button className="rounded-5 btn-dark">Volver al inicio</Button>

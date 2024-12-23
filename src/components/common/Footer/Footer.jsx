@@ -60,19 +60,31 @@ const Footer = () => {
             <h5 className="fs-3 rounded-5">Síguenos</h5>
             <ul className="list-unstyled">
               <li>
-                <a href="https://www.facebook.com" className="text-link">
+                <a
+                  href="https://www.facebook.com"
+                  className="text-link"
+                  target="_back"
+                >
                   <BsFacebook className="icon" />
                   Facebook
                 </a>
               </li>
               <li>
-                <a href="https://www.twitter.com" className="text-link">
+                <a
+                  href="https://www.twitter.com"
+                  className="text-link"
+                  target="_back"
+                >
                   <BsTwitterX className="icon" />
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com" className="text-link">
+                <a
+                  href="https://www.instagram.com"
+                  target="_back"
+                  className="text-link"
+                >
                   <BsInstagram className="icon" />
                   Instagram
                 </a>

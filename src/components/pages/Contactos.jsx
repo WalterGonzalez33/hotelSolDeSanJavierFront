@@ -1,16 +1,22 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsFillTelephoneFill, BsGeoAltFill } from "react-icons/bs";
+import { showCustomAlert } from "../../utils/customAlert";
 
 const Contactos = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = () => {
+    showCustomAlert({
+      alertTitle: "Tu consulta se envió correctamente",
+      alertText: "",
+    });
+    reset();
   };
 
   return (
@@ -87,7 +93,7 @@ const Contactos = () => {
               <Form.Label>Telefono</Form.Label>
               <Form.Control
                 className=" rounded-5 border-3 "
-                type="email"
+                type="tel"
                 placeholder="Ej: 3813321783"
                 {...register("telefono", {
                   required: "El telefono es obligatorio",
