@@ -10,7 +10,9 @@ export const showCustomAlert = ({
     continueConfirm = false,
     callback = null,
     controlDismissed = false,
-    callbackDismissed = null
+    callbackDismissed = null,
+    controlCancelCallback = false,
+    cancelCallback = null,
 }) => {
     return Swal.fire({
       title: alertTitle,
@@ -34,6 +36,11 @@ export const showCustomAlert = ({
             if (result.isConfirmed) {
                     callback()
               }
+        }
+        if (result.dismiss === Swal.DismissReason.cancel) {
+          if(controlCancelCallback){
+            cancelCallback()
+          }
         }
         if(controlDismissed){
             if (result.isDismissed) {
