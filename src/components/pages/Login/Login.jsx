@@ -103,13 +103,13 @@ const Login = ({ setUsuarioLogueado }) => {
 
             <div className="d-flex justify-content-center gap-3 mt-4 ">
               <Button
-                className="custom-btn rounded-5 btn-success"
+                className="buttonLogin rounded-5 btn-success"
                 type="submit"
               >
                 Iniciar Sesión
               </Button>
               <Link to="/registro">
-                <Button className="rounded-5" type="button">
+                <Button className=" buttonLogin rounded-5" type="button">
                   Registrarse
                 </Button>
               </Link>
