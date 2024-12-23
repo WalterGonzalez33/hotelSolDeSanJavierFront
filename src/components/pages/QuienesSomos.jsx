@@ -28,7 +28,6 @@ const QuienesSomos = () => {
       key: 3,
       title: "Tomas Santamarina",
       urlGit: "https://github.com/Tomas2845",
-      urlLink: "https://github.com/MauroConiglio",
     },
     {
       image: `${LeoRecalde}`,
@@ -49,7 +48,6 @@ const QuienesSomos = () => {
       key: 3,
       title: "Isaías Gius",
       urlGit: "https://github.com/G1U5",
-      urlLink: "https://github.com/MauroConiglio",
     },
   ];
   return (
