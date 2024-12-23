@@ -1,8 +1,9 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import trabajar from "../../assets/imgInicio/trabajar.jpg"
-import descansar from "../../assets/imgInicio/descansar.jpg"
-import divertirse from "../../assets/imgInicio/divertirse.jpg"
-import "../../styles/index.css"
+import trabajar from "../../assets/imgInicio/trabajar.jpg";
+import descansar from "../../assets/imgInicio/descansar.jpg";
+import divertirse from "../../assets/imgInicio/divertirse.jpg";
+import "../../styles/index.css";
+import { Link } from "react-router-dom";
 
 const Experiencias = () => {
   return (
@@ -14,7 +15,9 @@ const Experiencias = () => {
             <Card.Img variant="top" src={trabajar} />
             <Card.Body>
               <Card.Title>Trabajar</Card.Title>
-              <Button variant="success">Ver más...</Button>
+              <Link to={"/error404"}>
+                <Button variant="success">Ver más...</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
@@ -23,7 +26,9 @@ const Experiencias = () => {
             <Card.Img variant="top" src={descansar} />
             <Card.Body>
               <Card.Title>Descansar</Card.Title>
-              <Button variant="success">Ver más...</Button>
+              <Link to={"/error404"}>
+                <Button variant="success">Ver más...</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>
@@ -32,7 +37,9 @@ const Experiencias = () => {
             <Card.Img variant="top" src={divertirse} />
             <Card.Body>
               <Card.Title>Divertirse</Card.Title>
-              <Button variant="success">Ver más...</Button>
+              <Link to={"/error404"}>
+                <Button variant="success">Ver más...</Button>
+              </Link>
             </Card.Body>
           </Card>
         </Col>

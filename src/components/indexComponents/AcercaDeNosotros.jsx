@@ -1,5 +1,6 @@
 import { Container, Button } from "react-bootstrap";
 import salones from "../../assets/imgInicio/hotel.jpg";
+import { Link } from "react-router-dom";
 const AcercaDeNosotros = () => {
   return (
     <Container className="my-3">
@@ -19,9 +20,11 @@ const AcercaDeNosotros = () => {
             escenario ideal para descansar, disfrutar en familia y convertir
             cualquier evento en un momento único e inolvidable.
           </p>
-          <Button type="button" variant="success" className="button-custom">
-            Ver más...
-          </Button>
+          <Link to={"/error404"}>
+            <Button type="button" variant="success" className="button-custom">
+              Ver más...
+            </Button>
+          </Link>
         </article>
         <article>
           <div className="img-hotel-container">

@@ -3,7 +3,6 @@ import {
   Routes,
   Route,
   useLocation,
-  Navigate,
   useNavigate,
 } from "react-router-dom";
 import Index from "./components/pages/Index";
@@ -22,6 +21,7 @@ import { useEffect, useState } from "react";
 import { checkValidateToken, getItem, getToken } from "./utils/requests.js";
 import Register from "./components/pages/Register/Register.jsx";
 import { showCustomAlert } from "./utils/customAlert.js";
+import Error404 from "./components/pages/Error404/Error404.jsx";
 
 function App() {
   return (
@@ -108,7 +108,8 @@ const AppContent = () => {
         <Route path="/sobre-nosotros" element={<QuienesSomos />} />
         <Route path="/galeria" element={<Gallery />} />
         <Route path="/contacto" element={<Contactos />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/error404" element={<Error404 />} />
+        <Route path="*" element={<Error404 />} />
         <Route path="/reservacion" element={<ReservationForm />} />
         <Route
           path="/login"
